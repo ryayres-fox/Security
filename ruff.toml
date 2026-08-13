@@ -16,3 +16,12 @@ ignore = [
 
 [lint.per-file-ignores]
 "**/test_*.py" = ["S105", "S106"]  # test fixtures name tokens that are not secrets
+
+# S603/S607 flag subprocess calls that resolve the executable from PATH.
+# Both files shell out to `git` with fixed, non-interpolated argument lists and
+# no shell, to read what is actually tracked. Hardcoding an absolute git path
+# would break on every machine that installs it somewhere else — macOS, Linux
+# and the CI runner all differ — so the finding is acknowledged here rather
+# than suppressed inline six times.
+"tools/check_repo_hygiene.py" = ["S603", "S607"]
+"tools/test_check_repo_hygiene.py" = ["S603", "S607"]

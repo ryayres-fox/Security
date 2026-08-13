@@ -53,6 +53,28 @@ jobs:
       - name: tools
         run: pytest tools -q
 
+  hygiene:
+    name: repo hygiene
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with: { persist-credentials: false }
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
+        with: { python-version: "3.11" }
+
+      # This repository is intended to become public, so career material,
+      # personal notes and credential files must never become tracked — once
+      # committed they are permanent in history.
+      #
+      # .gitignore cannot enforce this. It is client-side, it does nothing for
+      # an already-tracked file, `git add -f` overrides it, and a GitHub web-UI
+      # upload never consults it at all — which is precisely how a job-search
+      # log reached this repository. This job checks what is actually tracked,
+      # on a machine that is not the author's.
+      - name: No personal, career or credential material is tracked
+        run: python tools/check_repo_hygiene.py
+
   control-mapping:
     name: control mapping
     runs-on: ubuntu-latest

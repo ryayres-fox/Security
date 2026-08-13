@@ -1,14 +1,151 @@
-__pycache__/
-*.pyc
-.venv/
+# ---------------------------------------------------------------------------
+# Personal and career material — NEVER in this repository
+#
+# This repository is intended to become public. Anything matching the patterns
+# below would be permanent in git history from the moment it is committed, and
+# deleting it in a later commit does not remove it.
+#
+# Note what .gitignore CANNOT do, because it is the reason tools/check_repo_
+# hygiene.py exists:
+#   - It is client-side only. A file uploaded through the GitHub web UI never
+#     consults it. That is exactly how a job-search log reached this repo.
+#   - It has no effect on a file that is already tracked.
+#   - `git add -f` overrides it silently.
+# It reduces accidents. The CI gate is the control.
+# ---------------------------------------------------------------------------
+
+# Job search
+*SEARCH-LOG*
+*search-log*
+DAILY-SEARCH*
+JOB-SEARCH*
+*APPLICATION-NOTES*
+*SEARCH-PLAYBOOK*
+*SELECTION-AND-TAILORING*
+applications/
+cover-letter*/
+*cover-letter*
+*COVER-LETTER*
+*-outreach*
+recruiter*/
+
+# Resumes and career documents
+*[Rr]esume*
+*RESUME*
+*Curriculum[Vv]itae*
+*PORTFOLIO-INFO-REQUEST*
+*CLAIM-VERIFICATION*
+*APPSEC-EVIDENCE*
+*HANDOFF-*
+*METRICS-*
+
+# Anything explicitly marked personal or private
+personal/
+private/
+scratch/
+scratchpad/
+*-PERSONAL*
+*-PRIVATE*
+*.personal
+notes-private/
+
+# Credentials and key material
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+!**/testdata/*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.kdbx
+id_rsa*
+id_ed25519*
+*.ppk
+credentials
+.aws/
+.azure/
+.gcloud/
+*service-account*.json
+*credentials*.json
+
+# Terraform
 .terraform/
 *.tfstate
 *.tfstate.*
-report.html
-# The normalizer's default state file. Committing it would publish a findings
-# store as though it were sample data, and the next `ingest` would silently
-# append to whatever was committed.
-.findings-store.json
+*.tfplan
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+dist/
+build/
+.tox/
+
+# Tool output — regenerable, and sometimes contains findings detail
+report.html
+.findings-store.json
+*.sarif
+checkov-report*
+trivy-report*
+semgrep-report*
+gitleaks-report*
+bandit-report*
+tfsec-report*
+
+# Archives — the vector that carried the scaffold zip in here
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Documents. Force-add with `git add -f` if one is genuinely part of the repo,
+# and say why in the commit message.
+*.pdf
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.pptx
+*.key
+
+# OS and editor
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.claude/

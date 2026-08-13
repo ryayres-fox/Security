@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Blocks a commit that stages personal, career, or credential material.
+#
+# This is the convenience layer, not the control. Git hooks are not distributed
+# with a clone, they can be skipped with `git commit --no-verify`, and they do
+# nothing at all for a web-UI upload or an API commit — which is how the
+# incident that prompted this actually happened.
+#
+# The control is the same script running in CI against every tracked file.
+# Enable this locally with:
+#     git config core.hooksPath .githooks
+
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "pre-commit: python3 not found, skipping hygiene check (CI still enforces it)" >&2
+  exit 0
+fi
+
+python3 "$repo_root/tools/check_repo_hygiene.py" --root "$repo_root" --staged || {
+  echo >&2
+  echo "pre-commit: BLOCKED. Nothing has been committed." >&2
+  echo "This repository is intended to become public; the content above would be" >&2
+  echo "permanent in history from the moment it lands." >&2
+  exit 1
+}
