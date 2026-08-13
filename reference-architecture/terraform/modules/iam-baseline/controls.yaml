@@ -1,0 +1,46 @@
+module: iam-baseline
+implements:
+  - id: AC-2
+    statement: Account management constrains creation of principals and credentials
+    evidence: boundary denies iam:CreateUser, iam:CreateRole, iam:CreateLoginProfile
+  - id: AC-6
+    statement: Least privilege enforced by a ceiling that attached policies cannot exceed
+    evidence: permission boundary attached at role creation; boundary_arn output asserted
+  - id: AC-6(5)
+    statement: Privilege escalation paths are closed, not merely unused
+    evidence: DenyBoundaryAlteration denies policy attachment and boundary removal
+  - id: AC-4
+    statement: Resource creation confined to approved regions
+    evidence: aws:RequestedRegion condition with global services exempted
+  - id: IA-2
+    statement: Workload authentication uses federated identity, not static credentials
+    evidence: OIDC provider and AssumeRoleWithWebIdentity trust policy; no access keys issued
+  - id: IA-2(1)
+    statement: Federated trust is bound to fully-qualified subjects
+    evidence: StringEquals on the sub claim; variable validation rejects wildcards at plan time
+  - id: IA-5
+    statement: Static credential creation is denied at the boundary
+    evidence: DenyStaticCredentialCreation covers access keys and login profiles
+  - id: IA-5(1)
+    statement: Password policy sets length, complexity, reuse and age
+    evidence: aws_iam_account_password_policy with 14-character floor and 24-password history
+  - id: AU-9
+    statement: Audit infrastructure cannot be disabled by principals inside the boundary
+    evidence: DenyAuditTampering covers CloudTrail, Config, GuardDuty, Security Hub and KMS deletion
+
+exceptions:
+  - check: CKV_AWS_286
+    resource: aws_iam_policy.boundary
+    reason: Escalation is closed by DenyBoundaryAlteration; a resource-scoped Allow cannot express a boundary ceiling
+  - check: CKV_AWS_287
+    resource: aws_iam_policy.boundary
+    reason: Credential-exposure actions are explicitly denied in DenyStaticCredentialCreation
+  - check: CKV_AWS_288
+    resource: aws_iam_policy.boundary
+    reason: Exfiltration actions remain bounded by each role's identity policy; the boundary grants nothing on its own
+  - check: CKV_AWS_289
+    resource: aws_iam_policy.boundary
+    reason: A permission boundary constrains roles whose resources are unknown when the boundary is authored
+  - check: CKV_AWS_290
+    resource: aws_iam_policy.boundary
+    reason: Write actions inside a boundary are capped by the attached identity policy; effective permission is the intersection
