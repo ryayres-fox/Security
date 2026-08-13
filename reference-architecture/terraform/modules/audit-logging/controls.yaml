@@ -3,9 +3,38 @@ implements:
   - id: AU-2
     statement: Event logging is enabled for all management-plane actions
     evidence: is_multi_region_trail and include_global_service_events asserted in tests
+  - id: AU-6
+    statement: Audit records are available for near-real-time review and analysis
+    evidence: cloud_watch_logs_group_arn set; delivery role and log group asserted in tests
   - id: AU-9
     statement: Audit information is protected from unauthorized modification
-    evidence: enable_log_file_validation true; bucket versioning and Object Lock enforced
+    evidence: enable_log_file_validation true; bucket versioning and Object Lock COMPLIANCE enforced
   - id: AU-11
     statement: Audit records retained per organizational retention policy
     evidence: retention_days validated >= 365 at plan time
+  - id: AC-6
+    statement: Least privilege applied to the audit delivery role
+    evidence: log-stream-scoped resource ARN, no wildcard actions, optional permissions boundary
+  - id: SC-8
+    statement: Transmission confidentiality enforced for audit record transfer
+    evidence: explicit Deny on aws:SecureTransport=false in both bucket policies
+  - id: SI-4
+    statement: System monitoring emits notifications on audit record creation
+    evidence: SNS topic subscribed to s3:ObjectCreated with an encrypted topic and scoped policy
+
+exceptions:
+  - check: CKV_AWS_18
+    resource: aws_s3_bucket.access_logs
+    reason: This bucket is the server-access-log target; self-logging creates a write loop
+  - check: CKV_AWS_145
+    resource: aws_s3_bucket.access_logs
+    reason: S3 server access logging does not support CMK-encrypted targets; SSE-S3 applied
+  - check: CKV_AWS_144
+    resource: aws_s3_bucket.audit
+    reason: Cross-region replication is a caller-level availability decision, not a tamper-evidence control
+  - check: CKV_AWS_144
+    resource: aws_s3_bucket.access_logs
+    reason: Access logs are not the audit record of record
+  - check: CKV2_AWS_62
+    resource: aws_s3_bucket.access_logs
+    reason: Notifications proportional to read volume, no detection value
