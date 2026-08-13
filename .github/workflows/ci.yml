@@ -21,6 +21,7 @@ env:
   # local and CI silently enforce different rules.
   PYTEST_VERSION: "9.0.3"
   RUFF_VERSION: "0.16.3"
+  CHECKOV_VERSION: "3.2.459"
 
 jobs:
   python:
@@ -74,6 +75,31 @@ jobs:
       # on a machine that is not the author's.
       - name: No personal, career or credential material is tracked
         run: python tools/check_repo_hygiene.py
+
+  policies:
+    name: custom policies load and fire
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with: { persist-credentials: false }
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
+        with: { python-version: "3.11" }
+      - run: pip install "pytest==${PYTEST_VERSION}" "checkov==${CHECKOV_VERSION}"
+
+      # The job that would have caught the real defect this repository was
+      # built around: custom policies present in the repo, registering zero
+      # checks, while the scan completed normally and CI went green.
+      #
+      # Asserts BOTH halves, because either alone is a fail-open — the loader
+      # registered the checks, AND a known-bad fixture actually produces a
+      # finding. A check that registers and never fires enforces nothing.
+      #
+      # Checkov is pinned: the loader's packaging requirements and the shape of
+      # `conf` are both things a minor release has changed before, and either
+      # would turn these assertions into silent no-ops.
+      - name: Policy set registers and matches
+        run: pytest policies -q
 
   control-mapping:
     name: control mapping

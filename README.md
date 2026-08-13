@@ -19,14 +19,16 @@ this repository is derived from, copied from, or descriptive of any employer's e
 | **[`reference-architecture/`](reference-architecture/)** | A FedRAMP Moderate–aligned AWS security foundation as Terraform modules, with controls mapped to NIST SP 800-53 Rev 5 |
 | **[`findings-normalizer/`](findings-normalizer/)** | A Python tool that ingests seven scanners and normalizes them into one system of record with stable identity, history, ownership and dedupe |
 | **[`ai-security/`](ai-security/)** | Multi-tenant isolation in an embedding store, and a tool-authorization gate with a prompt-injection regression corpus |
-| **[`tools/`](tools/)** | The control-coverage folder — turns every module's `controls.yaml` into a build artifact |
+| **[`policies/`](policies/)** | Custom Checkov policies, and the tests that prove they load *and* fire |
+| **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
 | **[`homelab/`](homelab/)** | My own network — segmentation, detection engineering, and the things I break on purpose |
 | **[`docs/`](docs/)** | Control-mapping strategy and the generated [coverage report](docs/control-coverage.md) |
 
 ### Run it
 
 ```bash
-pytest findings-normalizer/tests ai-security tools -q   # 98 tests, ~1 second
+pytest findings-normalizer/tests ai-security tools -q   # 141 tests, ~1 second
+pytest policies -q                                      # 11 more (needs checkov)
 python tools/control_coverage.py --check                # every module declares its controls
 checkov -d reference-architecture/ --compact            # 0 failed, 10 skipped-with-reason
 
@@ -116,10 +118,31 @@ actually fires before I'd ever recommend it to anyone.
 
 ---
 
+## The method
+
+One question produced most of what is in this repository:
+
+> **Could this check have failed?**
+
+Not *what did it report*. A control reporting success is not evidence that it ran, and in every
+case worth writing down, the output of a control that was doing nothing was indistinguishable from
+the output of a control that was working.
+
+Four worked examples, three of them defects in this repository's own code, are in
+[`docs/silent-failure-patterns.md`](docs/silent-failure-patterns.md): a custom policy set that
+registered zero checks, a scan gate pinned to a commit that does not exist, an ignore file that the
+path in question never consulted, and a guard whose correctness quietly depended on the shape of
+the workload rather than on anything it guarded.
+
+The question is reusable, which is the point of stating it as a method rather than as a list of
+findings.
+
 ## Principles
 
 - **A control that reports clean while enforcing nothing is worse than no control.** Verify the
-  enforcement path, not the pass/fail output.
+  enforcement path, not the pass/fail output. [`policies/`](policies/) is the executable form of
+  this sentence: it asserts that the policy set *registers*, and that a known-bad fixture actually
+  *fails*. Either assertion alone is a fail-open.
 - **Name the unit.** "810 resources" means nothing until you say whether that's declarations or live
   instances. Numbers that can't survive "how did you count that?" shouldn't be used.
 - **Evidence is a by-product, not a project.** If producing it requires a person, it will be stale.

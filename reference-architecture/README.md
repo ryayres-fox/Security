@@ -10,13 +10,18 @@ any employer environment.
 
 | Module | Purpose | Controls |
 |---|---|---|
-| `audit-logging` | Management-plane audit trail, log-file validation, immutable retention | AU-2, AU-9, AU-11 |
-| `detective-controls` | Threat detection, config rules, posture aggregation | SI-4, CM-6, RA-5 |
-| `kms-encryption` | Customer-managed keys, rotation, envelope encryption | SC-12, SC-13, SC-28 |
-| `iam-baseline` | Least-privilege roles, permission boundaries, no static credentials | AC-2, AC-6, IA-2 |
-| `network-isolation` | Private subnets, endpoints, segmentation, WAF | SC-7, AC-4 |
-| `eks-baseline` | Private endpoint, workload identity, pod security, network policy | AC-3, SC-7, AU-2 |
-| `evidence-bucket` | Immutable evidence store with object lock | AU-9, AU-11 |
+| `audit-logging` | Management-plane audit trail, log-file validation, immutable retention, real-time delivery | AU-2, AU-6, AU-9, AU-11, AC-6, SC-8, SI-4 |
+| `iam-baseline` | Permission boundaries, OIDC workload identity, no static credentials | AC-2, AC-4, AC-6, AC-6(5), IA-2, IA-2(1), IA-5, IA-5(1), AU-9 |
+
+Two modules, both complete. There is no table row here for a module that does
+not exist — a list of seven names where five are empty directories is the same
+category of claim as a control that is documented but not enforced, and this
+repository is not the place to make it.
+
+The obvious next one is `network-isolation`. It is also the one worth doing
+properly rather than quickly: an encryption module tends to converge on the
+provider documentation, while segmentation decisions are where the judgement
+actually shows.
 
 Each module ships a `controls.yaml`, a README, and plan-time validation that proves the control
 rather than asserting it. See [`../docs/control-mapping.md`](../docs/control-mapping.md) for the
