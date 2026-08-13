@@ -10,15 +10,36 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pinned exactly, not floated. An unpinned `pip install ruff` resolves to
+  # whatever released this morning, so a lint rule added upstream turns a green
+  # branch red with no change to this repository — and, worse, the reverse:
+  # local and CI silently enforce different rules.
+  PYTEST_VERSION: "9.0.3"
+  RUFF_VERSION: "0.16.3"
+
 jobs:
   python:
-    name: tests and lint
+    name: tests and lint (py${{ matrix.python }})
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        # pyproject declares requires-python >= 3.11, so both supported minors
+        # are exercised. Claiming support for a version nothing runs on is the
+        # same class of defect as a control that never executes.
+        python: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with: { persist-credentials: false }
       - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
-        with: { python-version: "3.11" }
-      - run: pip install pytest ruff
+        with: { python-version: "${{ matrix.python }}" }
+      - run: pip install "pytest==${PYTEST_VERSION}" "ruff==${RUFF_VERSION}"
 
       - name: Lint
         run: ruff check findings-normalizer ai-security tools
@@ -35,8 +56,10 @@ jobs:
   control-mapping:
     name: control mapping
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with: { persist-credentials: false }
       - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
         with: { python-version: "3.11" }
 
@@ -48,8 +71,8 @@ jobs:
 
       - name: Generated coverage report matches the committed one
         run: |
-          python tools/control_coverage.py --out /tmp/coverage.md
-          diff -u docs/control-coverage.md /tmp/coverage.md || {
+          python tools/control_coverage.py --out "${RUNNER_TEMP}/coverage.md"
+          diff -u docs/control-coverage.md "${RUNNER_TEMP}/coverage.md" || {
             echo "::error::docs/control-coverage.md is stale. Regenerate it:"
             echo "  python tools/control_coverage.py --out docs/control-coverage.md"
             exit 1
@@ -58,8 +81,10 @@ jobs:
   terraform:
     name: terraform
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with: { persist-credentials: false }
       - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd  # v3.1.2
         with: { terraform_wrapper: false }
 
@@ -79,29 +104,38 @@ jobs:
   scan:
     name: security scan
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
-        with: { fetch-depth: 0 }
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       # soft_fail is deliberately false. Every exception in this repository is
       # inline, at the resource, with a written justification — which is a
       # control decision someone can read and argue with. A blanket soft_fail
       # would make the repo pass too, and would mean nothing.
+      #
+      # Pinned to the SHA of a specific patch release, NOT to the `v12` moving
+      # alias. `v12` is re-pointed on every release, so a tag pin is a promise
+      # someone else can rewrite.
       - name: IaC scan
-        uses: bridgecrewio/checkov-action@99bb2caf247dfd9dfd22e0a6f6dcc16ea99e0c60  # v12
+        uses: bridgecrewio/checkov-action@9b70310bcd306d11740313070b940167d6b23085  # v12.3115.0
         with:
           directory: reference-architecture/
           soft_fail: false
 
       - name: Secrets scan
-        uses: gitleaks/gitleaks-action@83373cf2f8c4db6e24b41c1a9b086bb9619e9cd3  # v2
+        uses: gitleaks/gitleaks-action@83373cf2f8c4db6e24b41c1a9b086bb9619e9cd3  # v2.3.7
         env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
 
   normalizer-gate:
     name: normalizer end-to-end
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with: { persist-credentials: false }
       - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
         with: { python-version: "3.11" }
       - run: pip install ./findings-normalizer
@@ -116,7 +150,7 @@ jobs:
           for tool in asff bandit checkov gitleaks semgrep tfsec trivy; do
             findings-normalize ingest --tool "$tool" --input "samples/$tool.json"
           done
-          findings-normalize report --format html --out /tmp/report.html
+          findings-normalize report --format html --out "${RUNNER_TEMP}/report.html"
           if findings-normalize gate --fail-on critical,high; then
             echo "::error::gate passed against samples containing CRITICAL findings"
             exit 1
@@ -126,4 +160,4 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
         with:
           name: findings-report
-          path: /tmp/report.html
+          path: ${{ runner.temp }}/report.html
