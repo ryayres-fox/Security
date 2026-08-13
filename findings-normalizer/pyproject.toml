@@ -1,8 +1,15 @@
 [project]
 name = "findings-normalizer"
-version = "0.1.0"
+version = "0.2.0"
 description = "Normalize multi-scanner security findings into one system of record"
 requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+findings-normalize = "findings_normalizer.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]
@@ -13,3 +20,14 @@ where = ["src"]
 
 [tool.ruff]
 line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "S"]
+ignore = ["S101"]  # assert is the point of a test file
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S105", "S106"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
