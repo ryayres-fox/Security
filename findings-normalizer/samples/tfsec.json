@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0107",
+      "long_id": "aws-vpc-no-public-ingress-sgr",
+      "rule_description": "An ingress security group rule allows traffic from the public internet.",
+      "description": "Security group rule allows ingress from public internet on an administrative port.",
+      "severity": "CRITICAL",
+      "status": 0,
+      "resource": "aws_security_group_rule.admin_ingress",
+      "location": {
+        "filename": "terraform/modules/network-isolation/main.tf",
+        "start_line": 61,
+        "end_line": 74
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0057",
+      "long_id": "aws-iam-no-policy-wildcards",
+      "rule_description": "IAM policy should avoid use of wildcards.",
+      "description": "IAM policy document uses a wildcard action on a write-capable service.",
+      "severity": "HIGH",
+      "status": 0,
+      "resource": "aws_iam_policy.deploy",
+      "location": {
+        "filename": "terraform/modules/iam-baseline/main.tf",
+        "start_line": 118,
+        "end_line": 131
+      }
+    }
+  ]
+}

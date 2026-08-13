@@ -1,0 +1,48 @@
+[
+  {
+    "check_type": "terraform",
+    "results": {
+      "passed_checks": [],
+      "failed_checks": [
+        {
+          "check_id": "CKV_AWS_23",
+          "bc_check_id": "BC_AWS_NETWORKING_31",
+          "check_name": "Ensure every security group and rule has a description",
+          "file_path": "/terraform/modules/network-isolation/main.tf",
+          "file_line_range": [61, 74],
+          "resource": "aws_security_group_rule.admin_ingress",
+          "severity": null,
+          "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference"
+        },
+        {
+          "check_id": "CKV_AWS_260",
+          "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80",
+          "file_path": "/terraform/modules/network-isolation/main.tf",
+          "file_line_range": [61, 74],
+          "resource": "aws_security_group_rule.admin_ingress",
+          "severity": "HIGH",
+          "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference"
+        }
+      ]
+    },
+    "summary": { "passed": 97, "failed": 2, "skipped": 5 }
+  },
+  {
+    "check_type": "kubernetes",
+    "results": {
+      "passed_checks": [],
+      "failed_checks": [
+        {
+          "check_id": "CKV_K8S_20",
+          "check_name": "Containers should not run with allowPrivilegeEscalation",
+          "file_path": "/k8s/reference-app/deployment.yaml",
+          "file_line_range": [24, 58],
+          "resource": "Deployment.default.reference-app",
+          "severity": "MEDIUM",
+          "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference"
+        }
+      ]
+    },
+    "summary": { "passed": 31, "failed": 1, "skipped": 0 }
+  }
+]

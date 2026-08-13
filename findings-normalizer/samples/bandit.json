@@ -1,0 +1,38 @@
+{
+  "metrics": { "_totals": { "loc": 4120, "nosec": 0 } },
+  "results": [
+    {
+      "test_id": "B608",
+      "test_name": "hardcoded_sql_expressions",
+      "issue_text": "Possible SQL injection vector through string-based query construction.",
+      "issue_severity": "MEDIUM",
+      "issue_confidence": "LOW",
+      "issue_cwe": { "id": 89, "link": "https://cwe.mitre.org/data/definitions/89.html" },
+      "filename": "reference_app/db/queries.py",
+      "line_number": 117,
+      "line_range": [117, 119]
+    },
+    {
+      "test_id": "B501",
+      "test_name": "request_with_no_cert_validation",
+      "issue_text": "Call to requests with verify=False disables certificate validation.",
+      "issue_severity": "HIGH",
+      "issue_confidence": "HIGH",
+      "issue_cwe": { "id": 295, "link": "https://cwe.mitre.org/data/definitions/295.html" },
+      "filename": "reference_app/clients/upstream.py",
+      "line_number": 22,
+      "line_range": [22]
+    },
+    {
+      "test_id": "B324",
+      "test_name": "hashlib",
+      "issue_text": "Use of weak MD5 hash for security. Consider usedforsecurity=False.",
+      "issue_severity": "HIGH",
+      "issue_confidence": "HIGH",
+      "issue_cwe": { "id": 327, "link": "https://cwe.mitre.org/data/definitions/327.html" },
+      "filename": "reference_app/util/cache_key.py",
+      "line_number": 31,
+      "line_range": [31]
+    }
+  ]
+}

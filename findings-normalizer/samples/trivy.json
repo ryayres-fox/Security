@@ -1,0 +1,65 @@
+{
+  "SchemaVersion": 2,
+  "ArtifactName": "reference-app:0.3.1",
+  "ArtifactType": "container_image",
+  "Results": [
+    {
+      "Target": "reference-app:0.3.1 (debian 12.5)",
+      "Class": "os-pkgs",
+      "Type": "debian",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2024-2511",
+          "PkgName": "openssl",
+          "InstalledVersion": "3.0.11-1",
+          "FixedVersion": "3.0.13-1",
+          "Severity": "HIGH",
+          "Title": "openssl: unbounded memory growth with session handling in TLSv1.3"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-45853",
+          "PkgName": "zlib",
+          "InstalledVersion": "1:1.2.13.dfsg-1",
+          "Severity": "CRITICAL",
+          "Title": "zlib: integer overflow and heap-based buffer overflow in zipOpenNewFileInZip4_64"
+        }
+      ]
+    },
+    {
+      "Target": "terraform/modules/network-isolation/main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "Misconfigurations": [
+        {
+          "ID": "AVD-AWS-0107",
+          "Title": "Security group rule allows ingress from public internet",
+          "Description": "Opening 0.0.0.0/0 on an administrative port exposes it to the internet.",
+          "Severity": "CRITICAL",
+          "Resolution": "Set a more restrictive CIDR range",
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_security_group_rule.admin_ingress",
+            "Provider": "AWS",
+            "Service": "vpc",
+            "StartLine": 61,
+            "EndLine": 74
+          }
+        },
+        {
+          "ID": "AVD-AWS-0088",
+          "Title": "S3 bucket does not have server-side encryption enabled",
+          "Severity": "HIGH",
+          "Resolution": "Enable server-side encryption",
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.artifacts",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 12,
+            "EndLine": 18
+          }
+        }
+      ]
+    }
+  ]
+}

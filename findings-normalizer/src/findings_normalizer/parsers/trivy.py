@@ -28,14 +28,23 @@ def parse(raw: dict) -> list[Finding]:
                 )
             )
         for m in result.get("Misconfigurations", []) or []:
+            # The resource lives in CauseMetadata. `Resolution` is the remediation
+            # advice — using it as an identifier produces a finding keyed on a
+            # sentence, which changes when the tool reworks its wording.
+            cause = m.get("CauseMetadata") or {}
             out.append(
                 Finding(
                     tool="trivy",
                     tool_class="iac",
                     rule_id=m.get("ID", "unknown"),
+                    native_rule_id=m.get("AVDID") or None,
                     title=(m.get("Title") or "")[:200],
                     severity=_SEVERITY.get(m.get("Severity", "UNKNOWN"), Severity.INFO),
-                    location=Location(file_path=target, resource_id=m.get("Resolution")),
+                    location=Location(
+                        file_path=target,
+                        resource_id=cause.get("Resource"),
+                        line=cause.get("StartLine"),
+                    ),
                 )
             )
     return out

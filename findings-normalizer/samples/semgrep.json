@@ -1,0 +1,66 @@
+{
+  "version": "1.90.0",
+  "results": [
+    {
+      "check_id": "reference.python.auth.missing-route-authorization",
+      "path": "reference_app/api/reports.py",
+      "start": { "line": 48, "col": 1 },
+      "end": { "line": 61, "col": 1 },
+      "extra": {
+        "message": "Route handler has no authorization dependency; the router is mounted without a global guard.",
+        "severity": "ERROR",
+        "metadata": {
+          "nist-800-53": ["AC-3", "AC-6"],
+          "owasp": ["A01:2021 Broken Access Control"],
+          "confidence": "HIGH"
+        }
+      }
+    },
+    {
+      "check_id": "reference.python.crypto.disabled-tls-verification",
+      "path": "reference_app/clients/upstream.py",
+      "start": { "line": 22, "col": 5 },
+      "end": { "line": 22, "col": 60 },
+      "extra": {
+        "message": "TLS certificate verification disabled with verify=False.",
+        "severity": "ERROR",
+        "metadata": {
+          "nist-800-53": ["SC-8", "SC-13"],
+          "owasp": ["A02:2021 Cryptographic Failures"],
+          "confidence": "HIGH"
+        }
+      }
+    },
+    {
+      "check_id": "reference.python.injection.raw-sql-fstring",
+      "path": "reference_app/db/queries.py",
+      "start": { "line": 117, "col": 9 },
+      "end": { "line": 119, "col": 40 },
+      "extra": {
+        "message": "SQL statement built with an f-string; use bound parameters.",
+        "severity": "ERROR",
+        "metadata": {
+          "nist-800-53": ["SI-10"],
+          "owasp": ["A03:2021 Injection"],
+          "confidence": "MEDIUM"
+        }
+      }
+    },
+    {
+      "check_id": "reference.python.serialization.unsafe-yaml-load",
+      "path": "reference_app/config/loader.py",
+      "start": { "line": 14, "col": 12 },
+      "end": { "line": 14, "col": 34 },
+      "extra": {
+        "message": "yaml.load without SafeLoader permits arbitrary object construction.",
+        "severity": "WARNING",
+        "metadata": {
+          "nist-800-53": ["SI-10"],
+          "owasp": ["A08:2021 Software and Data Integrity Failures"]
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "paths": { "scanned": ["reference_app"] }
+}
