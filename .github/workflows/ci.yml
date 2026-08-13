@@ -1,5 +1,8 @@
 name: ci
 
+# The repository has to pass its own gates. A security repository whose CI is
+# advisory is making the argument it exists to refute.
+
 on:
   push: { branches: [main] }
   pull_request:
@@ -8,25 +11,119 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  python:
+    name: tests and lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
       - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
         with: { python-version: "3.11" }
       - run: pip install pytest ruff
-      - run: ruff check findings-normalizer/src
-      - run: PYTHONPATH=findings-normalizer/src pytest findings-normalizer/tests -q
 
-  scan:
+      - name: Lint
+        run: ruff check findings-normalizer ai-security tools
+
+      - name: findings-normalizer
+        run: PYTHONPATH=findings-normalizer/src pytest findings-normalizer/tests -q
+
+      - name: ai-security
+        run: pytest ai-security -q
+
+      - name: tools
+        run: pytest tools -q
+
+  control-mapping:
+    name: control mapping
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
+        with: { python-version: "3.11" }
+
+      # Fails if a Terraform module has no controls.yaml, if a declared control
+      # has no evidence, or if a control ID is malformed. The mapping moves with
+      # the code or it is not a mapping.
+      - name: Every module declares its controls
+        run: python tools/control_coverage.py --check
+
+      - name: Generated coverage report matches the committed one
+        run: |
+          python tools/control_coverage.py --out /tmp/coverage.md
+          diff -u docs/control-coverage.md /tmp/coverage.md || {
+            echo "::error::docs/control-coverage.md is stale. Regenerate it:"
+            echo "  python tools/control_coverage.py --out docs/control-coverage.md"
+            exit 1
+          }
+
+  terraform:
+    name: terraform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd  # v3.1.2
+        with: { terraform_wrapper: false }
+
+      - name: Format
+        run: terraform fmt -check -recursive reference-architecture/
+
+      - name: Validate every module
+        run: |
+          set -euo pipefail
+          for dir in $(find reference-architecture -name '*.tf' -exec dirname {} \; | sort -u); do
+            echo "::group::$dir"
+            terraform -chdir="$dir" init -backend=false -input=false
+            terraform -chdir="$dir" validate
+            echo "::endgroup::"
+          done
+
+  scan:
+    name: security scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with: { fetch-depth: 0 }
+
+      # soft_fail is deliberately false. Every exception in this repository is
+      # inline, at the resource, with a written justification — which is a
+      # control decision someone can read and argue with. A blanket soft_fail
+      # would make the repo pass too, and would mean nothing.
       - name: IaC scan
         uses: bridgecrewio/checkov-action@99bb2caf247dfd9dfd22e0a6f6dcc16ea99e0c60  # v12
         with:
           directory: reference-architecture/
           soft_fail: false
+
       - name: Secrets scan
         uses: gitleaks/gitleaks-action@83373cf2f8c4db6e24b41c1a9b086bb9619e9cd3  # v2
         env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+
+  normalizer-gate:
+    name: normalizer end-to-end
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
+        with: { python-version: "3.11" }
+      - run: pip install ./findings-normalizer
+
+      # Proves the documented quickstart works on a clean machine, and that the
+      # gate exits non-zero when it should. A gate nobody has watched fail is a
+      # gate nobody knows works.
+      - name: Ingest every sample and confirm the gate blocks
+        run: |
+          set -euo pipefail
+          cd findings-normalizer
+          for tool in asff bandit checkov gitleaks semgrep tfsec trivy; do
+            findings-normalize ingest --tool "$tool" --input "samples/$tool.json"
+          done
+          findings-normalize report --format html --out /tmp/report.html
+          if findings-normalize gate --fail-on critical,high; then
+            echo "::error::gate passed against samples containing CRITICAL findings"
+            exit 1
+          fi
+          echo "gate correctly blocked"
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
+        with:
+          name: findings-report
+          path: /tmp/report.html

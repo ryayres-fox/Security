@@ -1,0 +1,18 @@
+# Repo-wide lint configuration.
+#
+# Explicit at the root so that `ruff check` resolves the same rules in CI, in an
+# editor, and from any subdirectory. Without this, ruff walks up past the repo
+# and picks up whatever a developer happens to have in their home directory,
+# which makes "lint is clean" a statement about a machine rather than the code.
+
+line-length = 100
+target-version = "py311"
+
+[lint]
+select = ["E", "F", "I", "UP", "B", "S", "RUF"]
+ignore = [
+  "S101",  # assert is the point of a test file
+]
+
+[lint.per-file-ignores]
+"**/test_*.py" = ["S105", "S106"]  # test fixtures name tokens that are not secrets

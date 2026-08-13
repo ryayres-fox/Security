@@ -5,6 +5,10 @@ __pycache__/
 *.tfstate
 *.tfstate.*
 report.html
+# The normalizer's default state file. Committing it would publish a findings
+# store as though it were sample data, and the next `ingest` would silently
+# append to whatever was committed.
+.findings-store.json
 .pytest_cache/
 .ruff_cache/
 .DS_Store
