@@ -1,0 +1,11 @@
+module: audit-logging
+implements:
+  - id: AU-2
+    statement: Event logging is enabled for all management-plane actions
+    evidence: is_multi_region_trail and include_global_service_events asserted in tests
+  - id: AU-9
+    statement: Audit information is protected from unauthorized modification
+    evidence: enable_log_file_validation true; bucket versioning and Object Lock enforced
+  - id: AU-11
+    statement: Audit records retained per organizational retention policy
+    evidence: retention_days validated >= 365 at plan time
