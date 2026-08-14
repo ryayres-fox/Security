@@ -22,7 +22,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 | **[`policies/`](policies/)** | Custom Checkov policies, and the tests that prove they load *and* fire |
 | **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
 | **[`homelab/`](homelab/)** | My own network — segmentation, detection engineering, and the things I break on purpose |
-| **[`docs/`](docs/)** | Control-mapping strategy and the generated [coverage report](docs/control-coverage.md) |
+| **[`docs/`](docs/)** | Control-mapping strategy, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/) and the [silent-failure patterns](docs/silent-failure-patterns.md) |
 
 ### Run it
 
@@ -37,6 +37,17 @@ findings-normalize ingest --tool trivy --input samples/trivy.json
 findings-normalize report --format html --out report.html
 findings-normalize gate --fail-on critical,high         # exits 1
 ```
+
+---
+
+## Reference architecture
+
+![Reference architecture](docs/diagrams/reference-architecture.svg)
+
+Every diagram here is **generated** by [`tools/render_diagrams.py`](tools/render_diagrams.py) and
+diffed in CI. A diagram exported from a drawing tool is a screenshot of what was true the day
+someone opened it; the first refactor makes it quietly wrong, in a place nobody thinks to check.
+A stale diagram fails the build.
 
 ---
 
@@ -61,6 +72,14 @@ flowchart LR
 
 The loop closes. A control isn't "documented," it's *enforced*, and the artifact proving it was
 enforced falls out of the pipeline rather than being assembled by hand.
+
+![CI gates](docs/diagrams/ci-gates.svg)
+
+---
+
+## Findings normalization
+
+![Findings normalization](docs/diagrams/findings-pipeline.svg)
 
 ---
 
@@ -107,6 +126,20 @@ The controls there assume the model is **already fully compromised** by content 
 ask what still holds. What still holds is deterministic code between the model and anything that
 matters — a retrieval predicate applied before ranking, and an authorization decision computed from
 session state that no prompt can reach.
+
+![AI security controls](docs/diagrams/ai-security.svg)
+
+---
+
+## Metrics
+
+[`docs/metrics.md`](docs/metrics.md) is generated from the tracked tree, and **every row names its
+unit**. "Test functions" and "collected cases" are different numbers; "resource declarations" and
+"live instances" are different numbers. A figure that cannot survive *"how did you count that?"*
+should not be quoted, and the fastest way to fail that question is to never have decided what was
+being counted.
+
+CI diffs the file against a fresh run, so a stale metric fails the build.
 
 ---
 

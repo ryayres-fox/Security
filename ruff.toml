@@ -25,3 +25,10 @@ ignore = [
 # than suppressed inline six times.
 "tools/check_repo_hygiene.py" = ["S603", "S607"]
 "tools/test_check_repo_hygiene.py" = ["S603", "S607"]
+
+# E501: the icon stencil is SVG path data. Breaking a `d="M12 15v18c0..."`
+# attribute across lines to satisfy a column limit makes the geometry harder to
+# read, not easier, and invites a transcription error in coordinates no reviewer
+# can eyeball.
+# RUF001: en dashes are intentional in rendered diagram labels.
+"tools/render_diagrams.py" = ["E501", "RUF001"]

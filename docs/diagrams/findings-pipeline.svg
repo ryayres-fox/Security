@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1010 520"
+     width="1010" height="520" role="img" aria-label="Findings normalization">
+  <title>Findings normalization</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8393A3"/>
+    </marker>
+  </defs>
+  <rect width="1010" height="520" fill="#FFFFFF"/>
+  <text x="28" y="38" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#232F3E" opacity="1.0">Findings normalization</text>
+  <text x="28" y="58" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#5A6B7B" opacity="1.0">Scanner sprawl into one system of record with stable identity, history and ownership</text>
+<g transform="translate(44,96)">
+  <rect width="34" height="34" rx="5.0" fill="#4D27AA"/>
+  <g transform="scale(0.7083)">
+        <circle cx="21" cy="21" r="8.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M27.5 27.5 37 37" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M17 21h8M21 17v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="17.0" y="48" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="88" y="118" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#232F3E" opacity="1.0">trivy</text>
+<g transform="translate(44,154)">
+  <rect width="34" height="34" rx="5.0" fill="#4D27AA"/>
+  <g transform="scale(0.7083)">
+        <circle cx="21" cy="21" r="8.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M27.5 27.5 37 37" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M17 21h8M21 17v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="17.0" y="48" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="88" y="176" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#232F3E" opacity="1.0">checkov</text>
+<g transform="translate(44,212)">
+  <rect width="34" height="34" rx="5.0" fill="#4D27AA"/>
+  <g transform="scale(0.7083)">
+        <circle cx="21" cy="21" r="8.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M27.5 27.5 37 37" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M17 21h8M21 17v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="17.0" y="48" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="88" y="234" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#232F3E" opacity="1.0">tfsec</text>
+<g transform="translate(44,270)">
+  <rect width="34" height="34" rx="5.0" fill="#4D27AA"/>
+  <g transform="scale(0.7083)">
+        <circle cx="21" cy="21" r="8.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M27.5 27.5 37 37" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M17 21h8M21 17v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="17.0" y="48" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="88" y="292" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#232F3E" opacity="1.0">semgrep</text>
+<g transform="translate(44,328)">
+  <rect width="34" height="34" rx="5.0" fill="#4D27AA"/>
+  <g transform="scale(0.7083)">
+        <circle cx="21" cy="21" r="8.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M27.5 27.5 37 37" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M17 21h8M21 17v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="17.0" y="48" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="88" y="350" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#232F3E" opacity="1.0">bandit</text>
+<g transform="translate(44,386)">
+  <rect width="34" height="34" rx="5.0" fill="#4D27AA"/>
+  <g transform="scale(0.7083)">
+        <circle cx="21" cy="21" r="8.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M27.5 27.5 37 37" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M17 21h8M21 17v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="17.0" y="48" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="88" y="408" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#232F3E" opacity="1.0">gitleaks</text>
+<g transform="translate(44,444)">
+  <rect width="34" height="34" rx="5.0" fill="#4D27AA"/>
+  <g transform="scale(0.7083)">
+        <circle cx="21" cy="21" r="8.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M27.5 27.5 37 37" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M17 21h8M21 17v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="17.0" y="48" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="88" y="466" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#232F3E" opacity="1.0">asff</text>
+<g><rect x="28" y="78" width="160" height="424" rx="8" fill="none" stroke="#4D27AA" stroke-width="1.8" stroke-dasharray="6 4"/><text x="40" y="97" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.4" fill="#4D27AA">SCANNERS</text></g>
+<text x="40" y="492" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">7 parsers, 7 fixtures</text>
+<rect x="232" y="96" width="250" height="172" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="250" y="122" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" fill="#232F3E" opacity="1.0">Normalize</text>
+<text x="250" y="144" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">identity =</text>
+<text x="250" y="160" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10" font-weight="400" fill="#232F3E" opacity="1.0">sha256(tool_class, rule_id,</text>
+<text x="250" y="174" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10" font-weight="400" fill="#232F3E" opacity="1.0">         file_path, resource_id)</text>
+<text x="250" y="198" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Excluded deliberately:</text>
+<text x="250" y="213" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#232F3E" opacity="1.0">line numbers · timestamps ·</text>
+<text x="250" y="227" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#232F3E" opacity="1.0">vendor rule names · remediation text</text>
+<g><rect x="250" y="238" width="138.8" height="22" rx="11.0" fill="#4D27AA" opacity="0.12"/><rect x="250" y="238" width="138.8" height="22" rx="11.0" fill="none" stroke="#4D27AA" stroke-width="1.2"/><text x="319.4" y="253.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#4D27AA">survives a re-scan</text></g>
+<rect x="232" y="300" width="250" height="126" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="250" y="326" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" fill="#232F3E" opacity="1.0">Merge across tools</text>
+<text x="250" y="348" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">tfsec and Trivy share a rule DB and</text>
+<text x="250" y="362" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">both report AVD-AWS-0107 — one</text>
+<text x="250" y="376" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">finding, two attributions.</text>
+<g><rect x="250" y="390" width="165.2" height="22" rx="11.0" fill="#7AA116" opacity="0.12"/><rect x="250" y="390" width="165.2" height="22" rx="11.0" fill="none" stroke="#7AA116" stroke-width="1.2"/><text x="332.6" y="405.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#7AA116">20 parsed → 19 tracked</text></g>
+<g transform="translate(560,150)">
+  <rect width="48" height="48" rx="7.0" fill="#2E73B8"/>
+  <g transform="scale(1.0000)">
+        <ellipse cx="24" cy="15" rx="12" ry="4.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M12 15v18c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5V15" fill="none" stroke="#fff"
+              stroke-width="2.4"/>
+        <path d="M12 24c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5" fill="none" stroke="#fff" stroke-width="2"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Append-only store</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">observation log</text>
+</g>
+<rect x="536" y="232" width="220" height="132" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="554" y="256" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#232F3E" opacity="1.0">A fold, not an overwrite</text>
+<text x="554" y="276" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">first_seen · last_seen · age</text>
+<text x="554" y="292" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">regression: fixed, then back</text>
+<text x="554" y="308" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">acceptance expiry re-blocks</text>
+<text x="554" y="330" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#D13212" opacity="1.0">An overwriting store cannot</text>
+<text x="554" y="344" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#D13212" opacity="1.0">answer 'did it come back?'</text>
+<g transform="translate(856,116)">
+  <rect width="48" height="48" rx="7.0" fill="#DD344C"/>
+  <g transform="scale(1.0000)">
+        <rect x="8" y="11" width="6" height="28" rx="2" fill="#fff"/>
+        <rect x="17" y="17" width="24" height="9" rx="2" fill="none" stroke="#fff" stroke-width="2.2"/>
+        <path d="M22 17l-4 9M28 17l-4 9M34 17l-4 9M40 17l-4 9" stroke="#fff" stroke-width="1.7"/>
+        <path d="M17 34h24" stroke="#fff" stroke-width="2.2" stroke-linecap="round"
+              stroke-dasharray="3 3"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">CI gate</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">--fail-on critical,high</text>
+</g>
+<g transform="translate(856,246)">
+  <rect width="48" height="48" rx="7.0" fill="#E7157B"/>
+  <g transform="scale(1.0000)">
+        <path d="M14 9h13l8 8v22H14z" fill="none" stroke="#fff" stroke-width="2.4"
+              stroke-linejoin="round"/>
+        <path d="M27 9v8h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M19 24h11M19 29h11M19 34h7" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">HTML report</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">self-contained</text>
+</g>
+<path d="M190,260 Q209.0,200.0 228,180" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M357,268 L357,296" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M486,200 L556,176" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M486,360 L556,300" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M760,190 L852,150" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M760,300 L852,280" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="536" y="396" width="400" height="84" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="554" y="420" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#D13212" opacity="1.0">The gitleaks parser never reads Secret or Match</text>
+<text x="554" y="440" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">A normalizer that copies the matched credential has taken a leak</text>
+<text x="554" y="454" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">in one place and written it to a second one. There is a test.</text>
+</svg>

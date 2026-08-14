@@ -117,6 +117,12 @@ jobs:
       - name: Every module declares its controls
         run: python tools/control_coverage.py --check
 
+      - name: Diagrams match their source
+        run: python tools/render_diagrams.py --check
+
+      - name: Metrics match the tracked tree
+        run: python tools/repo_metrics.py --check
+
       - name: Generated coverage report matches the committed one
         run: |
           python tools/control_coverage.py --out "${RUNNER_TEMP}/coverage.md"
