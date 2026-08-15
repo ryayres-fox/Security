@@ -1,0 +1,65 @@
+# Authorization rules.
+#
+# These target the failure this repository keeps returning to: a control that is
+# present in the codebase and not actually applied. A route with no guard reads
+# almost identically to a route with one — the difference is a single decorator
+# that is easy to omit and invisible in review at volume.
+rules:
+  - id: reference-missing-route-authorization
+    languages: [python]
+    severity: ERROR
+    message: >-
+      Route handler has no authorization dependency. A FastAPI router mounted
+      without a global guard authorises per-route, so an omitted decorator is an
+      open endpoint rather than a default-deny.
+    metadata:
+      category: security
+      nist-800-53: [AC-3, AC-6]
+      owasp: "A01:2021 Broken Access Control"
+      confidence: HIGH
+    patterns:
+      - pattern-either:
+          - pattern: |
+              @$APP.get(...)
+              def $F(...):
+                  ...
+          - pattern: |
+              @$APP.post(...)
+              def $F(...):
+                  ...
+          - pattern: |
+              @$APP.delete(...)
+              def $F(...):
+                  ...
+      - pattern-not: |
+          @$APP.$METHOD(..., dependencies=[...], ...)
+          def $F(...):
+              ...
+      - pattern-not: |
+          @$APP.$METHOD(...)
+          def $F(..., $USER = Depends($GUARD), ...):
+              ...
+      - pattern-not: |
+          @$APP.$METHOD(...)
+          @requires_auth
+          def $F(...):
+              ...
+
+  - id: reference-actor-field-from-request-body
+    languages: [python]
+    severity: ERROR
+    message: >-
+      An actor or ownership field is being taken from the request body. Fields
+      like created_by, owner or reviewer must derive from the verified auth
+      context — a client-supplied actor is attribution spoofing, and the schema
+      should not expose it as writable.
+    metadata:
+      category: security
+      nist-800-53: [AC-3, AU-10]
+      owasp: "A01:2021 Broken Access Control"
+      confidence: MEDIUM
+    pattern-either:
+      - pattern: $OBJ.created_by = $BODY.created_by
+      - pattern: $OBJ.owner = $BODY.owner
+      - pattern: $OBJ.reviewer = $BODY.reviewer
+      - pattern: $OBJ.actor = $BODY.actor
