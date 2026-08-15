@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 572"
+     preserveAspectRatio="xMidYMid meet"
+     style="width:100%;height:auto;max-width:1888px"
+     role="img" aria-label="Scanner sequencing">
+  <title>Scanner sequencing</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8393A3"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="572" fill="#FFFFFF"/>
+  <text x="28" y="38" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#232F3E" opacity="1.0">Scanner sequencing</text>
+  <text x="28" y="58" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#5A6B7B" opacity="1.0">Seven tools, five stages. What each can see, and when it can possibly see it.</text>
+<text x="28" y="82" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Each scanner runs at the earliest point its problem can be detected. The cost of fixing rises at every stage to the right.</text>
+<rect x="44" y="116" width="196" height="250" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g><rect x="58" y="130" width="168" height="24" rx="12.0" fill="#DD344C" opacity="0.12"/><rect x="58" y="130" width="168" height="24" rx="12.0" fill="none" stroke="#DD344C" stroke-width="1.2"/><text x="142.0" y="146.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#DD344C">Commit</text></g>
+<text x="58" y="182" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">gitleaks</text>
+<text x="58" y="202" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">secrets</text>
+<text x="58" y="236" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">A committed key is already</text>
+<text x="58" y="252" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">an incident. Nothing else</text>
+<text x="58" y="268" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">is true at this stage.</text>
+<g><rect x="58" y="322" width="168" height="24" rx="12.0" fill="#1D8102" opacity="0.12"/><rect x="58" y="322" width="168" height="24" rx="12.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="142.0" y="338.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">cost to fix: low</text></g>
+<rect x="268" y="116" width="196" height="250" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g><rect x="282" y="130" width="168" height="24" rx="12.0" fill="#4D27AA" opacity="0.12"/><rect x="282" y="130" width="168" height="24" rx="12.0" fill="none" stroke="#4D27AA" stroke-width="1.2"/><text x="366.0" y="146.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#4D27AA">Pull request</text></g>
+<text x="282" y="182" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">semgrep · bandit</text>
+<text x="282" y="202" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">SAST</text>
+<text x="282" y="236" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">Cheapest place to fix:</text>
+<text x="282" y="252" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">the author still has</text>
+<text x="282" y="268" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">the context.</text>
+<g><rect x="282" y="322" width="168" height="24" rx="12.0" fill="#1D8102" opacity="0.12"/><rect x="282" y="322" width="168" height="24" rx="12.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="366.0" y="338.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">cost to fix: low</text></g>
+<rect x="492" y="116" width="196" height="250" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g><rect x="506" y="130" width="168" height="24" rx="12.0" fill="#8C4FFF" opacity="0.12"/><rect x="506" y="130" width="168" height="24" rx="12.0" fill="none" stroke="#8C4FFF" stroke-width="1.2"/><text x="590.0" y="146.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#8C4FFF">Pull request</text></g>
+<text x="506" y="182" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">checkov · tfsec</text>
+<text x="506" y="202" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">IaC</text>
+<text x="506" y="236" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">Before apply, a fix is</text>
+<text x="506" y="252" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">a text edit. After, it is</text>
+<text x="506" y="268" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">change management.</text>
+<g><rect x="506" y="322" width="168" height="24" rx="12.0" fill="#1D8102" opacity="0.12"/><rect x="506" y="322" width="168" height="24" rx="12.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="590.0" y="338.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">cost to fix: low</text></g>
+<rect x="716" y="116" width="196" height="250" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g><rect x="730" y="130" width="168" height="24" rx="12.0" fill="#ED7100" opacity="0.12"/><rect x="730" y="130" width="168" height="24" rx="12.0" fill="none" stroke="#ED7100" stroke-width="1.2"/><text x="814.0" y="146.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#ED7100">Build</text></g>
+<text x="730" y="182" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">trivy</text>
+<text x="730" y="202" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">container + deps</text>
+<text x="730" y="236" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">Needs artifacts that do</text>
+<text x="730" y="252" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">not exist until now — a</text>
+<text x="730" y="268" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">resolved tree, an image.</text>
+<g><rect x="730" y="322" width="168" height="24" rx="12.0" fill="#B7791F" opacity="0.12"/><rect x="730" y="322" width="168" height="24" rx="12.0" fill="none" stroke="#B7791F" stroke-width="1.2"/><text x="814.0" y="338.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#B7791F">cost to fix: higher</text></g>
+<rect x="940" y="116" width="196" height="250" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g><rect x="954" y="130" width="168" height="24" rx="12.0" fill="#E7157B" opacity="0.12"/><rect x="954" y="130" width="168" height="24" rx="12.0" fill="none" stroke="#E7157B" stroke-width="1.2"/><text x="1038.0" y="146.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#E7157B">Deployed</text></g>
+<text x="954" y="182" text-anchor="start" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">Security Hub</text>
+<text x="954" y="202" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">CSPM · ASFF</text>
+<text x="954" y="236" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">The only one that sees</text>
+<text x="954" y="252" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">REALITY rather than a</text>
+<text x="954" y="268" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">description of it.</text>
+<g><rect x="954" y="322" width="168" height="24" rx="12.0" fill="#B7791F" opacity="0.12"/><rect x="954" y="322" width="168" height="24" rx="12.0" fill="none" stroke="#B7791F" stroke-width="1.2"/><text x="1038.0" y="338.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#B7791F">cost to fix: higher</text></g>
+<path d="M240,240 L266,240" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M464,240 L490,240" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M688,240 L714,240" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M912,240 L938,240" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="44" y="400" width="1092" height="116" rx="7" fill="#FDF2F4" stroke="#E8B4BC" stroke-width="1.3"/>
+<text x="64" y="426" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#D13212" opacity="1.0">What none of them catch</text>
+<text x="64" y="450" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">•  Business logic flaws — "users can refund twice" is not a pattern</text>
+<text x="64" y="466" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">•  Authorization design errors — a correct-looking check on the WRONG object passes every rule</text>
+<text x="64" y="482" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">•  MISSING controls — scanners find bad configuration, not absent configuration</text>
+<text x="64" y="498" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">•  A control that stopped running — a scanner registering zero rules reports a clean scan</text>
+<text x="28" y="548" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#232F3E" opacity="1.0">Scanners raise the floor. Threat modelling and human review raise the ceiling — which is why both are in this repository.</text>
+</svg>

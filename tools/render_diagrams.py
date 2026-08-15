@@ -668,6 +668,57 @@ def d_standards_to_code() -> str:
                "trip.", "\n".join(b))
 
 
+def d_scanner_sequence() -> str:
+    """When each class of scanner can run, and what it can see."""
+    b = []
+    b.append(text(28, 82, "Each scanner runs at the earliest point its problem can be detected. "
+                          "The cost of fixing rises at every stage to the right.",
+                  size=11.5, fill=MUTED))
+
+    stages = [
+        ("Commit", 44, "gitleaks", "secrets", C_SECURITY,
+         "A committed key is already", "an incident. Nothing else", "is true at this stage."),
+        ("Pull request", 268, "semgrep \u00b7 bandit", "SAST", C_DEVTOOLS,
+         "Cheapest place to fix:", "the author still has", "the context."),
+        ("Pull request", 492, "checkov \u00b7 tfsec", "IaC", C_NETWORK,
+         "Before apply, a fix is", "a text edit. After, it is", "change management."),
+        ("Build", 716, "trivy", "container + deps", C_COMPUTE,
+         "Needs artifacts that do", "not exist until now \u2014 a", "resolved tree, an image."),
+        ("Deployed", 940, "Security Hub", "CSPM \u00b7 ASFF", C_MGMT,
+         "The only one that sees", "REALITY rather than a", "description of it."),
+    ]
+    for label, x, tools, cat, col, l1, l2, l3 in stages:
+        b.append(card(x, 116, 196, 250))
+        b.append(chip(x + 14, 130, label, col, w=168))
+        b.append(text(x + 14, 182, tools, size=13, weight="700", font=MONO))
+        b.append(text(x + 14, 202, cat, size=11, fill=MUTED))
+        for i, line in enumerate((l1, l2, l3)):
+            b.append(text(x + 14, 236 + i * 16, line, size=10.5, fill=INK))
+        b.append(chip(x + 14, 322, "cost to fix: " + ("low" if x < 500 else "higher"),
+                      OK if x < 500 else "#B7791F", w=168))
+
+    for x in (240, 464, 688, 912):
+        b.append(arrow(x, 240, x + 26, 240))
+
+    b.append(card(44, 400, 1092, 116, fill="#FDF2F4", stroke="#E8B4BC"))
+    b.append(text(64, 426, "What none of them catch", size=13, weight="700", fill=BAD))
+    misses = [
+        "Business logic flaws \u2014 \"users can refund twice\" is not a pattern",
+        "Authorization design errors \u2014 a correct-looking check on the WRONG object passes every rule",
+        "MISSING controls \u2014 scanners find bad configuration, not absent configuration",
+        "A control that stopped running \u2014 a scanner registering zero rules reports a clean scan",
+    ]
+    for i, m in enumerate(misses):
+        b.append(text(64, 450 + i * 16, "\u2022  " + m, size=10.5, fill=INK))
+
+    b.append(text(28, 548, "Scanners raise the floor. Threat modelling and human review raise the "
+                           "ceiling \u2014 which is why both are in this repository.",
+                  size=11, weight="700", fill=INK))
+    return svg(1180, 572, "Scanner sequencing",
+               "Seven tools, five stages. What each can see, and when it can possibly see it.",
+               "\n".join(b))
+
+
 def d_ci_pipeline() -> str:
     b = []
     b.append(icon("github", 44, 118, "Pull request", "or push to main"))
@@ -836,6 +887,7 @@ def d_ai_security() -> str:
 DIAGRAMS = {
     "reference-architecture": d_reference_architecture,
     "threat-model": d_threat_model,
+    "scanner-sequence": d_scanner_sequence,
     "data-flow": d_data_flow,
     "review-triage": d_review_triage,
     "standards-to-code": d_standards_to_code,
