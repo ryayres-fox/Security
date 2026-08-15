@@ -66,6 +66,20 @@ POLICY: dict[str, dict] = {
         "required_pull_request_reviews": {
             "required_approving_review_count": 0,
             "dismiss_stale_reviews": True,
+            # Set EXPLICITLY false, not omitted.
+            #
+            # Omitting it does not clear it — GitHub retains whatever the branch
+            # already had. This policy replaced one that set it true, and the
+            # value survived: the merge was refused with "New changes require
+            # approval from someone other than the last pusher", which with a
+            # single author is unsatisfiable. Exactly the requirement removed
+            # two fields up, hiding in an adjacent one.
+            #
+            # The general lesson: a partial policy is not a policy. State every
+            # field you care about, because the ones you leave out keep their
+            # old values and a "clean" apply can leave the branch enforcing
+            # something nobody chose.
+            "require_last_push_approval": False,
         },
         "restrictions": None,
         "required_linear_history": True,
