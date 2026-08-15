@@ -48,6 +48,12 @@ PANEL = "#F6F8FA"
 OK = "#1D8102"
 BAD = "#D13212"
 
+# Smallest legible size in a diagram a browser will scale down. Anything under
+# this reads as texture rather than text once GitHub fits it to a column, so the
+# floor is applied centrally rather than trusted to each call site — and there
+# is a test asserting no rendered glyph falls below it.
+MIN_FONT = 10.5
+
 FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
 MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
 
@@ -215,13 +221,13 @@ def icon(name: str, x: float, y: float, label: str, sub: str = "", size: float =
         f'<g transform="translate({x},{y})">',
         f'  <rect width="{size}" height="{size}" rx="{7 * s:.1f}" fill="{color}"/>',
         f'  <g transform="scale({s:.4f})">{glyph}</g>',
-        f'  <text x="{size / 2}" y="{size + 14}" text-anchor="middle" font-family="{FONT}"'
-        f' font-size="11.5" font-weight="600" fill="{INK}">{escape(label)}</text>',
+        f'  <text x="{size / 2}" y="{size + 15}" text-anchor="middle" font-family="{FONT}"'
+        f' font-size="12.5" font-weight="600" fill="{INK}">{escape(label)}</text>',
     ]
     if sub:
         out.append(
             f'  <text x="{size / 2}" y="{size + 26}" text-anchor="middle" font-family="{FONT}"'
-            f' font-size="10" fill="{MUTED}">{escape(sub)}</text>'
+            f' font-size="11" fill="{MUTED}">{escape(sub)}</text>'
         )
     out.append("</g>")
     return "\n".join(out)
@@ -255,20 +261,21 @@ def arrow(x1, y1, x2, y2, label="", color=LINE, dashed=False, curve=0) -> str:
             f'<rect x="{lx - len(label) * 3.1 - 5}" y="{ly - 10}" width="{len(label) * 6.2 + 10}"'
             f' height="15" rx="3" fill="{PAPER}" opacity="0.92"/>'
             f'<text x="{lx}" y="{ly + 1}" text-anchor="middle" font-family="{FONT}"'
-            f' font-size="10" fill="{MUTED}">{escape(label)}</text>'
+            f' font-size="11" fill="{MUTED}">{escape(label)}</text>'
         )
     return "\n".join(out)
 
 
 def text(x, y, s, size=12, weight="400", fill=INK, anchor="start", font=FONT, opacity=1.0) -> str:
+    size = max(size, MIN_FONT)
     return (
         f'<text x="{x}" y="{y}" text-anchor="{anchor}" font-family="{font}" font-size="{size}"'
         f' font-weight="{weight}" fill="{fill}" opacity="{opacity}">{escape(s)}</text>'
     )
 
 
-def chip(x, y, label, color, w=None, h=22) -> str:
-    w = w or (len(label) * 6.6 + 20)
+def chip(x, y, label, color, w=None, h=24) -> str:
+    w = w or (len(label) * 7.0 + 22)
     return (
         f'<g><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{h / 2}" fill="{color}"'
         f' opacity="0.12"/><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{h / 2}"'
@@ -286,8 +293,20 @@ def card(x, y, w, h, fill=PANEL, stroke="#D5DBE1") -> str:
 
 
 def svg(width, height, title, subtitle, body) -> str:
+    # No fixed width/height on purpose.
+    #
+    # With them, a browser renders the SVG at its intrinsic size and stops. On a
+    # wide page that means a 1010px diagram marooned in a 2500px column, which is
+    # exactly how these looked on GitHub: technically correct, practically
+    # unreadable.
+    #
+    # viewBox alone makes it fluid — it scales to whatever container it lands in,
+    # and the aspect ratio is preserved. max-width stops it becoming grotesque on
+    # an ultrawide monitor.
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}"
-     width="{width}" height="{height}" role="img" aria-label="{escape(title)}">
+     preserveAspectRatio="xMidYMid meet"
+     style="width:100%;height:auto;max-width:{width * 1.6:.0f}px"
+     role="img" aria-label="{escape(title)}">
   <title>{escape(title)}</title>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"

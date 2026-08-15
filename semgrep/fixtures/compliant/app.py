@@ -5,7 +5,7 @@ This half matters as much as the other. A rule set that flags everything passes
 every "does it fire?" test and is still useless — it gets suppressed within a
 week, and a suppressed rule reports success forever after.
 """
-import pickle  # noqa: S403  -- imported only to show the safe alternative below
+import json
 
 import requests
 import yaml
@@ -48,5 +48,4 @@ def load_config(raw):
 
 
 def load_cache(blob):
-    del pickle
-    raise NotImplementedError("use json.loads for untrusted input")
+    return json.loads(blob)

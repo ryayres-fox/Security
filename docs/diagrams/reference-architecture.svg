@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 820"
-     width="1180" height="820" role="img" aria-label="Reference architecture">
+     preserveAspectRatio="xMidYMid meet"
+     style="width:100%;height:auto;max-width:1888px"
+     role="img" aria-label="Reference architecture">
   <title>Reference architecture</title>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
@@ -21,7 +23,7 @@
         <path d="M14 24h20" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
         <path d="M24 11v6M24 31v6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Internet GW</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">Internet GW</text>
 </g>
 <g transform="translate(240,182)">
   <rect width="48" height="48" rx="7.0" fill="#DD344C"/>
@@ -30,8 +32,8 @@
         <path d="M10 20.7h28M10 27.3h28M19 14v6.7M29 14v6.7M15 20.7v6.6M24 20.7v6.6
                  M33 20.7v6.6M19 27.3V34M29 27.3V34" stroke="#fff" stroke-width="1.8"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">WAF</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">geo-blocking</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">WAF</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">geo-blocking</text>
 </g>
 <g transform="translate(380,182)">
   <rect width="48" height="48" rx="7.0" fill="#8C4FFF"/>
@@ -43,8 +45,8 @@
         <rect x="20" y="30" width="8" height="7" rx="1.5" fill="#fff"/>
         <rect x="32" y="30" width="8" height="7" rx="1.5" fill="#fff"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">ALB</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">OIDC required</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">ALB</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">OIDC required</text>
 </g>
 <g transform="translate(540,182)">
   <rect width="48" height="48" rx="7.0" fill="#8C4FFF"/>
@@ -53,8 +55,8 @@
         <path d="M15 21h13l-3.5-3.5M33 27H20l3.5 3.5" fill="none" stroke="#fff" stroke-width="2.2"
               stroke-linecap="round" stroke-linejoin="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">NAT GW</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">egress only</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">NAT GW</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">egress only</text>
 </g>
 <path d="M150,206 L238,206" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M290,206 L378,206" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
@@ -69,8 +71,8 @@
         <path d="M24 20V14M27.5 26.5 33 30M20.5 26.5 15 30" stroke="#fff" stroke-width="2"
               stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Control plane</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">audit logs on</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">Control plane</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">audit logs on</text>
 </g>
 <g transform="translate(250,370)">
   <rect width="48" height="48" rx="7.0" fill="#ED7100"/>
@@ -79,8 +81,8 @@
         <path d="M17 17h14M17 22h14M17 27h9" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
         <path d="M9 16v16M39 16v16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">EC2 node</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">IRSA, no keys</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">EC2 node</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">IRSA, no keys</text>
 </g>
 <g transform="translate(384,370)">
   <rect width="48" height="48" rx="7.0" fill="#ED7100"/>
@@ -89,10 +91,10 @@
         <path d="M17 17h14M17 22h14M17 27h9" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
         <path d="M9 16v16M39 16v16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">EC2 node</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">IRSA, no keys</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">EC2 node</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">IRSA, no keys</text>
 </g>
-<text x="108" y="500" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">Pod security standards · network policies · secrets envelope encryption</text>
+<text x="108" y="500" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Pod security standards · network policies · secrets envelope encryption</text>
 <g transform="translate(560,370)">
   <rect width="48" height="48" rx="7.0" fill="#ED7100"/>
   <g transform="scale(1.0000)">
@@ -100,8 +102,8 @@
               stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M19 25h7" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Lambda</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">evidence collector</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">Lambda</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">evidence collector</text>
 </g>
 <g transform="translate(672,370)">
   <rect width="48" height="48" rx="7.0" fill="#2E73B8"/>
@@ -111,13 +113,13 @@
               stroke-width="2.4"/>
         <path d="M12 24c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5" fill="none" stroke="#fff" stroke-width="2"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">DynamoDB</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">findings, PITR</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">DynamoDB</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">findings, PITR</text>
 </g>
 <path d="M404,270 L320,366" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="414" y="296" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">authenticated only</text>
+<text x="414" y="296" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">authenticated only</text>
 <path d="M564,340 L564,272" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="576" y="296" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">egress</text>
+<text x="576" y="296" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">egress</text>
 <g><rect x="820" y="100" width="332" height="480" rx="8" fill="none" stroke="#DD344C" stroke-width="1.8" stroke-dasharray="6 4"/><text x="832" y="119" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.4" fill="#DD344C">SECURITY &amp; GOVERNANCE</text></g>
 <g transform="translate(848,132)">
   <rect width="48" height="48" rx="7.0" fill="#E7157B"/>
@@ -125,8 +127,8 @@
         <rect x="11" y="11" width="26" height="26" rx="3" fill="none" stroke="#fff" stroke-width="2.4"/>
         <path d="M16 18h16M16 24h16M16 30h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">CloudTrail</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">multi-region</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">CloudTrail</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">multi-region</text>
 </g>
 <g transform="translate(990,132)">
   <rect width="48" height="48" rx="7.0" fill="#7AA116"/>
@@ -136,8 +138,8 @@
         <rect x="19" y="24" width="11" height="8" rx="1.4" fill="#fff"/>
         <path d="M21.5 24v-2.5a3 3 0 0 1 6 0V24" fill="none" stroke="#fff" stroke-width="2"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">S3 Object Lock</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">COMPLIANCE</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">S3 Object Lock</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">COMPLIANCE</text>
 </g>
 <g transform="translate(848,240)">
   <rect width="48" height="48" rx="7.0" fill="#DD344C"/>
@@ -146,8 +148,8 @@
         <path d="M23.5 24.5 35 36" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
         <path d="M31 32l-3.5 3.5M34 29l-3 3" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">KMS CMK</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">rotation on</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">KMS CMK</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">rotation on</text>
 </g>
 <g transform="translate(990,240)">
   <rect width="48" height="48" rx="7.0" fill="#E7157B"/>
@@ -156,8 +158,8 @@
         <path d="M25 16c3.5 2.2 3.5 13.8 0 16M30 12c5.5 3.4 5.5 20.6 0 24"
               fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">SNS</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">encrypted</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">SNS</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">encrypted</text>
 </g>
 <g transform="translate(848,348)">
   <rect width="48" height="48" rx="7.0" fill="#DD344C"/>
@@ -168,8 +170,8 @@
         <path d="M18.5 31c1.2-3 3.1-4.4 5.5-4.4s4.3 1.4 5.5 4.4" fill="none" stroke="#fff"
               stroke-width="2.2" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">IAM boundary</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">AC-6 ceiling</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">IAM boundary</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">AC-6 ceiling</text>
 </g>
 <g transform="translate(990,348)">
   <rect width="48" height="48" rx="7.0" fill="#E7157B"/>
@@ -178,21 +180,21 @@
         <path d="M14 27l5-6 4 4 5-8 6 10" fill="none" stroke="#fff" stroke-width="2.4"
               stroke-linecap="round" stroke-linejoin="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">CloudWatch</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">metric filters</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">CloudWatch</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">metric filters</text>
 </g>
 <path d="M898,156 L986,156" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M1014,206 L1014,238" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M1014,314 L1014,346" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M898,264 L986,264" fill="none" stroke="#8393A3" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
 <path d="M790,528 L846,528" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="766" y="522" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">audit + telemetry</text>
+<text x="766" y="522" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">audit + telemetry</text>
 <rect x="844" y="448" width="292" height="110" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
 <text x="860" y="472" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#232F3E" opacity="1.0">Evidence is a by-product</text>
-<text x="860" y="492" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Object Lock COMPLIANCE cannot be bypassed</text>
-<text x="860" y="506" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">— not by a privileged role, not by root.</text>
-<text x="860" y="520" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">GOVERNANCE can. The mode is the control.</text>
-<g><rect x="860" y="530" width="112.39999999999999" height="22" rx="11.0" fill="#DD344C" opacity="0.12"/><rect x="860" y="530" width="112.39999999999999" height="22" rx="11.0" fill="none" stroke="#DD344C" stroke-width="1.2"/><text x="916.2" y="545.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#DD344C">AU-9  ·  AU-11</text></g>
+<text x="860" y="492" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Object Lock COMPLIANCE cannot be bypassed</text>
+<text x="860" y="506" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">— not by a privileged role, not by root.</text>
+<text x="860" y="520" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">GOVERNANCE can. The mode is the control.</text>
+<g><rect x="860" y="530" width="120.0" height="24" rx="12.0" fill="#DD344C" opacity="0.12"/><rect x="860" y="530" width="120.0" height="24" rx="12.0" fill="none" stroke="#DD344C" stroke-width="1.2"/><text x="920.0" y="546.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#DD344C">AU-9  ·  AU-11</text></g>
 <g><rect x="44" y="584" width="760" height="160" rx="8" fill="none" stroke="#5A6B7B" stroke-width="1.8" stroke-dasharray="6 4"/><text x="56" y="603" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.4" fill="#5A6B7B">ON-PREMISE  /  LAB SEGMENT</text></g>
 <g transform="translate(76,614)">
   <rect width="48" height="48" rx="7.0" fill="#5A6B7B"/>
@@ -203,7 +205,7 @@
         <path d="M17 30h14M17 30l3-3M31 30l-3 3" fill="none" stroke="#fff" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Edge router</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">Edge router</text>
 </g>
 <g transform="translate(200,614)">
   <rect width="48" height="48" rx="7.0" fill="#DD344C"/>
@@ -212,8 +214,8 @@
         <path d="M11 20.3h26M11 27.6h26M20 13v7.3M29 13v7.3M16 20.3v7.3M25 20.3v7.3
                  M33 20.3v7.3M20 27.6V35M29 27.6V35" stroke="#fff" stroke-width="1.7"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Firewall</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">default deny</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">Firewall</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">default deny</text>
 </g>
 <g transform="translate(324,614)">
   <rect width="48" height="48" rx="7.0" fill="#5A6B7B"/>
@@ -224,8 +226,8 @@
         <path d="M13 24.5h9l-2.5-2.5M35 24.5h-9l2.5 2.5" fill="none" stroke="#fff"
               stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">L3 switch</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">VLAN trunk</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">L3 switch</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">VLAN trunk</text>
 </g>
 <g transform="translate(470,614)">
   <rect width="48" height="48" rx="7.0" fill="#8C4FFF"/>
@@ -235,15 +237,15 @@
         <path d="M21.4 9V7a2.6 2.6 0 0 1 5.2 0v2" fill="none" stroke="#fff" stroke-width="1.9"/>
         <path d="M15 24.5h18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">VPN gateway</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">IPsec, multi-AZ</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">VPN gateway</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">IPsec, multi-AZ</text>
 </g>
 <path d="M150,638 L198,638" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M274,638 L322,638" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M398,638 L468,638" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M494,612 L494,548" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="506" y="578" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">encrypted transit</text>
-<text x="600" y="634" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">Segmented VLANs. The lab segment</text>
-<text x="600" y="648" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">reaches monitoring and nothing else.</text>
+<text x="506" y="578" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">encrypted transit</text>
+<text x="600" y="634" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Segmented VLANs. The lab segment</text>
+<text x="600" y="648" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">reaches monitoring and nothing else.</text>
 <text x="28" y="794" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Every module declares its controls in controls.yaml; docs/control-coverage.md is generated from them.</text>
 </svg>
