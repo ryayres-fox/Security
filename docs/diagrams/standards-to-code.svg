@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 520"
+     width="1180" height="520" role="img" aria-label="From standard to enforced control">
+  <title>From standard to enforced control</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8393A3"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="520" fill="#FFFFFF"/>
+  <text x="28" y="38" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#232F3E" opacity="1.0">From standard to enforced control</text>
+  <text x="28" y="58" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#5A6B7B" opacity="1.0">Architecture space to engineering space, and the evidence that survives the trip.</text>
+<text x="28" y="82" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">A standard is a sentence. A control is a thing that stops something. These are the steps between, and each one can silently fail.</text>
+<rect x="44" y="116" width="190" height="150" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g transform="translate(60,136)">
+  <rect width="42" height="42" rx="6.1" fill="#E7157B"/>
+  <g transform="scale(0.8750)">
+        <path d="M14 9h13l8 8v22H14z" fill="none" stroke="#fff" stroke-width="2.4"
+              stroke-linejoin="round"/>
+        <path d="M27 9v8h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M19 24h11M19 29h11M19 34h7" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="21.0" y="56" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="114" y="158" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">Standard</text>
+<text x="114" y="176" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">NIST 800-53 Rev 5</text>
+<text x="114" y="189" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">FedRAMP Moderate</text>
+<g><rect x="60" y="228" width="158" height="22" rx="11.0" fill="#E7157B" opacity="0.12"/><rect x="60" y="228" width="158" height="22" rx="11.0" fill="none" stroke="#E7157B" stroke-width="1.2"/><text x="139.0" y="243.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#E7157B">architecture</text></g>
+<path d="M238,190 L276,190" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="276" y="116" width="190" height="150" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g transform="translate(292,136)">
+  <rect width="42" height="42" rx="6.1" fill="#DD344C"/>
+  <g transform="scale(0.8750)">
+        <path d="M24 10l12 4.5v9c0 8-5.2 12.6-12 14.5-6.8-1.9-12-6.5-12-14.5v-9z"
+              fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+        <circle cx="24" cy="21" r="3.2" fill="#fff"/>
+        <path d="M18.5 31c1.2-3 3.1-4.4 5.5-4.4s4.3 1.4 5.5 4.4" fill="none" stroke="#fff"
+              stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+  <text x="21.0" y="56" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="346" y="158" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">Decision</text>
+<text x="346" y="176" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">which controls apply,</text>
+<text x="346" y="189" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">and why</text>
+<g><rect x="292" y="228" width="158" height="22" rx="11.0" fill="#E7157B" opacity="0.12"/><rect x="292" y="228" width="158" height="22" rx="11.0" fill="none" stroke="#E7157B" stroke-width="1.2"/><text x="371.0" y="243.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#E7157B">architecture</text></g>
+<path d="M470,190 L508,190" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="508" y="116" width="190" height="150" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g transform="translate(524,136)">
+  <rect width="42" height="42" rx="6.1" fill="#ED7100"/>
+  <g transform="scale(0.8750)">
+        <rect x="12" y="11" width="24" height="26" rx="2" fill="none" stroke="#fff" stroke-width="2.2"/>
+        <path d="M17 17h14M17 22h14M17 27h9" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <path d="M9 16v16M39 16v16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  <text x="21.0" y="56" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="578" y="158" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">Module</text>
+<text x="578" y="176" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Terraform that</text>
+<text x="578" y="189" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">implements it</text>
+<g><rect x="524" y="228" width="158" height="22" rx="11.0" fill="#ED7100" opacity="0.12"/><rect x="524" y="228" width="158" height="22" rx="11.0" fill="none" stroke="#ED7100" stroke-width="1.2"/><text x="603.0" y="243.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#ED7100">engineering</text></g>
+<path d="M702,190 L740,190" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="740" y="116" width="190" height="150" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g transform="translate(756,136)">
+  <rect width="42" height="42" rx="6.1" fill="#DD344C"/>
+  <g transform="scale(0.8750)">
+        <rect x="8" y="11" width="6" height="28" rx="2" fill="#fff"/>
+        <rect x="17" y="17" width="24" height="9" rx="2" fill="none" stroke="#fff" stroke-width="2.2"/>
+        <path d="M22 17l-4 9M28 17l-4 9M34 17l-4 9M40 17l-4 9" stroke="#fff" stroke-width="1.7"/>
+        <path d="M17 34h24" stroke="#fff" stroke-width="2.2" stroke-linecap="round"
+              stroke-dasharray="3 3"/>
+    </g>
+  <text x="21.0" y="56" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="810" y="158" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">Gate</text>
+<text x="810" y="176" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">CI blocks the</text>
+<text x="810" y="189" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">regression</text>
+<g><rect x="756" y="228" width="158" height="22" rx="11.0" fill="#ED7100" opacity="0.12"/><rect x="756" y="228" width="158" height="22" rx="11.0" fill="none" stroke="#ED7100" stroke-width="1.2"/><text x="835.0" y="243.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#ED7100">engineering</text></g>
+<path d="M934,190 L972,190" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="972" y="116" width="190" height="150" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<g transform="translate(988,136)">
+  <rect width="42" height="42" rx="6.1" fill="#7AA116"/>
+  <g transform="scale(0.8750)">
+        <path d="M13 13h22l-3 22H16z" fill="none" stroke="#fff" stroke-width="2.4"
+              stroke-linejoin="round"/>
+        <rect x="19" y="24" width="11" height="8" rx="1.4" fill="#fff"/>
+        <path d="M21.5 24v-2.5a3 3 0 0 1 6 0V24" fill="none" stroke="#fff" stroke-width="2"/>
+    </g>
+  <text x="21.0" y="56" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+</g>
+<text x="1042" y="158" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#232F3E" opacity="1.0">Evidence</text>
+<text x="1042" y="176" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">generated, dated,</text>
+<text x="1042" y="189" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">attributable</text>
+<g><rect x="988" y="228" width="158" height="22" rx="11.0" fill="#7AA116" opacity="0.12"/><rect x="988" y="228" width="158" height="22" rx="11.0" fill="none" stroke="#7AA116" stroke-width="1.2"/><text x="1067.0" y="243.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#7AA116">assessment</text></g>
+<path d="M508,110 L508,272" stroke="#232F3E" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.55"/>
+<text x="508" y="288" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#232F3E" opacity="1.0">architecture  →  engineering</text>
+<text x="44" y="300" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#232F3E" opacity="1.0">What is lost if the step is skipped</text>
+<text x="44" y="326" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#232F3E" opacity="1.0">Nothing applies.</text>
+<text x="44" y="344" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">A baseline nobody scoped is a</text>
+<text x="44" y="357" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">reading list.</text>
+<text x="276" y="326" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#232F3E" opacity="1.0">It is documented.</text>
+<text x="276" y="344" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">An architecture record with no</text>
+<text x="276" y="357" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">module is an intention.</text>
+<text x="508" y="326" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#232F3E" opacity="1.0">It is deployed.</text>
+<text x="508" y="344" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Correct on the day it merged.</text>
+<text x="508" y="357" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Drift is invisible.</text>
+<text x="740" y="326" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#232F3E" opacity="1.0">It is enforced.</text>
+<text x="740" y="344" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Until the gate stops running and</text>
+<text x="740" y="357" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">reports success anyway.</text>
+<text x="972" y="326" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#232F3E" opacity="1.0">It is provable.</text>
+<text x="972" y="344" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Without this the other four are</text>
+<text x="972" y="357" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">reconstructed before an audit.</text>
+<rect x="44" y="392" width="1092" height="96" rx="7" fill="#FDF6EC" stroke="#E8C89A" stroke-width="1.3"/>
+<text x="64" y="418" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#232F3E" opacity="1.0">The join that usually breaks</text>
+<text x="64" y="440" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">Between DECISION and MODULE the language changes — a control family becomes a resource argument — and nothing checks the translation.</text>
+<text x="64" y="458" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#232F3E" opacity="1.0">Here each module declares its controls next to the code, every claim names its EVIDENCE, and CI fails if a module has Terraform and no declaration.</text>
+<text x="64" y="476" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#232F3E" opacity="1.0">The mapping moves with the code, or it is not a mapping.</text>
+</svg>
