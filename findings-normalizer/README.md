@@ -66,6 +66,15 @@ there is a test asserting no `http://`, `https://` or `<script>` appears in the 
 
 `asff` (AWS Security Hub) · `bandit` · `checkov` · `gitleaks` · `semgrep` · `tfsec` · `trivy`
 
+**What each of these is for, when it runs, and when *not* to use it:**
+[`docs/scanner-strategy.md`](../docs/scanner-strategy.md). Worth reading before adopting this —
+overlap without deduplication is worse than a single tool, and that document explains which
+overlaps are deliberate.
+
+Note that **ASFF is not a scanner**. It is the AWS Security Finding Format, the JSON shape AWS
+Security Hub emits when GuardDuty, Inspector and Config report. The parser exists so cloud findings
+land in the same store as everything else.
+
 Adding one is a single file implementing `parse(raw) -> list[Finding]`, plus one line in the
 registry. Every supported tool must ship a fixture in `samples/` — a parametrized test walks the
 registry and fails if one is missing, because a parser with no fixture is a parser nobody has run.
