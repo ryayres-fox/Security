@@ -1,0 +1,50 @@
+# Multi-tenancy rules.
+#
+# The embedding-store isolation work in ai-security/ is enforced at the store's
+# API boundary. These catch the case that boundary cannot see: a query written
+# somewhere else that forgets the predicate entirely.
+rules:
+  - id: reference-tenant-scope-from-request
+    languages: [python]
+    severity: ERROR
+    message: >-
+      Tenant identity is being read from a request header or body. It must come
+      from the verified auth context — a client-supplied tenant is a
+      cross-tenant read waiting for someone to change one value.
+    metadata:
+      category: security
+      nist-800-53: [AC-3, AC-4, SC-4]
+      owasp: "A01:2021 Broken Access Control"
+      confidence: HIGH
+    patterns:
+      - pattern-either:
+          - pattern: $REQ.headers.get("X-Tenant-Id", ...)
+          - pattern: $REQ.headers["X-Tenant-Id"]
+          - pattern: $REQ.query_params.get("tenant_id", ...)
+          - pattern: $BODY.tenant_id
+      # The auth context is the CORRECT source. Without these exclusions the
+      # rule flags the right answer as loudly as the wrong one — caught by the
+      # compliant fixture, which is what that fixture is for. A rule that fires
+      # on correct code is how a rule set gets suppressed.
+      - pattern-not: $X.auth.tenant_id
+      - pattern-not: $X.state.tenant_id
+      - pattern-not: $X.claims.tenant_id
+      - pattern-not: $X.session.tenant_id
+
+  - id: reference-unscoped-tenant-query
+    languages: [python]
+    severity: WARNING
+    message: >-
+      Query against a tenant-scoped table with no tenant predicate. Application
+      -layer scoping only holds while every author remembers it; this is the
+      case row-level security exists to make unnecessary.
+    metadata:
+      category: security
+      nist-800-53: [AC-4, SC-4]
+      confidence: LOW
+    patterns:
+      - pattern-either:
+          - pattern: $SESSION.query($MODEL).all()
+          - pattern: $SESSION.query($MODEL).first()
+      - pattern-not: $SESSION.query($MODEL).filter_by(tenant_id=...).$X(...)
+      - pattern-not: $SESSION.query($MODEL).filter(...).$X(...)
