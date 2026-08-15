@@ -24,6 +24,7 @@ env:
   PYTEST_VERSION: "9.0.3"
   RUFF_VERSION: "0.16.3"
   CHECKOV_VERSION: "3.2.459"
+  SEMGREP_VERSION: "1.173.0"
 
 jobs:
   python:
@@ -102,6 +103,30 @@ jobs:
       # would turn these assertions into silent no-ops.
       - name: Policy set registers and matches
         run: pytest policies -q
+
+  semgrep-rules:
+    name: custom SAST rules load and fire
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with: { persist-credentials: false }
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
+        with: { python-version: "3.11" }
+      - run: pip install "pytest==${PYTEST_VERSION}" "semgrep==${SEMGREP_VERSION}"
+
+      # Same two assertions as the Checkov policy job, for the same reason.
+      # A rule set fails in two directions and only one is visible: it never
+      # loads (bad --config path, YAML error swallowed by a wrapper), or it
+      # loads and never matches (pattern correct when written, inert after a
+      # refactor). Both produce the same output as a clean scan — no findings.
+      #
+      # The third assertion is the one almost nothing makes: the rules must NOT
+      # fire on the compliant fixture. It has already earned its place — a
+      # tenancy rule was flagging `request.state.auth.tenant_id`, the CORRECT
+      # way to get a tenant.
+      - name: Rule set loads, fires, and stays quiet on correct code
+        run: pytest semgrep -q
 
   control-mapping:
     name: control mapping
