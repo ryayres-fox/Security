@@ -46,7 +46,7 @@ jobs:
       - run: pip install "pytest==${PYTEST_VERSION}" "ruff==${RUFF_VERSION}"
 
       - name: Lint
-        run: ruff check findings-normalizer ai-security tools
+        run: ruff check findings-normalizer ai-security tools policies semgrep
 
       - name: findings-normalizer
         run: PYTHONPATH=findings-normalizer/src pytest findings-normalizer/tests -q

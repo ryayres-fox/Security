@@ -8,6 +8,12 @@
 line-length = 100
 target-version = "py311"
 
+# Scanner fixtures are excluded. They are sample code whose whole purpose is to
+# be scanned by Semgrep and Checkov — the non-compliant ones are supposed to
+# contain verify=False and yaml.load, and linting them would mean maintaining
+# two contradictory opinions about the same file.
+exclude = ["semgrep/fixtures", "policies/fixtures"]
+
 [lint]
 select = ["E", "F", "I", "UP", "B", "S", "RUF"]
 ignore = [
@@ -32,3 +38,15 @@ ignore = [
 # can eyeball.
 # RUF001: en dashes are intentional in rendered diagram labels.
 "tools/render_diagrams.py" = ["E501", "RUF001"]
+
+# S314: ElementTree parses XML this repository generated itself, in its own test
+# suite, from a path under version control. The attack S314 warns about is
+# untrusted XML — entity expansion, external entity fetch — and none of the
+# inputs here are untrusted. Pulling in defusedxml would add a dependency to a
+# test that reads files the same commit produced.
+"tools/test_render_diagrams.py" = ["S314"]
+
+# Same reasoning as the other test files that shell out: fixed, non-interpolated
+# argument lists, no shell, and hardcoding an absolute path would break on every
+# machine that installs the tool somewhere else.
+"semgrep/test_rule_registration.py" = ["S603", "S607"]

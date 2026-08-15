@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 600"
-     width="1100" height="600" role="img" aria-label="CI gates">
+     preserveAspectRatio="xMidYMid meet"
+     style="width:100%;height:auto;max-width:1760px"
+     role="img" aria-label="CI gates">
   <title>CI gates</title>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
@@ -17,8 +19,8 @@
         <path d="M24 8v6M24 34v6M8 24h6M34 24h6M13 13l4.2 4.2M30.8 30.8 35 35M35 13l-4.2 4.2
                  M17.2 30.8 13 35" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Pull request</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">or push to main</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">Pull request</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">or push to main</text>
 </g>
 <rect x="224" y="96" width="214" height="138" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
 <g transform="translate(240,112)">
@@ -28,12 +30,12 @@
         <path d="M27.5 27.5 37 37" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
         <path d="M17 21h8M21 17v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
     </g>
-  <text x="20.0" y="54" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+  <text x="20.0" y="55" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E"></text>
 </g>
 <text x="292" y="130" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#232F3E" opacity="1.0">hygiene</text>
-<text x="292" y="146" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">no career or</text>
-<text x="292" y="159" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">credential material</text>
-<g><rect x="240" y="196" width="79.4" height="22" rx="11.0" fill="#1D8102" opacity="0.12"/><rect x="240" y="196" width="79.4" height="22" rx="11.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="279.7" y="211.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
+<text x="292" y="146" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">no career or</text>
+<text x="292" y="159" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">credential material</text>
+<g><rect x="240" y="196" width="85.0" height="24" rx="12.0" fill="#1D8102" opacity="0.12"/><rect x="240" y="196" width="85.0" height="24" rx="12.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="282.5" y="212.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
 <path d="M140,160 Q179.0,138.0 218,156" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="474" y="96" width="214" height="138" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
 <g transform="translate(490,112)">
@@ -45,12 +47,12 @@
         <path d="M17 34h24" stroke="#fff" stroke-width="2.2" stroke-linecap="round"
               stroke-dasharray="3 3"/>
     </g>
-  <text x="20.0" y="54" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+  <text x="20.0" y="55" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E"></text>
 </g>
 <text x="542" y="130" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#232F3E" opacity="1.0">policies</text>
-<text x="542" y="146" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">custom checks</text>
-<text x="542" y="159" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">load AND fire</text>
-<g><rect x="490" y="196" width="79.4" height="22" rx="11.0" fill="#1D8102" opacity="0.12"/><rect x="490" y="196" width="79.4" height="22" rx="11.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="529.7" y="211.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
+<text x="542" y="146" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">custom checks</text>
+<text x="542" y="159" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">load AND fire</text>
+<g><rect x="490" y="196" width="85.0" height="24" rx="12.0" fill="#1D8102" opacity="0.12"/><rect x="490" y="196" width="85.0" height="24" rx="12.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="532.5" y="212.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
 
 <rect x="724" y="96" width="214" height="138" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
 <g transform="translate(740,112)">
@@ -61,12 +63,12 @@
         <path d="M27 9v8h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
         <path d="M19 24h11M19 29h11M19 34h7" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
     </g>
-  <text x="20.0" y="54" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+  <text x="20.0" y="55" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E"></text>
 </g>
 <text x="792" y="130" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#232F3E" opacity="1.0">control mapping</text>
-<text x="792" y="146" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">evidence declared,</text>
-<text x="792" y="159" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">report not stale</text>
-<g><rect x="740" y="196" width="79.4" height="22" rx="11.0" fill="#1D8102" opacity="0.12"/><rect x="740" y="196" width="79.4" height="22" rx="11.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="779.7" y="211.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
+<text x="792" y="146" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">evidence declared,</text>
+<text x="792" y="159" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">report not stale</text>
+<g><rect x="740" y="196" width="85.0" height="24" rx="12.0" fill="#1D8102" opacity="0.12"/><rect x="740" y="196" width="85.0" height="24" rx="12.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="782.5" y="212.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
 
 <rect x="224" y="264" width="214" height="138" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
 <g transform="translate(240,280)">
@@ -76,12 +78,12 @@
         <path d="M17 17h14M17 22h14M17 27h9" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
         <path d="M9 16v16M39 16v16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
     </g>
-  <text x="20.0" y="54" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+  <text x="20.0" y="55" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E"></text>
 </g>
 <text x="292" y="298" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#232F3E" opacity="1.0">terraform</text>
-<text x="292" y="314" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">fmt + validate,</text>
-<text x="292" y="327" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">every module</text>
-<g><rect x="240" y="364" width="79.4" height="22" rx="11.0" fill="#1D8102" opacity="0.12"/><rect x="240" y="364" width="79.4" height="22" rx="11.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="279.7" y="379.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
+<text x="292" y="314" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">fmt + validate,</text>
+<text x="292" y="327" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">every module</text>
+<g><rect x="240" y="364" width="85.0" height="24" rx="12.0" fill="#1D8102" opacity="0.12"/><rect x="240" y="364" width="85.0" height="24" rx="12.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="282.5" y="380.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
 <path d="M140,160 Q179.0,262.0 218,324" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="474" y="264" width="214" height="138" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
 <g transform="translate(490,280)">
@@ -93,12 +95,12 @@
         <path d="M18.5 31c1.2-3 3.1-4.4 5.5-4.4s4.3 1.4 5.5 4.4" fill="none" stroke="#fff"
               stroke-width="2.2" stroke-linecap="round"/>
     </g>
-  <text x="20.0" y="54" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+  <text x="20.0" y="55" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E"></text>
 </g>
 <text x="542" y="298" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#232F3E" opacity="1.0">security scan</text>
-<text x="542" y="314" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">checkov soft_fail</text>
-<text x="542" y="327" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">= false</text>
-<g><rect x="490" y="364" width="79.4" height="22" rx="11.0" fill="#1D8102" opacity="0.12"/><rect x="490" y="364" width="79.4" height="22" rx="11.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="529.7" y="379.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
+<text x="542" y="314" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">checkov soft_fail</text>
+<text x="542" y="327" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">= false</text>
+<g><rect x="490" y="364" width="85.0" height="24" rx="12.0" fill="#1D8102" opacity="0.12"/><rect x="490" y="364" width="85.0" height="24" rx="12.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="532.5" y="380.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
 
 <rect x="724" y="264" width="214" height="138" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
 <g transform="translate(740,280)">
@@ -108,12 +110,12 @@
         <path d="M27.5 27.5 37 37" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
         <path d="M17 21h8M21 17v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
     </g>
-  <text x="20.0" y="54" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E"></text>
+  <text x="20.0" y="55" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E"></text>
 </g>
 <text x="792" y="298" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#232F3E" opacity="1.0">normalizer e2e</text>
-<text x="792" y="314" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">gate must exit</text>
-<text x="792" y="327" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#5A6B7B" opacity="1.0">non-zero</text>
-<g><rect x="740" y="364" width="79.4" height="22" rx="11.0" fill="#1D8102" opacity="0.12"/><rect x="740" y="364" width="79.4" height="22" rx="11.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="779.7" y="379.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
+<text x="792" y="314" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">gate must exit</text>
+<text x="792" y="327" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">non-zero</text>
+<g><rect x="740" y="364" width="85.0" height="24" rx="12.0" fill="#1D8102" opacity="0.12"/><rect x="740" y="364" width="85.0" height="24" rx="12.0" fill="none" stroke="#1D8102" stroke-width="1.2"/><text x="782.5" y="380.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#1D8102">must pass</text></g>
 
 <path d="M438,156 L474,156" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M688,156 L724,156" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
@@ -128,8 +130,8 @@
         <path d="M17 34h24" stroke="#fff" stroke-width="2.2" stroke-linecap="round"
               stroke-dasharray="3 3"/>
     </g>
-  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Merge gate</text>
-  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">all must pass</text>
+  <text x="24.0" y="63" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#232F3E">Merge gate</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">all must pass</text>
 </g>
 <path d="M938,164 Q962.0,173.0 986,210" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M938,332 Q962.0,311.0 986,262" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
@@ -138,7 +140,7 @@
 <text x="62" y="498" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">normalizer-gate ingests fixtures containing CRITICAL findings and requires the gate to exit non-zero.</text>
 <text x="62" y="514" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">A gate nobody has watched fail is a gate nobody knows works — and a gate that silently stopped matching</text>
 <text x="62" y="530" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">reports exactly the same green tick as one that is working.</text>
-<g><rect x="62" y="540" width="251.0" height="22" rx="11.0" fill="#DD344C" opacity="0.12"/><rect x="62" y="540" width="251.0" height="22" rx="11.0" fill="none" stroke="#DD344C" stroke-width="1.2"/><text x="187.5" y="555.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#DD344C">see docs/silent-failure-patterns.md</text></g>
+<g><rect x="62" y="540" width="267.0" height="24" rx="12.0" fill="#DD344C" opacity="0.12"/><rect x="62" y="540" width="267.0" height="24" rx="12.0" fill="none" stroke="#DD344C" stroke-width="1.2"/><text x="195.5" y="556.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="600" fill="#DD344C">see docs/silent-failure-patterns.md</text></g>
 <text x="1014" y="312" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#1D8102" opacity="1.0">merge</text>
 <text x="1014" y="328" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#D13212" opacity="1.0">or block</text>
 </svg>
