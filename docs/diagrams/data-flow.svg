@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 580"
+     width="1180" height="580" role="img" aria-label="Data flow and protection">
+  <title>Data flow and protection</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8393A3"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="580" fill="#FFFFFF"/>
+  <text x="28" y="38" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#232F3E" opacity="1.0">Data flow and protection</text>
+  <text x="28" y="58" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#5A6B7B" opacity="1.0">A data-flow diagram is only useful if each flow names its control. Otherwise it is a picture of boxes.</text>
+<text x="28" y="82" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">Every arrow is a hop. Every hop names what protects it in transit and what authorises it.</text>
+<g><rect x="28" y="104" width="712" height="116" rx="8" fill="#FDF2F4" stroke="#DD344C" stroke-width="1.8" stroke-dasharray="6 4"/><text x="40" y="123" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.4" fill="#DD344C">PUBLIC</text></g>
+<g transform="translate(60,128)">
+  <rect width="48" height="48" rx="7.0" fill="#4D27AA"/>
+  <g transform="scale(1.0000)">
+        <circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M24 8v6M24 34v6M8 24h6M34 24h6M13 13l4.2 4.2M30.8 30.8 35 35M35 13l-4.2 4.2
+                 M17.2 30.8 13 35" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Browser</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">untrusted</text>
+</g>
+<g transform="translate(250,128)">
+  <rect width="48" height="48" rx="7.0" fill="#DD344C"/>
+  <g transform="scale(1.0000)">
+        <path d="M10 14h28v20H10z" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M10 20.7h28M10 27.3h28M19 14v6.7M29 14v6.7M15 20.7v6.6M24 20.7v6.6
+                 M33 20.7v6.6M19 27.3V34M29 27.3V34" stroke="#fff" stroke-width="1.8"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">WAF</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">geo + rate</text>
+</g>
+<g transform="translate(440,128)">
+  <rect width="48" height="48" rx="7.0" fill="#8C4FFF"/>
+  <g transform="scale(1.0000)">
+        <circle cx="24" cy="14" r="4" fill="#fff"/>
+        <path d="M24 18v6M24 24H12v6M24 24h12v6M24 24v6" fill="none" stroke="#fff"
+              stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="8" y="30" width="8" height="7" rx="1.5" fill="#fff"/>
+        <rect x="20" y="30" width="8" height="7" rx="1.5" fill="#fff"/>
+        <rect x="32" y="30" width="8" height="7" rx="1.5" fill="#fff"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Edge</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">OIDC required</text>
+</g>
+<path d="M116,152 L246,152" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="181" y="144" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" font-weight="400" fill="#5A6B7B" opacity="1.0">TLS 1.2+</text>
+<path d="M306,152 L436,152" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="371" y="144" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" font-weight="400" fill="#5A6B7B" opacity="1.0">geo-checked</text>
+<g><rect x="28" y="252" width="712" height="116" rx="8" fill="#F3EEFF" stroke="#8C4FFF" stroke-width="1.8" stroke-dasharray="6 4"/><text x="40" y="271" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.4" fill="#8C4FFF">APPLICATION</text></g>
+<g transform="translate(60,276)">
+  <rect width="48" height="48" rx="7.0" fill="#ED7100"/>
+  <g transform="scale(1.0000)">
+        <path d="M24 9 38 16.5v15L24 39 10 31.5v-15z" fill="none" stroke="#fff" stroke-width="2.4"
+              stroke-linejoin="round"/>
+        <circle cx="24" cy="24" r="4" fill="#fff"/>
+        <path d="M24 20V14M27.5 26.5 33 30M20.5 26.5 15 30" stroke="#fff" stroke-width="2"
+              stroke-linecap="round"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">API pod</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">IRSA, no keys</text>
+</g>
+<g transform="translate(250,276)">
+  <rect width="48" height="48" rx="7.0" fill="#4D27AA"/>
+  <g transform="scale(1.0000)">
+        <rect x="11" y="13" width="26" height="22" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <circle cx="18.5" cy="22" r="2.4" fill="#fff"/><circle cx="29.5" cy="22" r="2.4" fill="#fff"/>
+        <path d="M18 29h12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M24 13V8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Retrieval</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">tenant pre-filter</text>
+</g>
+<g transform="translate(440,276)">
+  <rect width="48" height="48" rx="7.0" fill="#DD344C"/>
+  <g transform="scale(1.0000)">
+        <rect x="8" y="11" width="6" height="28" rx="2" fill="#fff"/>
+        <rect x="17" y="17" width="24" height="9" rx="2" fill="none" stroke="#fff" stroke-width="2.2"/>
+        <path d="M22 17l-4 9M28 17l-4 9M34 17l-4 9M40 17l-4 9" stroke="#fff" stroke-width="1.7"/>
+        <path d="M17 34h24" stroke="#fff" stroke-width="2.2" stroke-linecap="round"
+              stroke-dasharray="3 3"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Tool gate</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">session scopes</text>
+</g>
+<g transform="translate(620,276)">
+  <rect width="48" height="48" rx="7.0" fill="#ED7100"/>
+  <g transform="scale(1.0000)">
+        <path d="M14 36 24 12l10 24" fill="none" stroke="#fff" stroke-width="3"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M19 25h7" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Evidence job</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">scheduled</text>
+</g>
+<path d="M464,220 L96,272" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="300" y="240" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" font-weight="400" fill="#5A6B7B" opacity="1.0">OIDC session, not a header</text>
+<path d="M116,300 L246,300" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="181" y="292" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" font-weight="400" fill="#5A6B7B" opacity="1.0">in-process</text>
+<path d="M306,300 L436,300" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="371" y="292" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" font-weight="400" fill="#5A6B7B" opacity="1.0">typed allowlist</text>
+<g><rect x="28" y="400" width="712" height="122" rx="8" fill="#F7FBF3" stroke="#7AA116" stroke-width="1.8" stroke-dasharray="6 4"/><text x="40" y="419" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.4" fill="#7AA116">DATA</text></g>
+<g transform="translate(250,424)">
+  <rect width="48" height="48" rx="7.0" fill="#2E73B8"/>
+  <g transform="scale(1.0000)">
+        <circle cx="15" cy="16" r="3" fill="#fff"/><circle cx="30" cy="13" r="3" fill="#fff"/>
+        <circle cx="34" cy="28" r="3" fill="#fff"/><circle cx="18" cy="31" r="3" fill="#fff"/>
+        <circle cx="24" cy="22" r="3.4" fill="none" stroke="#fff" stroke-width="2"/>
+        <path d="M17.4 17.2 21.4 20M27.2 14.6 25.6 19M31.6 26.4 27 23.4M20.4 29.4 22.6 25.2"
+              stroke="#fff" stroke-width="1.7"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Embedding store</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">tenant partition</text>
+</g>
+<g transform="translate(440,424)">
+  <rect width="48" height="48" rx="7.0" fill="#2E73B8"/>
+  <g transform="scale(1.0000)">
+        <ellipse cx="24" cy="15" rx="12" ry="4.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M12 15v18c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5V15" fill="none" stroke="#fff"
+              stroke-width="2.4"/>
+        <path d="M12 24c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5" fill="none" stroke="#fff" stroke-width="2"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Findings</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">PITR</text>
+</g>
+<g transform="translate(620,424)">
+  <rect width="48" height="48" rx="7.0" fill="#7AA116"/>
+  <g transform="scale(1.0000)">
+        <path d="M13 13h22l-3 22H16z" fill="none" stroke="#fff" stroke-width="2.4"
+              stroke-linejoin="round"/>
+        <rect x="19" y="24" width="11" height="8" rx="1.4" fill="#fff"/>
+        <path d="M21.5 24v-2.5a3 3 0 0 1 6 0V24" fill="none" stroke="#fff" stroke-width="2"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">Audit store</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">Object Lock</text>
+</g>
+<g transform="translate(60,424)">
+  <rect width="48" height="48" rx="7.0" fill="#DD344C"/>
+  <g transform="scale(1.0000)">
+        <circle cx="19" cy="20" r="6.5" fill="none" stroke="#fff" stroke-width="2.4"/>
+        <path d="M23.5 24.5 35 36" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M31 32l-3.5 3.5M34 29l-3 3" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+  <text x="24.0" y="62" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#232F3E">KMS</text>
+  <text x="24.0" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#5A6B7B">envelope keys</text>
+</g>
+<path d="M274,348 L274,420" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="284" y="384" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" font-weight="400" fill="#5A6B7B" opacity="1.0">pre-filter, then verify</text>
+<path d="M644,348 L644,420" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="654" y="384" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" font-weight="400" fill="#5A6B7B" opacity="1.0">append only</text>
+<path d="M636,300 L476,420" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="536" y="366" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" font-weight="400" fill="#5A6B7B" opacity="1.0">normalised</text>
+<path d="M108,448 L246,448" fill="none" stroke="#8393A3" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="177" y="442" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" font-weight="400" fill="#5A6B7B" opacity="1.0">data keys</text>
+<rect x="764" y="252" width="388" height="270" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="782" y="278" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#232F3E" opacity="1.0">What is actually being protected</text>
+<text x="782" y="304" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#D13212" opacity="1.0">Customer content</text>
+<text x="782" y="319" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">one leak ends a contract</text>
+<text x="782" y="348" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#DD344C" opacity="1.0">Credentials</text>
+<text x="782" y="363" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">none at rest — federated identity only</text>
+<text x="782" y="392" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#1D8102" opacity="1.0">Audit records</text>
+<text x="782" y="407" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">immutable for the retention window</text>
+<text x="782" y="436" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#5A6B7B" opacity="1.0">Telemetry</text>
+<text x="782" y="451" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">carries no customer content by construction</text>
+<text x="782" y="494" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">A classification nobody can act on is decoration.</text>
+<text x="782" y="508" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="400" fill="#5A6B7B" opacity="1.0">Each line here changes a control decision.</text>
+<text x="28" y="556" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" font-weight="400" fill="#232F3E" opacity="1.0">The hop with no label is the one to ask about. An unlabelled arrow usually means nobody decided — not that nothing applies.</text>
+</svg>

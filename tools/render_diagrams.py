@@ -440,6 +440,215 @@ def d_threat_model() -> str:
                "named on the right.", "\n".join(b))
 
 
+def d_data_flow() -> str:
+    """Where data moves, and what protects it on each hop."""
+    b = []
+    b.append(text(28, 82, "Every arrow is a hop. Every hop names what protects it in transit and "
+                          "what authorises it.", size=11, fill=MUTED))
+
+    b.append(boundary(28, 104, 712, 116, "PUBLIC", C_SECURITY, fill="#FDF2F4"))
+    b.append(icon("github", 60, 128, "Browser", "untrusted"))
+    b.append(icon("waf", 250, 128, "WAF", "geo + rate"))
+    b.append(icon("alb", 440, 128, "Edge", "OIDC required"))
+    b.append(arrow(116, 152, 246, 152))
+    b.append(text(181, 144, "TLS 1.2+", size=9, fill=MUTED, anchor="middle"))
+    b.append(arrow(306, 152, 436, 152))
+    b.append(text(371, 144, "geo-checked", size=9, fill=MUTED, anchor="middle"))
+
+    b.append(boundary(28, 252, 712, 116, "APPLICATION", C_NETWORK, fill="#F3EEFF"))
+    b.append(icon("eks", 60, 276, "API pod", "IRSA, no keys"))
+    b.append(icon("model", 250, 276, "Retrieval", "tenant pre-filter"))
+    b.append(icon("gate", 440, 276, "Tool gate", "session scopes"))
+    b.append(icon("lambda", 620, 276, "Evidence job", "scheduled"))
+    b.append(arrow(464, 220, 96, 272))
+    b.append(text(300, 240, "OIDC session, not a header", size=9, fill=MUTED, anchor="middle"))
+    b.append(arrow(116, 300, 246, 300))
+    b.append(text(181, 292, "in-process", size=9, fill=MUTED, anchor="middle"))
+    b.append(arrow(306, 300, 436, 300))
+    b.append(text(371, 292, "typed allowlist", size=9, fill=MUTED, anchor="middle"))
+
+    b.append(boundary(28, 400, 712, 122, "DATA", C_STORAGE, fill="#F7FBF3"))
+    b.append(icon("vector", 250, 424, "Embedding store", "tenant partition"))
+    b.append(icon("dynamodb", 440, 424, "Findings", "PITR"))
+    b.append(icon("s3lock", 620, 424, "Audit store", "Object Lock"))
+    b.append(icon("kms", 60, 424, "KMS", "envelope keys"))
+    b.append(arrow(274, 348, 274, 420))
+    b.append(text(284, 384, "pre-filter, then verify", size=9, fill=MUTED))
+    b.append(arrow(644, 348, 644, 420))
+    b.append(text(654, 384, "append only", size=9, fill=MUTED))
+    b.append(arrow(636, 300, 476, 420))
+    b.append(text(536, 366, "normalised", size=9, fill=MUTED))
+    b.append(arrow(108, 448, 246, 448, dashed=True))
+    b.append(text(177, 442, "data keys", size=9, fill=MUTED, anchor="middle"))
+
+    b.append(card(764, 252, 388, 270))
+    b.append(text(782, 278, "What is actually being protected", size=12.5, weight="700"))
+    rows = [
+        ("Customer content", "one leak ends a contract", BAD),
+        ("Credentials", "none at rest \u2014 federated identity only", C_SECURITY),
+        ("Audit records", "immutable for the retention window", OK),
+        ("Telemetry", "carries no customer content by construction", MUTED),
+    ]
+    for i, (name, why, col) in enumerate(rows):
+        y = 304 + i * 44
+        b.append(text(782, y, name, size=11, weight="700", fill=col))
+        b.append(text(782, y + 15, why, size=9.5, fill=MUTED))
+    b.append(text(782, 494, "A classification nobody can act on is decoration.", size=9.5,
+                  fill=MUTED))
+    b.append(text(782, 508, "Each line here changes a control decision.", size=9.5, fill=MUTED))
+
+    b.append(text(28, 556, "The hop with no label is the one to ask about. An unlabelled arrow "
+                           "usually means nobody decided \u2014 not that nothing applies.",
+                  size=10, fill=INK))
+    return svg(1180, 580, "Data flow and protection",
+               "A data-flow diagram is only useful if each flow names its control. "
+               "Otherwise it is a picture of boxes.", "\n".join(b))
+
+
+def d_review_triage() -> str:
+    """What needs a security review, and what does not."""
+    b = []
+    b.append(text(28, 82, "Reviewing everything and reviewing nothing fail the same way: the "
+                          "reviewer becomes a formality. This is the line.", size=11, fill=MUTED))
+
+    b.append(icon("github", 44, 150, "A change", "arrives"))
+
+    lanes = [
+        ("BLOCKING REVIEW", 108, BAD, "#FDF2F4",
+         ["IAM policy, role or trust policy",
+          "Network path, security group, ingress",
+          "Authentication or authorisation logic",
+          "Cryptography, key handling, secrets",
+          "A new data flow or a new store",
+          "CI workflow or a gate definition",
+          "Anything an agent can invoke"],
+         "Merge blocked until fixed, or accepted in writing",
+         "with a named owner, a compensating control and an expiry."),
+        ("ADVISORY", 344, "#B7791F", "#FDF6EC",
+         ["New dependency, no new capability",
+          "Config change inside existing bounds",
+          "Refactor with no interface change",
+          "Observability and logging additions"],
+         "Comments, no hold. Escalates only if the review",
+         "turns up something from the list above."),
+        ("NO REVIEW", 524, OK, "#F3FAF3",
+         ["Tests, fixtures, documentation",
+          "Formatting, lint, comments",
+          "Generated artifacts, regenerated"],
+         "CI still runs every gate.",
+         "No human in the path."),
+    ]
+    for name, y, col, fill, items, note1, note2 in lanes:
+        h = 44 + len(items) * 19 + 44
+        b.append(boundary(232, y, 546, h, name, col, fill=fill))
+        for i, it in enumerate(items):
+            b.append(text(252, y + 46 + i * 19, "\u2022  " + it, size=10.5, fill=INK))
+        base = y + 46 + len(items) * 19
+        b.append(text(252, base + 14, note1, size=9.5, fill=MUTED))
+        b.append(text(252, base + 28, note2, size=9.5, fill=MUTED))
+        b.append(arrow(112, 174, 228, y + h / 2, curve=10))
+
+    b.append(card(802, 108, 350, 212))
+    b.append(text(820, 134, "Why the line sits here", size=12.5, weight="700"))
+    for i, line in enumerate([
+        "The blocking list is not a list of important",
+        "things. It is the list of changes where a",
+        "mistake is silent and expensive to reverse.",
+    ]):
+        b.append(text(820, 158 + i * 15, line, size=10, fill=MUTED))
+    for i, line in enumerate([
+        "A wildcard in a trust policy looks correct",
+        "in review, and hands the deploy role to",
+        "anyone who can push a branch.",
+    ]):
+        b.append(text(820, 218 + i * 15, line, size=10, fill=INK))
+    b.append(chip(820, 278, "56% of reviewed PRs were held", BAD, w=250))
+
+    b.append(card(802, 344, 350, 240))
+    b.append(text(820, 370, "A blocking finding clears two ways", size=12.5, weight="700"))
+    b.append(chip(820, 386, "1   fixed", OK, w=100))
+    b.append(chip(820, 424, "2   accepted in writing", "#B7791F", w=200))
+    for i, line in enumerate([
+        "An acceptance names an owner, a compensating",
+        "control and an expiry, and re-opens the finding",
+        "when it lapses.",
+    ]):
+        b.append(text(820, 476 + i * 15, line, size=10, fill=MUTED))
+    for i, line in enumerate([
+        "There is no third path. \"We will fix it next",
+        "sprint\" is not a disposition, and a reviewer who",
+        "accepts it has moved the line.",
+    ]):
+        b.append(text(820, 530 + i * 15, line, size=10, fill=BAD))
+
+    return svg(1180, 700, "What needs a security review",
+               "Published so engineers can self-serve the answer, and so a hold is never a "
+               "surprise.", "\n".join(b))
+
+
+def d_standards_to_code() -> str:
+    """How a written standard becomes an enforced control."""
+    b = []
+    b.append(text(28, 82, "A standard is a sentence. A control is a thing that stops something. "
+                          "These are the steps between, and each one can silently fail.",
+                  size=11, fill=MUTED))
+
+    # The chip is coloured by SPACE, not by stage. The whole point of the
+    # diagram is where architecture hands off to engineering, so that boundary
+    # has to be visible at a glance rather than inferred from the labels.
+    SPACE = {"architecture": C_MGMT, "engineering": C_COMPUTE, "assessment": C_STORAGE}
+    stages = [
+        ("report", "Standard", "NIST 800-53 Rev 5\nFedRAMP Moderate", "architecture"),
+        ("iam", "Decision", "which controls apply,\nand why", "architecture"),
+        ("ec2", "Module", "Terraform that\nimplements it", "engineering"),
+        ("gate", "Gate", "CI blocks the\nregression", "engineering"),
+        ("s3lock", "Evidence", "generated, dated,\nattributable", "assessment"),
+    ]
+    x = 44
+    for i, (ic, title, sub, space) in enumerate(stages):
+        b.append(card(x, 116, 190, 150))
+        b.append(icon(ic, x + 16, 136, "", size=42))
+        b.append(text(x + 70, 158, title, size=13, weight="700"))
+        for j, line in enumerate(sub.split("\n")):
+            b.append(text(x + 70, 176 + j * 13, line, size=9.5, fill=MUTED))
+        b.append(chip(x + 16, 228, space, SPACE[space], w=158))
+        if i < len(stages) - 1:
+            b.append(arrow(x + 194, 190, x + 232, 190))
+        x += 232
+
+    b.append(f'<path d="M508,110 L508,272" stroke="{INK}" stroke-width="1.4" '
+             f'stroke-dasharray="5 4" opacity="0.55"/>')
+    b.append(text(508, 288, "architecture  \u2192  engineering", size=10, weight="700",
+                  fill=INK, anchor="middle"))
+    b.append(text(44, 300, "What is lost if the step is skipped", size=12.5, weight="700"))
+    losses = [
+        (44, "Nothing applies.", "A baseline nobody scoped is a\nreading list."),
+        (276, "It is documented.", "An architecture record with no\nmodule is an intention."),
+        (508, "It is deployed.", "Correct on the day it merged.\nDrift is invisible."),
+        (740, "It is enforced.", "Until the gate stops running and\nreports success anyway."),
+        (972, "It is provable.", "Without this the other four are\nreconstructed before an audit."),
+    ]
+    for x0, head, body in losses:
+        b.append(text(x0, 326, head, size=10.5, weight="700", fill=INK))
+        for j, line in enumerate(body.split("\n")):
+            b.append(text(x0, 344 + j * 13, line, size=9.5, fill=MUTED))
+
+    b.append(card(44, 392, 1092, 96, fill="#FDF6EC", stroke="#E8C89A"))
+    b.append(text(64, 418, "The join that usually breaks", size=12.5, weight="700"))
+    b.append(text(64, 440, "Between DECISION and MODULE the language changes \u2014 a control "
+                           "family becomes a resource argument \u2014 and nothing checks the "
+                           "translation.", size=10.5, fill=INK))
+    b.append(text(64, 458, "Here each module declares its controls next to the code, every claim "
+                           "names its EVIDENCE, and CI fails if a module has Terraform and no "
+                           "declaration.", size=10.5, fill=INK))
+    b.append(text(64, 476, "The mapping moves with the code, or it is not a mapping.",
+                  size=10.5, weight="700", fill=INK))
+
+    return svg(1180, 520, "From standard to enforced control",
+               "Architecture space to engineering space, and the evidence that survives the "
+               "trip.", "\n".join(b))
+
+
 def d_ci_pipeline() -> str:
     b = []
     b.append(icon("github", 44, 118, "Pull request", "or push to main"))
@@ -608,6 +817,9 @@ def d_ai_security() -> str:
 DIAGRAMS = {
     "reference-architecture": d_reference_architecture,
     "threat-model": d_threat_model,
+    "data-flow": d_data_flow,
+    "review-triage": d_review_triage,
+    "standards-to-code": d_standards_to_code,
     "ci-gates": d_ci_pipeline,
     "findings-pipeline": d_findings_pipeline,
     "ai-security": d_ai_security,

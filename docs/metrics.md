@@ -10,11 +10,11 @@ what was being counted.
 
 | Metric | Count | Unit / note |
 | --- | ---: | --- |
-| Tracked files | **94** | files in `git ls-files`; untracked scratch excluded |
+| Tracked files | **97** | files in `git ls-files`; untracked scratch excluded |
 | Python modules | **36** | tracked `.py` files |
 | Test functions | **98** | functions named `test_*`, by AST. **Not** collected cases — parametrization expands these to more |
-| Python code lines | **3750** | non-blank, non-comment |
-| Comment + docstring lines | **727** | the reasoning, which is most of the point here |
+| Python code lines | **3939** | non-blank, non-comment |
+| Comment + docstring lines | **733** | the reasoning, which is most of the point here |
 | Terraform modules | **2** | directories under `reference-architecture/` with at least one `.tf`; policy fixtures excluded |
 | Resource declarations | **25** | `resource "…"` blocks. Declarations, **not** live instances |
 | Terraform lines | **853** | raw `.tf` line count |
@@ -26,7 +26,7 @@ what was being counted.
 | Injection corpus | **13** | 11 must deny, 2 must allow — the allow cases are what stop a gate hardcoded to DENY from passing |
 | CI jobs | **10** | all blocking; `soft_fail` is never used |
 | Actions pinned by SHA | **19** | 0 pinned by tag — a tag is a pin someone else can rewrite |
-| Generated diagrams | **5** | ai-security, ci-gates, findings-pipeline, reference-architecture, threat-model |
+| Generated diagrams | **8** | ai-security, ci-gates, data-flow, findings-pipeline, reference-architecture, review-triage, standards-to-code, threat-model |
 
 ## What is deliberately not here
 
