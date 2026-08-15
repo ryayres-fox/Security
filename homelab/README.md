@@ -1,60 +1,90 @@
-# Home lab — network security monitoring
+# Home lab — a network security monitoring build
 
-The part of this repository that isn't a reference implementation. This is a
-network I own, built to test detections before recommending them anywhere that
-matters.
+A designed, costed and sequenced build for a home NSM platform: open gateway,
+VLAN segmentation, and an out-of-band Zeek/Suricata/DNS sensor.
 
-**Sanitized.** No real addresses, hostnames, credentials or captured data.
-Everything here is the design and the detection logic, which is the part worth
-reading anyway.
+**What this is:** the design, the purchase order, the deployment sequence, and a
+pre-purchase maintenance assessment. **What it is not:** a war story. Where a
+phase has been executed the notes say so; where it has not, they say that too.
+
+**Sanitized.** No addresses, hostnames, SSIDs or captured data. The gear, the
+prices and the reasoning are the useful part and none of it is sensitive.
 
 ![Network architecture](network-diagram.svg)
 
-## What it is
+---
 
-A self-built NSM platform for a home and small-office network: segment with a
-default-deny posture, tap traffic out of band, enrich it in stream, and run
-behavioural and signature detections against it — owning the pipeline end to end
-rather than depending on a closed appliance.
+## Why it exists
 
-**Zeek + Suricata + DNS telemetry → enrichment (GeoIP, ASN, threat intel, JA4)
-→ search and dashboards → detections mapped to MITRE ATT&CK.**
+The starting point was a consumer WiFi router that is a perfectly good router and
+a useless security telemetry source:
 
-| | |
+- **No remote syslog.** Logs are viewable in the web UI or emailed as a digest.
+  A firmware design limit, not a missed setting.
+- **No NetFlow/IPFIX.** No flow export of any kind.
+- **No port mirroring.** Nothing to tap for a sensor.
+- **No viable third-party firmware.** Broadcom-based; OpenWrt/DD-WRT support is
+  effectively nonexistent, so you cannot flash your way out.
+
+That is the whole problem statement, and it generalises: **most home gear cannot
+be a log source, and no amount of configuration changes that.** The fix is to
+demote it to an access point and put something in front of it that can export.
+
+---
+
+## What is here
+
+| | For someone who wants to |
 |---|---|
-| [`architecture.md`](architecture.md) | Objectives, threat model, design principles, segmentation, and the monitoring pipeline |
-| [`detection-engineering.md`](detection-engineering.md) | The detections, how they were tuned, and what they map to |
+| [`build-guide.md`](build-guide.md) | **Build this.** Phased purchase order with prices, and a deployment sequence where every step is reversible |
+| [`gateway-decision.md`](gateway-decision.md) | **Choose a gateway.** The control-versus-convenience tradeoff, with the criteria that actually decided it |
+| [`device-maintenance.md`](device-maintenance.md) | **Not regret it in three years.** CVE history and patch cadence per device, assessed *before* buying |
+| [`architecture.md`](architecture.md) | Understand the segmentation and the monitoring pipeline |
+| [`detection-engineering.md`](detection-engineering.md) | See the detections and how they map to ATT&CK |
 
-## Why it is in this repository
+---
 
-Everything else here is written from public standards against synthetic targets,
-which is the correct way to build a portfolio under an NDA — and it has a
-limitation worth naming: a reference implementation is never wrong, because
-nothing runs against it.
+## The three ideas worth stealing
 
-This one runs. It has a default-deny that had to be walked back, detections that
-fired on nothing useful for a week, and a monitoring path that saw less than the
-diagram claimed. That is the point of having it.
+Most home-lab writeups are a parts list and a diagram. These are the parts that
+transfer to work, and they are why this is in a security-engineering portfolio.
 
-## What it demonstrates that the rest of the repository cannot
+**1. Buy insight before you buy change.**
+Wave 1 is a switch, a sensor and a UPS — **$872, under half the budget** — and it
+delivers full traffic visibility with *zero* change to how the network routes.
+The switch goes in at layer 2 between the existing router and the wired devices;
+the sensor takes a SPAN of the uplink. If anything misbehaves, plug the devices
+back into the router and you are exactly where you started.
 
-- **Out-of-band monitoring** — SPAN capture, separation of the data path from the
-  analysis path, and what that separation costs in visibility
-- **Detection engineering as code** — behavioural analytics for beaconing, DGA,
-  exfiltration and rare destinations, tuned against real traffic rather than
-  against a fixture
-- **In-stream enrichment** — enriching before storage rather than at query time,
-  and the retention consequences either way
-- **Honest ATT&CK coverage** — what is covered, what is not, and what cannot be
-  from a network vantage point alone
+You get Zeek, Suricata and DNS metadata, and time to tune them, **before** you
+touch the thing the household depends on. The same instinct applies to a
+production migration: instrument first, change second.
 
-## The thing worth asking about
+**2. Keep the old thing as the rollback.**
+The consumer router is not retired until the last phase. Through the gateway
+cutover it sits on a shelf, and rollback is moving one cable — about five
+minutes. It is only decommissioned once the replacement has proven itself
+through a full segmentation rollout.
 
-The most useful question here is not what the lab detects. It is **what it did
-not detect, and how long that went unnoticed** — which is the same question this
-repository asks about every control in
-[`docs/silent-failure-patterns.md`](../docs/silent-failure-patterns.md).
+**3. Check the patch cadence before you buy, not after.**
+[`device-maintenance.md`](device-maintenance.md) assesses every candidate device
+against three years of CVE history and its vendor's actual patch behaviour. That
+turned up a real result: the cheapest sensor hardware has **no coherent patch
+channel** — updates are distributed ad hoc through a vendor forum — which is
+tolerable for a sensor on a management VLAN and would be disqualifying for a
+gateway.
 
-A detection that has never fired and a detection that is broken produce the same
-dashboard. The lab exists because that is cheap to find out at home and
-expensive to find out anywhere else.
+Almost nobody does this before spending the money, and it is the closest thing
+here to real supply-chain diligence.
+
+---
+
+## Honest scope
+
+Metadata monitoring only. No packet decryption, no endpoint agents, no full
+PCAP — Zeek, Suricata and DNS logs with GeoIP/ASN/intel/JA4 enrichment applied
+in stream. That is a deliberate limit, and it means encrypted payloads are
+opaque and anything that never crosses the tap is invisible.
+
+Prices are mid-2026 estimates for a 1G WAN. Re-verify before ordering; the
+sequencing is the durable part, not the part numbers.
