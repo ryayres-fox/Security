@@ -38,55 +38,37 @@ CHECKS = [
     "normalizer end-to-end",
 ]
 
-# Protection rises as changes move toward main. develop absorbs feature work,
-# stage is the release candidate, main is what a reader is shown.
+# One long-lived branch, and rules that apply to everyone including the owner.
+#
+# This replaced a three-branch promotion model (develop -> stage -> main). That
+# model is correct for a team with reviewers and a release cadence. With one
+# author it produced three or four pull requests per change, each waiting on a
+# full CI run, and — worse — a review requirement on main that could only ever
+# be satisfied by an admin bypass. A rule you step over every time is not a
+# rule, and the bypasses were visible in the history.
+#
+# So the trade is inverted deliberately:
+#
+#   required_approving_review_count: 0   a solo author cannot self-approve, and
+#                                        a requirement that can only be met by
+#                                        bypassing it teaches bypassing
+#   enforce_admins: TRUE                 the owner is NOT exempt. No direct
+#                                        push, no merging red, no force-push,
+#                                        no deletion — for anyone
+#
+# Net effect: strictly stronger than before. Every change goes through a pull
+# request and ten green checks, and there is no path around it, while nothing
+# ever deadlocks waiting for a second person who does not exist.
 POLICY: dict[str, dict] = {
-    "develop": {
-        "required_status_checks": {"strict": True, "contexts": CHECKS},
-        "enforce_admins": False,
-        "required_pull_request_reviews": {
-            "required_approving_review_count": 0,
-            "dismiss_stale_reviews": True,
-        },
-        "restrictions": None,
-        "required_linear_history": False,
-        "allow_force_pushes": False,
-        "allow_deletions": False,
-        "required_conversation_resolution": True,
-    },
-    # NOTE on linear history, learned by using this model rather than by
-    # designing it. Requiring it on a promotion branch forces every promotion PR
-    # to be rebase-merged, which replays develop's commits onto stage under new
-    # SHAs. The two branches then hold identical content with different history,
-    # and the NEXT promotion cannot fast-forward or rebase — GitHub refuses the
-    # merge outright.
-    #
-    # Linear history belongs to a squash-to-trunk model, where one branch is the
-    # only destination. In a promotion model the merge commit IS the record of
-    # the promotion, which is the thing worth keeping.
-    "stage": {
-        "required_status_checks": {"strict": True, "contexts": CHECKS},
-        "enforce_admins": False,
-        "required_pull_request_reviews": {
-            "required_approving_review_count": 0,
-            "dismiss_stale_reviews": True,
-        },
-        "restrictions": None,
-        "required_linear_history": False,
-        "allow_force_pushes": False,
-        "allow_deletions": False,
-        "required_conversation_resolution": True,
-    },
     "main": {
         "required_status_checks": {"strict": True, "contexts": CHECKS},
-        "enforce_admins": False,
+        "enforce_admins": True,
         "required_pull_request_reviews": {
-            "required_approving_review_count": 1,
+            "required_approving_review_count": 0,
             "dismiss_stale_reviews": True,
-            "require_last_push_approval": True,
         },
         "restrictions": None,
-        "required_linear_history": False,
+        "required_linear_history": True,
         "allow_force_pushes": False,
         "allow_deletions": False,
         "required_conversation_resolution": True,

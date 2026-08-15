@@ -5,9 +5,9 @@ name: ci
 
 on:
   push:
-    branches: [main, stage, develop]
+    branches: [main]
   pull_request:
-    branches: [main, stage, develop]
+    branches: [main]
 
 permissions:
   contents: read
