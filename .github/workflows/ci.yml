@@ -157,17 +157,37 @@ jobs:
             echo "::endgroup::"
           done
 
-  scan:
-    name: security scan
+  iac-scan:
+    name: IaC scan
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    # Scoped to this job rather than raised at the workflow level. On a
-    # pull_request event the secrets scanner enumerates the PR's commits via
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with: { persist-credentials: false }
+
+      # soft_fail is deliberately false. Every exception in this repository is
+      # inline, at the resource, with a written justification — a control
+      # decision someone can read and argue with. A blanket soft_fail would make
+      # the repo pass too, and would mean nothing.
+      #
+      # Pinned to the SHA of a specific patch release, NOT to the `v12` moving
+      # alias. `v12` is re-pointed on every release, so a tag pin is a promise
+      # someone else can rewrite.
+      - name: Checkov
+        uses: bridgecrewio/checkov-action@9b70310bcd306d11740313070b940167d6b23085  # v12.3115.0
+        with:
+          directory: reference-architecture/
+          soft_fail: false
+
+  secrets-scan:
+    name: secrets scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # On a pull_request event the scanner enumerates the PR's commits via
     # GET /repos/{o}/{r}/pulls/{n}/commits, which needs pull-requests: read.
-    # Without it the job fails only on PRs and passes on push — the workflow
-    # looks correct on the default branch and breaks on the path every change
-    # actually takes. Job-level permissions replace the workflow set, so
-    # contents: read is restated here.
+    # Job-level permissions replace the workflow set, so contents is restated.
     permissions:
       contents: read
       pull-requests: read
@@ -177,21 +197,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      # soft_fail is deliberately false. Every exception in this repository is
-      # inline, at the resource, with a written justification — which is a
-      # control decision someone can read and argue with. A blanket soft_fail
-      # would make the repo pass too, and would mean nothing.
-      #
-      # Pinned to the SHA of a specific patch release, NOT to the `v12` moving
-      # alias. `v12` is re-pointed on every release, so a tag pin is a promise
-      # someone else can rewrite.
-      - name: IaC scan
-        uses: bridgecrewio/checkov-action@9b70310bcd306d11740313070b940167d6b23085  # v12.3115.0
-        with:
-          directory: reference-architecture/
-          soft_fail: false
-
-      - name: Secrets scan
+      # Deliberately NOT in the same job as Checkov. That action runs in a
+      # Docker container as root and leaves the workspace owned by root, so the
+      # next non-container step cannot write its own report:
+      #     FTL could not write error="open results.sarif: permission denied"
+      # A separate job gets a clean workspace, and the two scans parallelise.
+      - name: Gitleaks
         uses: gitleaks/gitleaks-action@83373cf2f8c4db6e24b41c1a9b086bb9619e9cd3  # v2.3.7
         env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
 
