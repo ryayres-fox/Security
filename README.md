@@ -22,6 +22,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 | **[`findings-normalizer/`](findings-normalizer/)** | A Python tool that ingests seven scanners and normalizes them into one system of record with stable identity, history, ownership and dedupe |
 | **[`ai-security/`](ai-security/)** | Multi-tenant isolation in an embedding store, and a tool-authorization gate with a prompt-injection regression corpus |
 | **[`policies/`](policies/)** | Custom Checkov policies, and the tests that prove they load *and* fire |
+| **[`semgrep/`](semgrep/)** | Custom SAST rules, with the same load-and-fire proof plus a false-positive gate |
 | **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
 | **[`homelab/`](homelab/)** | My own network — segmentation, detection engineering, and the things I break on purpose |
 | **[`docs/`](docs/)** | [Threat model](docs/threat-model.md) and the [method behind it](docs/threat-model-method.md), [branching](docs/branching.md), [review standard](docs/review-standard.md), control-mapping, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/), [silent-failure patterns](docs/silent-failure-patterns.md) |
@@ -31,6 +32,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 ```bash
 pytest findings-normalizer/tests ai-security tools -q   # 141 tests, ~1 second
 pytest policies -q                                      # 11 more (needs checkov)
+pytest semgrep -q                                       # 16 more (needs semgrep)
 python tools/control_coverage.py --check                # every module declares its controls
 checkov -d reference-architecture/ --compact            # 0 failed, 10 skipped-with-reason
 

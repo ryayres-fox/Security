@@ -30,6 +30,7 @@ CHECKS = [
     "tests and lint (py3.12)",
     "repo hygiene",
     "custom policies load and fire",
+    "custom SAST rules load and fire",
     "control mapping",
     "terraform",
     "IaC scan",
