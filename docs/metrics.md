@@ -10,11 +10,11 @@ what was being counted.
 
 | Metric | Count | Unit / note |
 | --- | ---: | --- |
-| Tracked files | **97** | files in `git ls-files`; untracked scratch excluded |
+| Tracked files | **100** | files in `git ls-files`; untracked scratch excluded |
 | Python modules | **36** | tracked `.py` files |
 | Test functions | **98** | functions named `test_*`, by AST. **Not** collected cases — parametrization expands these to more |
-| Python code lines | **3939** | non-blank, non-comment |
-| Comment + docstring lines | **733** | the reasoning, which is most of the point here |
+| Python code lines | **3913** | non-blank, non-comment |
+| Comment + docstring lines | **755** | the reasoning, which is most of the point here |
 | Terraform modules | **2** | directories under `reference-architecture/` with at least one `.tf`; policy fixtures excluded |
 | Resource declarations | **25** | `resource "…"` blocks. Declarations, **not** live instances |
 | Terraform lines | **853** | raw `.tf` line count |

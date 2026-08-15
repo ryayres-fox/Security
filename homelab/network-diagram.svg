@@ -1,0 +1,104 @@
+<svg viewBox="0 0 900 660" xmlns="http://www.w3.org/2000/svg" role="img" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+<title>Reference architecture — home network security monitoring</title>
+<desc>Internet enters a zero-trust firewall/gateway, which trunks to a core switch that segments traffic into VLAN zones and mirrors it via SPAN to an out-of-band NSM sensor. The sensor runs Zeek, Suricata and DNS logging with enrichment, feeding a search/dashboards layer and detections mapped to MITRE ATT&CK.</desc>
+
+<defs>
+<marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6b6b6b"/></marker>
+<marker id="ap" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7F77DD"/></marker>
+<marker id="ag" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1D9E75"/></marker>
+</defs>
+
+<rect x="0" y="0" width="900" height="660" fill="#ffffff"/>
+<text x="30" y="30" font-size="18" font-weight="700" fill="#1a1a1a">Home Network Security Monitoring — Reference Architecture</text>
+<text x="30" y="48" font-size="11.5" fill="#6b6b6b">Zero-trust segmentation · out-of-band NSM · enrich-before-store · detections mapped to MITRE ATT&amp;CK</text>
+
+<!-- Internet -->
+<rect x="160" y="62" width="180" height="44" rx="9" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.5"/>
+<text x="250" y="89" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Internet</text>
+<line x1="250" y1="106" x2="250" y2="136" stroke="#6b6b6b" stroke-width="1.5" marker-end="url(#a)"/>
+
+<!-- Firewall -->
+<rect x="110" y="136" width="280" height="66" rx="9" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.5"/>
+<text x="250" y="162" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1a1a1a">Firewall / Gateway</text>
+<text x="250" y="181" text-anchor="middle" font-size="10.5" fill="#6b6b6b">zero-trust policy · DNS · inline IDS/IPS</text>
+<text x="250" y="196" text-anchor="middle" font-size="10" fill="#6b6b6b">NetFlow / syslog export</text>
+<line x1="250" y1="202" x2="250" y2="230" stroke="#6b6b6b" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="262" y="221" font-size="9.5" fill="#6b6b6b">802.1Q trunk</text>
+
+<!-- Switch -->
+<rect x="110" y="230" width="280" height="60" rx="9" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.5"/>
+<text x="250" y="255" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1a1a1a">Core Switch</text>
+<text x="250" y="274" text-anchor="middle" font-size="10.5" fill="#6b6b6b">802.1Q VLANs · SPAN / mirror</text>
+<line x1="250" y1="290" x2="250" y2="320" stroke="#6b6b6b" stroke-width="1.5" marker-end="url(#a)"/>
+
+<!-- VLAN container -->
+<rect x="40" y="320" width="420" height="252" rx="11" fill="none" stroke="#c9c9c9" stroke-width="1.3" stroke-dasharray="2 4"/>
+<text x="56" y="340" font-size="11" font-weight="700" fill="#6b6b6b">ZERO-TRUST VLAN ZONES (default-deny between)</text>
+
+<rect x="60" y="352" width="176" height="54" rx="8" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.4"/>
+<text x="72" y="373" font-size="12" font-weight="700" fill="#1a1a1a">Trusted</text>
+<text x="72" y="391" font-size="9.5" fill="#6b6b6b">workstations, laptops</text>
+
+<rect x="264" y="352" width="176" height="54" rx="8" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.4"/>
+<text x="276" y="373" font-size="12" font-weight="700" fill="#1a1a1a">IoT</text>
+<text x="276" y="391" font-size="9.5" fill="#6b6b6b">restricted egress, forced DNS</text>
+
+<rect x="60" y="416" width="176" height="54" rx="8" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.4"/>
+<text x="72" y="437" font-size="12" font-weight="700" fill="#1a1a1a">Guest</text>
+<text x="72" y="455" font-size="9.5" fill="#6b6b6b">internet only, isolated</text>
+
+<rect x="264" y="416" width="176" height="54" rx="8" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.4"/>
+<text x="276" y="437" font-size="12" font-weight="700" fill="#1a1a1a">Servers / Lab</text>
+<text x="276" y="455" font-size="9.5" fill="#6b6b6b">explicit per-service rules</text>
+
+<rect x="60" y="480" width="176" height="54" rx="8" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.4"/>
+<text x="72" y="501" font-size="12" font-weight="700" fill="#1a1a1a">Wireless (AP)</text>
+<text x="72" y="519" font-size="9.5" fill="#6b6b6b">per-SSID → VLAN</text>
+
+<rect x="264" y="480" width="176" height="54" rx="8" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.4"/>
+<text x="276" y="501" font-size="12" font-weight="700" fill="#1a1a1a">Management</text>
+<text x="276" y="519" font-size="9.5" fill="#6b6b6b">admin only, no internet</text>
+
+<!-- SPAN to sensor -->
+<line x1="390" y1="260" x2="618" y2="266" stroke="#7F77DD" stroke-width="2" marker-end="url(#ap)"/>
+<text x="505" y="252" text-anchor="middle" font-size="10" font-weight="600" fill="#534AB7">SPAN (mirror)</text>
+
+<!-- Sensor -->
+<rect x="620" y="230" width="250" height="86" rx="10" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.6"/>
+<text x="745" y="255" text-anchor="middle" font-size="13" font-weight="700" fill="#26215C">NSM Sensor</text>
+<text x="745" y="274" text-anchor="middle" font-size="10" fill="#3C3489">Zeek + Suricata + DNS</text>
+<text x="745" y="290" text-anchor="middle" font-size="10" fill="#3C3489">Intel · GeoIP/ASN · JA4</text>
+<text x="745" y="307" text-anchor="middle" font-size="9.5" font-style="italic" fill="#534AB7">Layer-1 enrichment at capture</text>
+<line x1="745" y1="316" x2="745" y2="342" stroke="#7F77DD" stroke-width="2" marker-end="url(#ap)"/>
+
+<!-- Enrichment -->
+<rect x="620" y="342" width="250" height="74" rx="10" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.6"/>
+<text x="745" y="366" text-anchor="middle" font-size="13" font-weight="700" fill="#26215C">Enrichment pipeline</text>
+<text x="745" y="384" text-anchor="middle" font-size="10" fill="#3C3489">threat-intel join · DNS ↔ flow · normalize</text>
+<text x="745" y="402" text-anchor="middle" font-size="9.5" font-style="italic" fill="#534AB7">Layer-2 — before store</text>
+<line x1="745" y1="416" x2="745" y2="442" stroke="#7F77DD" stroke-width="2" marker-end="url(#ap)"/>
+
+<!-- SIEM -->
+<rect x="620" y="442" width="250" height="66" rx="10" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.6"/>
+<text x="745" y="467" text-anchor="middle" font-size="13" font-weight="700" fill="#26215C">Search + Dashboards</text>
+<text x="745" y="486" text-anchor="middle" font-size="10" fill="#3C3489">OpenSearch / DuckDB · tiered retention</text>
+<line x1="745" y1="508" x2="745" y2="534" stroke="#7F77DD" stroke-width="2" marker-end="url(#ap)"/>
+
+<!-- Detections -->
+<rect x="620" y="534" width="250" height="62" rx="10" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.6"/>
+<text x="745" y="559" text-anchor="middle" font-size="13" font-weight="700" fill="#26215C">Detections → Alerts → Analyst</text>
+<text x="745" y="578" text-anchor="middle" font-size="10" fill="#3C3489">behavioral + signature · ATT&amp;CK mapped</text>
+
+<!-- FW log export dashed -->
+<path d="M390,190 H540 V360 H618" fill="none" stroke="#1D9E75" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#ag)"/>
+<text x="405" y="182" font-size="9.5" fill="#0F6E56">firewall + DNS + NetFlow logs</text>
+
+<!-- Legend -->
+<rect x="30" y="610" width="840" height="34" rx="8" fill="none" stroke="#c9c9c9" stroke-width="1.2"/>
+<line x1="48" y1="628" x2="76" y2="628" stroke="#6b6b6b" stroke-width="2" marker-end="url(#a)"/>
+<text x="84" y="632" font-size="10.5" fill="#1a1a1a">Traffic / routing</text>
+<line x1="240" y1="628" x2="268" y2="628" stroke="#7F77DD" stroke-width="2.5" marker-end="url(#ap)"/>
+<text x="276" y="632" font-size="10.5" fill="#1a1a1a">Monitoring / enrichment pipeline</text>
+<line x1="560" y1="628" x2="588" y2="628" stroke="#1D9E75" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#ag)"/>
+<text x="596" y="632" font-size="10.5" fill="#1a1a1a">Log export</text>
+</svg>
