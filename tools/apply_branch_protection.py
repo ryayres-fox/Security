@@ -32,7 +32,8 @@ CHECKS = [
     "custom policies load and fire",
     "control mapping",
     "terraform",
-    "security scan",
+    "IaC scan",
+    "secrets scan",
     "normalizer end-to-end",
 ]
 
