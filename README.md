@@ -25,7 +25,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 | **[`semgrep/`](semgrep/)** | Custom SAST rules, with the same load-and-fire proof plus a false-positive gate |
 | **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
 | **[`homelab/`](homelab/)** | A costed, sequenced NSM build — purchase order, reversible deployment, and a pre-purchase maintenance assessment. Written to be adopted |
-| **[`docs/`](docs/)** | [Threat model](docs/threat-model.md) and the [method behind it](docs/threat-model-method.md), [branching](docs/branching.md), [review standard](docs/review-standard.md), control-mapping, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/), [silent-failure patterns](docs/silent-failure-patterns.md) |
+| **[`docs/`](docs/)** | [Scanner strategy](docs/scanner-strategy.md), [threat model](docs/threat-model.md) and its [method](docs/threat-model-method.md), [branching](docs/branching.md), [review standard](docs/review-standard.md), control-mapping, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/), [silent-failure patterns](docs/silent-failure-patterns.md) |
 
 ### Run it
 
@@ -78,6 +78,30 @@ The loop closes. A control isn't "documented," it's *enforced*, and the artifact
 enforced falls out of the pipeline rather than being assembled by hand.
 
 ![CI gates](docs/diagrams/ci-gates.svg)
+
+---
+
+## Which scanners, and why
+
+![Scanner sequencing](docs/diagrams/scanner-sequence.svg)
+
+Seven scanners is a lot, and listing them without saying what any of them is *for* is the norm and
+useless to anyone deciding what **they** should run.
+
+[`docs/scanner-strategy.md`](docs/scanner-strategy.md) is written for someone who has not done this
+before — every term defined on first use, categories before tools. It covers what each scanner
+looks at, when in the pipeline it can possibly run, why overlapping tools are deliberate, and the
+half that usually goes unwritten: **when not to use each one.**
+
+Two things it insists on:
+
+- **An unactioned scanner is worse than none.** It creates triage debt and a false impression of
+  coverage. One tuned scanner beats five untuned ones, because the failure mode of too many is that
+  people stop reading any of them.
+- **Scanners raise the floor, not the ceiling.** They cannot catch business logic flaws, an
+  authorization check that is correct-looking and checks the wrong object, a *missing* control, or
+  a control that stopped running. That is why the threat model and the review standard sit beside
+  the tooling here.
 
 ---
 
