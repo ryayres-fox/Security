@@ -1,5 +1,7 @@
 # Security
 
+[![ci](https://github.com/ryayres-fox/Security/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ryayres-fox/Security/actions/workflows/ci.yml)
+
 Security engineering, built as code.
 
 I'm Ryan Ayres — a principal-level security architect working in cloud infrastructure security,
