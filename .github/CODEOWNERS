@@ -1,0 +1,10 @@
+# One owner today. This is what makes review routing correct from day one
+# rather than retrofitted after the first collaborator is added.
+*                       @ryayres-fox
+
+# The gates themselves. A change here changes what the repository is willing to
+# let through, which is a different class of change from adding a module.
+/tools/                 @ryayres-fox
+/policies/              @ryayres-fox
+/.github/workflows/     @ryayres-fox
+/docs/review-standard.md @ryayres-fox
