@@ -24,7 +24,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 | **[`policies/`](policies/)** | Custom Checkov policies, and the tests that prove they load *and* fire |
 | **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
 | **[`homelab/`](homelab/)** | My own network — segmentation, detection engineering, and the things I break on purpose |
-| **[`docs/`](docs/)** | [Branching model](docs/branching.md), [review standard](docs/review-standard.md), control-mapping strategy, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/) and the [silent-failure patterns](docs/silent-failure-patterns.md) |
+| **[`docs/`](docs/)** | [Threat model](docs/threat-model.md) and the [method behind it](docs/threat-model-method.md), [branching](docs/branching.md), [review standard](docs/review-standard.md), control-mapping, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/), [silent-failure patterns](docs/silent-failure-patterns.md) |
 
 ### Run it
 
@@ -163,6 +163,29 @@ CI diffs the file against a fresh run, so a stale metric fails the build.
 The [`homelab/`](homelab/) directory is the part of this that isn't theoretical. Segmented network,
 real detection rules, and deliberately vulnerable targets I use to check whether a detection
 actually fires before I'd ever recommend it to anyone.
+
+---
+
+## Threat model
+
+![Trust boundaries](docs/diagrams/threat-model.svg)
+
+[`docs/threat-model.md`](docs/threat-model.md) is written to be read by people who do not work in
+security — because that is the audience that has to fund the work, and most threat models cannot be
+read by them.
+
+Three things it does differently, set out as a reusable method in
+[`docs/threat-model-method.md`](docs/threat-model-method.md):
+
+- **It leads with the consequence, not the mechanism.** "One customer reads another customer's
+  documents", not "IDOR in the retrieval path."
+- **Every threat carries the sentence you would have to say publicly if it happened.** That does
+  more prioritisation work than any severity scale, and it is self-evident to everyone in the room.
+- **It separates "we have a control" from "the control is running."** Almost no threat model does,
+  and those two diverge silently — four times in this repository's own code.
+
+Every row ends in a decision state, and the ones marked *needs a decision* are pulled into their own
+section with options, costs and a recommendation. A threat model is a request, not a report.
 
 ---
 
