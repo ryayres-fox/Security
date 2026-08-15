@@ -1,0 +1,28 @@
+# Dependency updates.
+#
+# Every GitHub Action here is pinned to a 40-character SHA, which is the correct
+# trade — a tag is a pin someone else can rewrite — and it means a pinned action
+# never updates itself. A stale action is how a supply-chain fix gets missed, so
+# the bump arrives as a pull request that goes through the same gates as
+# anything else.
+#
+# This repository proved the case for the SHA pin the hard way: the scanning
+# action was pinned to a SHA that did not exist, and the job failed at startup on
+# every run since the repository was created. See docs/silent-failure-patterns.md.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore
+
+  - package-ecosystem: pip
+    directory: /findings-normalizer
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore
