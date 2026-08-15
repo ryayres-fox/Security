@@ -168,6 +168,39 @@ actually fires before I'd ever recommend it to anyone.
 
 ---
 
+## From standard to enforced control
+
+![Standards to code](docs/diagrams/standards-to-code.svg)
+
+The translation from architecture space to engineering space is where control claims go to die, and
+the join that breaks is between **decision** and **module** — a control family becomes a resource
+argument, and nothing checks the translation. Here every module declares its controls next to the
+code, every claim names its **evidence**, and CI fails if a module has Terraform and no declaration.
+
+---
+
+## Data flow and protection
+
+![Data flow and protection](docs/diagrams/data-flow.svg)
+
+A data-flow diagram is only useful if each flow names its control. The hop with no label is the one
+to ask about — an unlabelled arrow usually means nobody decided, not that nothing applies.
+
+---
+
+## What needs a security review
+
+![Review triage](docs/diagrams/review-triage.svg)
+
+Published so engineers can self-serve the answer, and so a hold is never a surprise. The blocking
+list is not a list of important things — it is the list of changes where a mistake is **silent and
+expensive to reverse**.
+
+A blocking finding clears exactly two ways: fixed, or accepted in writing with an owner, a
+compensating control and an expiry. There is no third path.
+
+---
+
 ## Threat model
 
 ![Trust boundaries](docs/diagrams/threat-model.svg)
