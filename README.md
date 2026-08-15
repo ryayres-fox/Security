@@ -24,7 +24,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 | **[`policies/`](policies/)** | Custom Checkov policies, and the tests that prove they load *and* fire |
 | **[`semgrep/`](semgrep/)** | Custom SAST rules, with the same load-and-fire proof plus a false-positive gate |
 | **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
-| **[`homelab/`](homelab/)** | A network I own — NSM architecture and detection engineering, sanitized. The part that isn't a reference implementation |
+| **[`homelab/`](homelab/)** | A costed, sequenced NSM build — purchase order, reversible deployment, and a pre-purchase maintenance assessment. Written to be adopted |
 | **[`docs/`](docs/)** | [Threat model](docs/threat-model.md) and the [method behind it](docs/threat-model-method.md), [branching](docs/branching.md), [review standard](docs/review-standard.md), control-mapping, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/), [silent-failure patterns](docs/silent-failure-patterns.md) |
 
 ### Run it
@@ -162,16 +162,20 @@ CI diffs the file against a fresh run, so a stale metric fails the build.
 
 ## Home lab
 
-Everything else here is written from public standards against synthetic targets — the correct way to
-build a portfolio under an NDA, with one limitation worth naming: **a reference implementation is
-never wrong, because nothing runs against it.**
+[`homelab/`](homelab/) is a designed, costed and sequenced NSM build — and it is written to be
+**adopted, not admired**. Most home-lab writeups are a parts list and a diagram. This one is a
+purchase order with prices, a deployment sequence where every step is reversible, and a
+pre-purchase maintenance assessment.
 
-[`homelab/`](homelab/) runs. Zeek, Suricata and DNS telemetry into an enrichment pipeline, with
-behavioural detections mapped to MITRE ATT&CK — and a default-deny that had to be walked back, and
-detections that fired on nothing useful for a week.
+Three ideas in it transfer straight to production work:
 
-The useful question there is not what it detects. It is **what it did not detect, and how long that
-went unnoticed** — the same question this repository asks about every other control.
+- **Buy insight before you buy change.** The first 44% of the budget delivers full traffic
+  visibility with *zero* change to how the network routes. Instrument first, change second.
+- **Keep the old system as the rollback until the new one has proven itself** — not until it is
+  installed.
+- **Check the patch cadence before you buy.** That assessment found a device with no coherent
+  patch channel, which made it fine as a sensor and disqualifying as the gateway. Maintainability
+  decided *where a component was allowed to sit*, not just whether to buy it.
 
 ---
 
