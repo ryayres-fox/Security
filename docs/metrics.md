@@ -14,7 +14,7 @@ what was being counted.
 | Python modules | **33** | tracked `.py` files |
 | Test functions | **92** | functions named `test_*`, by AST. **Not** collected cases — parametrization expands these to more |
 | Python code lines | **3505** | non-blank, non-comment |
-| Comment + docstring lines | **639** | the reasoning, which is most of the point here |
+| Comment + docstring lines | **649** | the reasoning, which is most of the point here |
 | Terraform modules | **2** | directories under `reference-architecture/` with at least one `.tf`; policy fixtures excluded |
 | Resource declarations | **25** | `resource "…"` blocks. Declarations, **not** live instances |
 | Terraform lines | **853** | raw `.tf` line count |

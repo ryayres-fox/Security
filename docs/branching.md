@@ -14,8 +14,8 @@ hotfix/*   ───────────────────────
 
 | Branch | Holds | PR from | Required checks | Reviews | Linear history |
 |---|---|---|---|---|---|
-| `main` | what a reader is shown | `stage`, `hotfix/*` | all 8 | **1** | yes |
-| `stage` | release candidate | `develop` | all 8 | 0 | yes |
+| `main` | what a reader is shown | `stage`, `hotfix/*` | all 8 | **1** | no — see below |
+| `stage` | release candidate | `develop` | all 8 | 0 | no — see below |
 | `develop` | integration | `feature/*`, `fix/*`, `chore/*` | all 8 | 0 | no |
 
 No branch accepts a direct push. Force-push and deletion are disabled on all
@@ -30,9 +30,7 @@ are not ceremony — each one answers a different question:
 - **`develop`** — does it work? Every gate runs. Merge order does not matter,
   so linear history is not required here; noise on an integration branch is
   cheap and rebasing feature work repeatedly is not.
-- **`stage`** — does it work *together*, in the state it would ship in? Linear
-  history starts here, so the sequence that produced a release is readable
-  afterwards.
+- **`stage`** — does it work *together*, in the state it would ship in?
 - **`main`** — is it fit to be read by someone deciding whether to hire the
   author? This is the only branch where a review is required.
 
@@ -65,6 +63,24 @@ gh pr create --base main  --head stage   --title "Release"
 A promotion PR carries no new commits. Its purpose is to make the CI suite run
 against the exact tree being promoted, and to leave a record of who decided it
 was ready.
+
+**Rebase feature branches into `develop`. Merge promotions.**
+
+Learned by using the model rather than by designing it. Requiring linear history
+on a promotion branch forces every promotion to be rebase-merged, which replays
+`develop`'s commits onto `stage` under new SHAs. The two branches then hold
+identical content with different history, and the *next* promotion can neither
+fast-forward nor rebase — GitHub refuses it outright:
+
+```
+gh pr merge 5 --rebase
+  gh pr checkout 5 && git fetch origin stage && git rebase origin/stage
+```
+
+The first promotion works, which is why the rule looks correct right up until it
+isn't. Linear history belongs to a squash-to-trunk model, where one branch is the
+only destination and a merge commit carries no information. In a promotion model
+the merge commit *is* the record of the promotion.
 
 ## Hotfixes
 
