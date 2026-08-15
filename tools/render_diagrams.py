@@ -378,6 +378,68 @@ def d_reference_architecture() -> str:
                "no employer environment described", "\n".join(b))
 
 
+def d_threat_model() -> str:
+    b = []
+    b.append(text(28, 82, "Attacks concentrate where the level of trust changes, because that is "
+                          "where an assumption gets made.", size=11, fill=MUTED))
+
+    # Actors
+    b.append(boundary(28, 104, 178, 300, "UNTRUSTED", C_SECURITY, fill="#FDF2F4"))
+    b.append(icon("github", 70, 140, "Internet", "anonymous"))
+    b.append(icon("model", 70, 240, "Model output", "assume\u00a0compromised"))
+    b.append(text(48, 340, "A customer-uploaded", size=9.5, fill=MUTED))
+    b.append(text(48, 353, "document is untrusted", size=9.5, fill=MUTED))
+    b.append(text(48, 366, "input, not content.", size=9.5, fill=MUTED))
+
+    # Boundary column
+    boundaries = [
+        ("B1", 130, "Internet to edge", "the caller is who they claim to be", "T4"),
+        ("B2", 200, "App to embedding store", "the query is scoped to the caller's tenant", "T1"),
+        ("B3", 270, "Model to tool gate", "model output is a request, not a decision", "T2 T5"),
+        ("B4", 340, "CI to cloud", "the pipeline runs the code we reviewed", "T4 T8"),
+    ]
+    for bid, y, name, assumption, threats in boundaries:
+        b.append(card(236, y - 22, 470, 56, fill=PAPER))
+        b.append(chip(248, y - 12, bid, C_NETWORK, w=34))
+        b.append(text(294, y - 2, name, size=11.5, weight="700"))
+        b.append(text(294, y + 14, assumption, size=9.5, fill=MUTED))
+        b.append(text(694, y + 4, threats, size=9.5, weight="700", fill=BAD, anchor="end"))
+        b.append(arrow(206, y, 232, y))
+
+    b.append(text(236, 386, "The assumption is the thing to attack. Written down, a wrong one is "
+                            "obvious to people who are not", size=9.5, fill=MUTED))
+    b.append(text(236, 399, "security specialists — which is the audience most likely to know it "
+                            "is false.", size=9.5, fill=MUTED))
+
+    # Protected assets
+    b.append(boundary(736, 104, 336, 300, "PROTECTED", C_STORAGE, fill="#F7FBF3"))
+    assets = [
+        ("vector", 132, "Customer documents", "one leak ends a contract"),
+        ("s3lock", 214, "Audit records", "the only evidence there is"),
+        ("iam", 296, "Deploy credentials", "control of the platform"),
+    ]
+    for ic, y, name, why in assets:
+        b.append(icon(ic, 762, y, "", size=40))
+        b.append(text(816, y + 16, name, size=11.5, weight="700"))
+        b.append(text(816, y + 31, why, size=9.5, fill=MUTED))
+    b.append(arrow(706, 200, 756, 160))
+    b.append(arrow(706, 270, 756, 240))
+    b.append(arrow(706, 340, 756, 320))
+
+    # The signature threat
+    b.append(card(28, 424, 1044, 76, fill="#FDF6EC", stroke="#E8C89A"))
+    b.append(text(48, 448, "T6 — the one that is not on the diagram", size=12.5, weight="700"))
+    b.append(text(48, 468, "A control that reports nothing and a control that finds nothing produce "
+                           "identical output: silence. It has no arrow because it", size=10.5, fill=INK))
+    b.append(text(48, 484, "is not a path through the system — it is every other arrow quietly "
+                           "ceasing to be enforced. Found four times in this repo's own code.",
+                  size=10.5, fill=INK))
+
+    return svg(1100, 530, "Threat model — trust boundaries",
+               "Each boundary states the assumption being made. The threats that attack it are "
+               "named on the right.", "\n".join(b))
+
+
 def d_ci_pipeline() -> str:
     b = []
     b.append(icon("github", 44, 118, "Pull request", "or push to main"))
@@ -545,6 +607,7 @@ def d_ai_security() -> str:
 
 DIAGRAMS = {
     "reference-architecture": d_reference_architecture,
+    "threat-model": d_threat_model,
     "ci-gates": d_ci_pipeline,
     "findings-pipeline": d_findings_pipeline,
     "ai-security": d_ai_security,
