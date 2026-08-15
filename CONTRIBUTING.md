@@ -6,10 +6,15 @@ unverified defaults to High — and everything below assumes it.
 
 ## The path in
 
-`feature/*` → **develop** → **stage** → **main**. Rebase features into
-`develop`; **merge** promotions. Full model in
-[`docs/branching.md`](docs/branching.md), including why rebasing a promotion
-breaks the *next* one.
+`feature/*` → **main**. One long-lived branch, short-lived feature branches,
+squash or rebase on merge.
+
+There is no direct push to `main` and no exception for the owner —
+`enforce_admins` is on. Required approving reviews are **zero**, which is
+stronger than it sounds: a solo author cannot self-approve, so a review
+requirement could only ever be met by an admin bypass, and a rule you step over
+every time trains stepping over rules. Full reasoning in
+[`docs/branching.md`](docs/branching.md).
 
 ## Before you open a pull request
 
