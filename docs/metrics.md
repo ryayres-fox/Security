@@ -10,7 +10,7 @@ what was being counted.
 
 | Metric | Count | Unit / note |
 | --- | ---: | --- |
-| Tracked files | **81** | files in `git ls-files`; untracked scratch excluded |
+| Tracked files | **84** | files in `git ls-files`; untracked scratch excluded |
 | Python modules | **33** | tracked `.py` files |
 | Test functions | **92** | functions named `test_*`, by AST. **Not** collected cases — parametrization expands these to more |
 | Python code lines | **3505** | non-blank, non-comment |
