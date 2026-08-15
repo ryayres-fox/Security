@@ -161,6 +161,16 @@ jobs:
     name: security scan
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # Scoped to this job rather than raised at the workflow level. On a
+    # pull_request event the secrets scanner enumerates the PR's commits via
+    # GET /repos/{o}/{r}/pulls/{n}/commits, which needs pull-requests: read.
+    # Without it the job fails only on PRs and passes on push — the workflow
+    # looks correct on the default branch and breaks on the path every change
+    # actually takes. Job-level permissions replace the workflow set, so
+    # contents: read is restated here.
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
         with:
