@@ -4,8 +4,10 @@ name: ci
 # advisory is making the argument it exists to refute.
 
 on:
-  push: { branches: [main] }
+  push:
+    branches: [main, stage, develop]
   pull_request:
+    branches: [main, stage, develop]
 
 permissions:
   contents: read

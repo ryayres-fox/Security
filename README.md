@@ -22,7 +22,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 | **[`policies/`](policies/)** | Custom Checkov policies, and the tests that prove they load *and* fire |
 | **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
 | **[`homelab/`](homelab/)** | My own network — segmentation, detection engineering, and the things I break on purpose |
-| **[`docs/`](docs/)** | Control-mapping strategy, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/) and the [silent-failure patterns](docs/silent-failure-patterns.md) |
+| **[`docs/`](docs/)** | [Branching model](docs/branching.md), [review standard](docs/review-standard.md), control-mapping strategy, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/) and the [silent-failure patterns](docs/silent-failure-patterns.md) |
 
 ### Run it
 
@@ -128,6 +128,19 @@ matters — a retrieval predicate applied before ranking, and an authorization d
 session state that no prompt can reach.
 
 ![AI security controls](docs/diagrams/ai-security.svg)
+
+---
+
+## How changes get in
+
+`feature/*` → **develop** → **stage** → **main**. No branch takes a direct push; force-push and
+deletion are disabled on all three; eight CI checks are required on every one. The rules live in
+[`tools/apply_branch_protection.py`](tools/apply_branch_protection.py) rather than in a settings
+page, and `--check` reports drift — because the interesting failure is not "protection was never
+configured", it is "protection was configured and then quietly relaxed."
+
+Full model, including two honest limitations of a single-author repository, in
+[`docs/branching.md`](docs/branching.md).
 
 ---
 
