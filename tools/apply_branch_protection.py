@@ -53,6 +53,16 @@ POLICY: dict[str, dict] = {
         "allow_deletions": False,
         "required_conversation_resolution": True,
     },
+    # NOTE on linear history, learned by using this model rather than by
+    # designing it. Requiring it on a promotion branch forces every promotion PR
+    # to be rebase-merged, which replays develop's commits onto stage under new
+    # SHAs. The two branches then hold identical content with different history,
+    # and the NEXT promotion cannot fast-forward or rebase — GitHub refuses the
+    # merge outright.
+    #
+    # Linear history belongs to a squash-to-trunk model, where one branch is the
+    # only destination. In a promotion model the merge commit IS the record of
+    # the promotion, which is the thing worth keeping.
     "stage": {
         "required_status_checks": {"strict": True, "contexts": CHECKS},
         "enforce_admins": False,
@@ -61,7 +71,7 @@ POLICY: dict[str, dict] = {
             "dismiss_stale_reviews": True,
         },
         "restrictions": None,
-        "required_linear_history": True,
+        "required_linear_history": False,
         "allow_force_pushes": False,
         "allow_deletions": False,
         "required_conversation_resolution": True,
@@ -75,7 +85,7 @@ POLICY: dict[str, dict] = {
             "require_last_push_approval": True,
         },
         "restrictions": None,
-        "required_linear_history": True,
+        "required_linear_history": False,
         "allow_force_pushes": False,
         "allow_deletions": False,
         "required_conversation_resolution": True,
