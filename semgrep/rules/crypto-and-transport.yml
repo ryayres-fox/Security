@@ -1,0 +1,35 @@
+# Transport and cryptography rules.
+rules:
+  - id: reference-disabled-tls-verification
+    languages: [python]
+    severity: ERROR
+    message: >-
+      TLS certificate verification disabled. This converts an encrypted channel
+      into an obfuscated one — it still looks like HTTPS in every log and
+      dashboard, which is why it survives so long once introduced.
+    metadata:
+      category: security
+      nist-800-53: [SC-8, SC-13]
+      owasp: "A02:2021 Cryptographic Failures"
+      confidence: HIGH
+    pattern-either:
+      - pattern: requests.$METHOD(..., verify=False, ...)
+      - pattern: httpx.$METHOD(..., verify=False, ...)
+      - pattern: ssl._create_unverified_context(...)
+
+  - id: reference-unsafe-deserialization
+    languages: [python]
+    severity: ERROR
+    message: >-
+      Deserializing untrusted input with a loader that can construct arbitrary
+      objects. yaml.load without SafeLoader, and pickle at all, are code
+      execution rather than parsing.
+    metadata:
+      category: security
+      nist-800-53: [SI-10]
+      owasp: "A08:2021 Software and Data Integrity Failures"
+      confidence: HIGH
+    pattern-either:
+      - pattern: yaml.load($X)
+      - pattern: pickle.loads(...)
+      - pattern: pickle.load(...)
