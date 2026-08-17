@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470"
+     preserveAspectRatio="xMidYMid meet"
+     style="width:100%;height:auto;max-width:1920px"
+     role="img" aria-label="The integrity loop">
+  <title>The integrity loop</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8393A3"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="470" fill="#FFFFFF"/>
+  <text x="28" y="38" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#232F3E" opacity="1.0">The integrity loop</text>
+  <text x="28" y="58" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#5A6B7B" opacity="1.0">"The scanner ran" and "the scanner was looking" are different claims. Only the second is evidence.</text>
+<text x="28" y="80" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">A scanner that runs and finds nothing must be distinguishable from one that was never looking.</text>
+<text x="28" y="96" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#5A6B7B" opacity="1.0">Every run clears this loop before its results count as evidence — it costs seconds, and has caught real failures.</text>
+<rect x="40" y="128" width="156" height="58" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="118.0" y="152" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#232F3E" opacity="1.0">Output produced</text>
+<text x="118.0" y="169" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">a scanner ran</text>
+<rect x="240" y="128" width="156" height="58" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="318.0" y="152" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#232F3E" opacity="1.0">Canary</text>
+<text x="318.0" y="169" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">flagged its defect?</text>
+<rect x="440" y="128" width="156" height="58" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="518.0" y="152" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#232F3E" opacity="1.0">Coverage floor</text>
+<text x="518.0" y="169" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">scope ≥ baseline?</text>
+<rect x="640" y="128" width="156" height="58" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="718.0" y="152" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#232F3E" opacity="1.0">Zero findings?</text>
+<text x="718.0" y="169" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">files · checks · targets</text>
+<rect x="840" y="128" width="156" height="58" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="918.0" y="152" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#232F3E" opacity="1.0">Delta vs last run</text>
+<text x="918.0" y="169" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">did a count move?</text>
+<rect x="1040" y="128" width="156" height="58" rx="7" fill="#F3FAF3" stroke="#B6DFB6" stroke-width="1.3"/>
+<text x="1118.0" y="152" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#1D8102" opacity="1.0">Trustworthy record</text>
+<text x="1118.0" y="169" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">dated · diffable</text>
+<rect x="640" y="250" width="156" height="58" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="718.0" y="274" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#232F3E" opacity="1.0">Zero enumerated?</text>
+<text x="718.0" y="291" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">logs prove the scope</text>
+<rect x="300" y="250" width="220" height="58" rx="7" fill="#FDF2F4" stroke="#E8B4BC" stroke-width="1.3"/>
+<text x="410.0" y="274" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#D13212" opacity="1.0">RUN VOID</text>
+<text x="410.0" y="291" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">clean results are not evidence</text>
+<rect x="560" y="356" width="220" height="58" rx="7" fill="#FDF2F4" stroke="#E8B4BC" stroke-width="1.3"/>
+<text x="670.0" y="380" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#D13212" opacity="1.0">UNKNOWN</text>
+<text x="670.0" y="397" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">treat as no scan, never clean</text>
+<rect x="840" y="250" width="200" height="58" rx="7" fill="#F6F8FA" stroke="#D5DBE1" stroke-width="1.3"/>
+<text x="940.0" y="274" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" font-weight="700" fill="#232F3E" opacity="1.0">Name the cause</text>
+<text x="940.0" y="291" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#5A6B7B" opacity="1.0">code · DB · config · pollution</text>
+<path d="M196,157 L240,157" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M396,157 L440,157" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="391.3" y="141.0" width="53.4" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="418.0" y="152.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">flagged</text>
+<path d="M596,157 L640,157" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="600.6" y="141.0" width="34.8" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="618.0" y="152.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">held</text>
+<path d="M796,157 L840,157" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="788.2" y="141.0" width="59.6" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="818.0" y="152.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">findings</text>
+<path d="M996,157 L1040,157" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="991.3" y="141.0" width="53.4" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="1018.0" y="152.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">no move</text>
+<path d="M718,186 L718,250" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="700.6" y="202.0" width="34.8" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="718.0" y="213.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">zero</text>
+<path d="M796,279 L840,172" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="782.0" y="209.5" width="72.0" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="818.0" y="220.5" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">enumerated</text>
+<path d="M318,186 L370,250" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="320.4" y="202.0" width="47.2" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="344.0" y="213.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">missed</text>
+<path d="M518,186 L470,250" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="470.4" y="202.0" width="47.2" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="494.0" y="213.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">shrank</text>
+<path d="M718,308 L670,356" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="682.8" y="316.0" width="22.4" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="694.0" y="327.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">no</text>
+<path d="M918,186 L918,250" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="897.5" y="202.0" width="41.0" height="15" rx="3" fill="#FFFFFF" opacity="0.92"/><text x="918.0" y="213.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#5A6B7B">moved</text>
+<path d="M1000,250 L1080,186" fill="none" stroke="#8393A3" stroke-width="1.8" marker-end="url(#arrow)"/>
+</svg>

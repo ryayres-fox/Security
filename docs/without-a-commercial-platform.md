@@ -18,6 +18,12 @@ The buildable version of everything here is the reference implementation
 **"Two Lanes and a Canary"** — an all-open-source scanning estate with an
 integrity loop, published as shape, not specifics.
 
+![Two lanes, one record](diagrams/two-lanes.svg)
+
+*An automated CI lane and a local compensating-control lane, writing one system
+of record. Scanning capability is itself a control — so it needs a fallback that
+exists before it is needed. When lane 1 is down, lane 2 is the record, not a gap.*
+
 ---
 
 ## What a commercial platform actually sells you
@@ -133,6 +139,13 @@ The estate's answer is the **integrity loop** — a canary that asserts detectio
 denominator, and a run-over-run delta that forces a *named cause* onto every
 count move. Clean results are not evidence until they clear it. It costs seconds
 per run, it is free, and it is the **part worth building first**.
+
+![The integrity loop](diagrams/integrity-loop.svg)
+
+*Every run clears the loop before its results count as evidence. A scanner that
+missed its own planted defect, or quietly shrank its scope, produces a **RUN
+VOID**; a zero nobody can enumerate is **UNKNOWN** — treated as no scan, never as
+clean.*
 
 This is where a careful open-source estate can actually *beat* a platform you are
 not auditing: you can prove your controls ran. See
