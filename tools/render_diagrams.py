@@ -884,6 +884,112 @@ def d_ai_security() -> str:
                "\n".join(b))
 
 
+def d_two_lanes() -> str:
+    """Two scanning lanes writing one record: an automated CI lane and a local
+    compensating-control lane that exists before it is needed."""
+    b = []
+    b.append(text(28, 80, "Scanning capability is itself a control — and controls have "
+                          "availability requirements.", size=11, fill=MUTED))
+    b.append(text(28, 96, "Lane 2 is the same tools behind one script: a compensating control "
+                          "that exists before it is needed.", size=11, fill=MUTED))
+
+    def step(x, y, w, title, sub):
+        return "\n".join([
+            card(x, y, w, 52),
+            text(x + 16, y + 22, title, size=11.5, weight="700"),
+            text(x + 16, y + 39, sub, size=9.5, fill=MUTED),
+        ])
+
+    lanes = [
+        (44, "LANE 1 · CI PIPELINE  (automated)", C_DEVTOOLS, "#F6F3FF", 74, [
+            ("Triggers", "PR · push · nightly schedule"),
+            ("Scan jobs — one per surface", "fan out in parallel"),
+            ("Findings writer", "one schema for every tool"),
+            ("Merge gate", "reads the store, blocks on policy"),
+        ]),
+        (626, "LANE 2 · LOCAL RUNNER  (compensating control)", C_STORAGE, "#F7FBF3", 656, [
+            ("One script, zero arguments", "runs on any laptop"),
+            ("The same tools, pinned versions", "identical coverage"),
+            ("Evidence directory per run", "SUMMARY · manifest · raw · logs"),
+            ("Run-over-run delta", "every count move gets a named cause"),
+        ]),
+    ]
+    for bx, title, col, fill, cx, steps in lanes:
+        b.append(boundary(bx, 116, 490, 372, title, col, fill=fill))
+        y = 150
+        for i, (t, s) in enumerate(steps):
+            b.append(step(cx, y, 430, t, s))
+            if i < len(steps) - 1:
+                b.append(arrow(cx + 215, y + 52, cx + 215, y + 82))
+            y += 84
+
+    b.append(arrow(534, 300, 626, 300, dashed=True))
+    b.append(text(580, 272, "when lane 1 is down,", size=9.5, fill=MUTED, anchor="middle"))
+    b.append(text(580, 286, "lane 2 IS the record", size=10, weight="700", fill=INK, anchor="middle"))
+
+    b.append(card(385, 508, 400, 54, fill="#EEF4FF", stroke="#B9C7E6"))
+    b.append(text(585, 532, "Findings store — one system of record", size=12,
+                  weight="700", anchor="middle"))
+    b.append(text(585, 549, "both lanes write here; a scan you can't prove ran is no scan",
+                  size=9.5, fill=MUTED, anchor="middle"))
+    b.append(arrow(289, 454, 430, 506))
+    b.append(arrow(871, 454, 740, 506))
+
+    return svg(1160, 600, "Two lanes, one record",
+               "An automated CI lane and a local compensating-control lane, writing one "
+               "system of record.", "\n".join(b))
+
+
+def d_integrity_loop() -> str:
+    """The canary/floor/delta loop that turns a clean scan into evidence."""
+    b = []
+    b.append(text(28, 80, "A scanner that runs and finds nothing must be distinguishable from "
+                          "one that was never looking.", size=11, fill=MUTED))
+    b.append(text(28, 96, "Every run clears this loop before its results count as evidence — "
+                          "it costs seconds, and has caught real failures.", size=11, fill=MUTED))
+
+    def node(x, y, title, sub, fill=PANEL, stroke="#D5DBE1", tcol=INK, w=156, h=58):
+        out = [card(x, y, w, h, fill=fill, stroke=stroke),
+               text(x + w / 2, y + 24, title, size=11.5, weight="700", fill=tcol, anchor="middle")]
+        if sub:
+            out.append(text(x + w / 2, y + 41, sub, size=9.5, fill=MUTED, anchor="middle"))
+        return "\n".join(out)
+
+    Y = 128
+    b.append(node(40, Y, "Output produced", "a scanner ran"))
+    b.append(node(240, Y, "Canary", "flagged its defect?"))
+    b.append(node(440, Y, "Coverage floor", "scope ≥ baseline?"))
+    b.append(node(640, Y, "Zero findings?", "files · checks · targets"))
+    b.append(node(840, Y, "Delta vs last run", "did a count move?"))
+    b.append(node(1040, Y, "Trustworthy record", "dated · diffable",
+                  fill="#F3FAF3", stroke="#B6DFB6", tcol=OK))
+
+    b.append(node(640, 250, "Zero enumerated?", "logs prove the scope"))
+    b.append(node(300, 250, "RUN VOID", "clean results are not evidence",
+                  fill="#FDF2F4", stroke="#E8B4BC", tcol=BAD, w=220))
+    b.append(node(560, 356, "UNKNOWN", "treat as no scan, never clean",
+                  fill="#FDF2F4", stroke="#E8B4BC", tcol=BAD, w=220))
+    b.append(node(840, 250, "Name the cause", "code · DB · config · pollution", w=200))
+
+    b.append(arrow(196, Y + 29, 240, Y + 29))
+    b.append(arrow(396, Y + 29, 440, Y + 29, "flagged"))
+    b.append(arrow(596, Y + 29, 640, Y + 29, "held"))
+    b.append(arrow(796, Y + 29, 840, Y + 29, "findings"))
+    b.append(arrow(996, Y + 29, 1040, Y + 29, "no move"))
+
+    b.append(arrow(718, Y + 58, 718, 250, "zero"))
+    b.append(arrow(796, 279, 840, 172, "enumerated"))
+    b.append(arrow(318, Y + 58, 370, 250, "missed"))
+    b.append(arrow(518, Y + 58, 470, 250, "shrank"))
+    b.append(arrow(718, 308, 670, 356, "no"))
+    b.append(arrow(918, Y + 58, 918, 250, "moved"))
+    b.append(arrow(1000, 250, 1080, Y + 58))
+
+    return svg(1200, 470, "The integrity loop",
+               "\"The scanner ran\" and \"the scanner was looking\" are different claims. "
+               "Only the second is evidence.", "\n".join(b))
+
+
 DIAGRAMS = {
     "reference-architecture": d_reference_architecture,
     "threat-model": d_threat_model,
@@ -894,6 +1000,8 @@ DIAGRAMS = {
     "ci-gates": d_ci_pipeline,
     "findings-pipeline": d_findings_pipeline,
     "ai-security": d_ai_security,
+    "two-lanes": d_two_lanes,
+    "integrity-loop": d_integrity_loop,
 }
 
 
