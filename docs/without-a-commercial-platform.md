@@ -174,6 +174,10 @@ have is the graph and the runtime reach — so **name that gap in your risk
 register** rather than letting a green dashboard imply it is covered. A gap named
 is a gap; a gap unnamed is a lie.
 
+Building it is a week; **operating it past month six** is the harder half — the
+authority to scan, scan volume outrunning triage, and runners/backend outgrowing
+the SLA. Those are in [`operating-the-scan-flow.md`](operating-the-scan-flow.md).
+
 ---
 
 ## Bottom line
