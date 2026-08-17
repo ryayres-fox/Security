@@ -245,3 +245,13 @@ In this order, and stop wherever your capacity to triage runs out:
 **One tuned scanner beats five untuned ones**, because the failure mode of too
 many is that people stop reading any of them — and a backlog nobody reads is
 indistinguishable from a clean one.
+
+---
+
+## If you can't afford Wiz or Tenable
+
+Every tool above is open source, and that is deliberate. For *why* an open-source
+estate is a legitimate substitute for a commercial platform — capability by
+capability — and, just as important, **where it stops** (the attack-path graph
+and agentless runtime you do not get), see
+[`without-a-commercial-platform.md`](without-a-commercial-platform.md).
