@@ -66,17 +66,6 @@ findings-normalize gate --fail-on critical,high         # exits 1
 
 ---
 
-## Reference architecture
-
-![Reference architecture](docs/diagrams/reference-architecture.svg)
-
-Every diagram here is **generated** by [`tools/render_diagrams.py`](tools/render_diagrams.py) and
-diffed in CI. A diagram exported from a drawing tool is a screenshot of what was true the day
-someone opened it; the first refactor makes it quietly wrong, in a place nobody thinks to check.
-A stale diagram fails the build.
-
----
-
 ## The idea
 
 Most compliance evidence is *reconstructed* — someone goes hunting for screenshots the month before
@@ -103,39 +92,34 @@ enforced falls out of the pipeline rather than being assembled by hand.
 
 ---
 
-## Which scanners, and why
+## Reference architecture
 
-![Scanner sequencing](docs/diagrams/scanner-sequence.svg)
+![Reference architecture](docs/diagrams/reference-architecture.svg)
 
-Seven scanners is a lot, and listing them without saying what any of them is *for* is the norm and
-useless to anyone deciding what **they** should run.
-
-[`docs/scanner-strategy.md`](docs/scanner-strategy.md) is written for someone who has not done this
-before — every term defined on first use, categories before tools. It covers what each scanner
-looks at, when in the pipeline it can possibly run, why overlapping tools are deliberate, and the
-half that usually goes unwritten: **when not to use each one.**
-
-Two things it insists on:
-
-- **An unactioned scanner is worse than none.** It creates triage debt and a false impression of
-  coverage. One tuned scanner beats five untuned ones, because the failure mode of too many is that
-  people stop reading any of them.
-- **Scanners raise the floor, not the ceiling.** They cannot catch business logic flaws, an
-  authorization check that is correct-looking and checks the wrong object, a *missing* control, or
-  a control that stopped running. That is why the threat model and the review standard sit beside
-  the tooling here.
-
-**No budget for Wiz or Tenable?**
-[`docs/without-a-commercial-platform.md`](docs/without-a-commercial-platform.md) maps every
-commercial capability to its open-source seat, says plainly where open source *stops* (the
-attack-path graph and agentless runtime you don't get), and points to the integrity loop as the one
-thing a careful open-source estate has that a green platform dashboard often doesn't.
+Every diagram here is **generated** by [`tools/render_diagrams.py`](tools/render_diagrams.py) and
+diffed in CI. A diagram exported from a drawing tool is a screenshot of what was true the day
+someone opened it; the first refactor makes it quietly wrong, in a place nobody thinks to check.
+A stale diagram fails the build.
 
 ---
 
-## Findings normalization
+## From standard to enforced control
 
-![Findings normalization](docs/diagrams/findings-pipeline.svg)
+![Standards to code](docs/diagrams/standards-to-code.svg)
+
+The translation from architecture space to engineering space is where control claims go to die, and
+the join that breaks is between **decision** and **module** — a control family becomes a resource
+argument, and nothing checks the translation. Here every module declares its controls next to the
+code, every claim names its **evidence**, and CI fails if a module has Terraform and no declaration.
+
+---
+
+## Data flow and protection
+
+![Data flow and protection](docs/diagrams/data-flow.svg)
+
+A data-flow diagram is only useful if each flow names its control. The hop with no label is the one
+to ask about — an unlabelled arrow usually means nobody decided, not that nothing applies.
 
 ---
 
@@ -178,18 +162,39 @@ An exception you can't see is a gap.
 
 ---
 
-## AI security
+## Which scanners, and why
 
-The [`ai-security/`](ai-security/) directory takes a specific position: most published AI-security
-guidance is about *making the model behave*, and that is not a control. It fails exactly when it
-matters, it fails silently, and every result expires with the next model upgrade.
+![Scanner sequencing](docs/diagrams/scanner-sequence.svg)
 
-The controls there assume the model is **already fully compromised** by content it retrieved, and
-ask what still holds. What still holds is deterministic code between the model and anything that
-matters — a retrieval predicate applied before ranking, and an authorization decision computed from
-session state that no prompt can reach.
+Seven scanners is a lot, and listing them without saying what any of them is *for* is the norm and
+useless to anyone deciding what **they** should run.
 
-![AI security controls](docs/diagrams/ai-security.svg)
+[`docs/scanner-strategy.md`](docs/scanner-strategy.md) is written for someone who has not done this
+before — every term defined on first use, categories before tools. It covers what each scanner
+looks at, when in the pipeline it can possibly run, why overlapping tools are deliberate, and the
+half that usually goes unwritten: **when not to use each one.**
+
+Two things it insists on:
+
+- **An unactioned scanner is worse than none.** It creates triage debt and a false impression of
+  coverage. One tuned scanner beats five untuned ones, because the failure mode of too many is that
+  people stop reading any of them.
+- **Scanners raise the floor, not the ceiling.** They cannot catch business logic flaws, an
+  authorization check that is correct-looking and checks the wrong object, a *missing* control, or
+  a control that stopped running. That is why the threat model and the review standard sit beside
+  the tooling here.
+
+**No budget for Wiz or Tenable?**
+[`docs/without-a-commercial-platform.md`](docs/without-a-commercial-platform.md) maps every
+commercial capability to its open-source seat, says plainly where open source *stops* (the
+attack-path graph and agentless runtime you don't get), and points to the integrity loop as the one
+thing a careful open-source estate has that a green platform dashboard often doesn't.
+
+---
+
+## Findings normalization
+
+![Findings normalization](docs/diagrams/findings-pipeline.svg)
 
 ---
 
@@ -218,42 +223,18 @@ CI diffs the file against a fresh run, so a stale metric fails the build.
 
 ---
 
-## Home lab
+## AI security
 
-[`homelab/`](homelab/) is a designed, costed and sequenced NSM build — and it is written to be
-**adopted, not admired**. Most home-lab writeups are a parts list and a diagram. This one is a
-purchase order with prices, a deployment sequence where every step is reversible, and a
-pre-purchase maintenance assessment.
+The [`ai-security/`](ai-security/) directory takes a specific position: most published AI-security
+guidance is about *making the model behave*, and that is not a control. It fails exactly when it
+matters, it fails silently, and every result expires with the next model upgrade.
 
-Three ideas in it transfer straight to production work:
+The controls there assume the model is **already fully compromised** by content it retrieved, and
+ask what still holds. What still holds is deterministic code between the model and anything that
+matters — a retrieval predicate applied before ranking, and an authorization decision computed from
+session state that no prompt can reach.
 
-- **Buy insight before you buy change.** The first 44% of the budget delivers full traffic
-  visibility with *zero* change to how the network routes. Instrument first, change second.
-- **Keep the old system as the rollback until the new one has proven itself** — not until it is
-  installed.
-- **Check the patch cadence before you buy.** That assessment found a device with no coherent
-  patch channel, which made it fine as a sensor and disqualifying as the gateway. Maintainability
-  decided *where a component was allowed to sit*, not just whether to buy it.
-
----
-
-## From standard to enforced control
-
-![Standards to code](docs/diagrams/standards-to-code.svg)
-
-The translation from architecture space to engineering space is where control claims go to die, and
-the join that breaks is between **decision** and **module** — a control family becomes a resource
-argument, and nothing checks the translation. Here every module declares its controls next to the
-code, every claim names its **evidence**, and CI fails if a module has Terraform and no declaration.
-
----
-
-## Data flow and protection
-
-![Data flow and protection](docs/diagrams/data-flow.svg)
-
-A data-flow diagram is only useful if each flow names its control. The hop with no label is the one
-to ask about — an unlabelled arrow usually means nobody decided, not that nothing applies.
+![AI security controls](docs/diagrams/ai-security.svg)
 
 ---
 
@@ -304,6 +285,28 @@ wrapping it — so the interesting part of [`docs/incident-response.md`](docs/in
 *what changed and why*: the responsibilities (the swimlanes) carry over unchanged, the framing is
 brought current, and the loop is drawn closing back on itself instead of ending. Modernising old
 work against the current revision is itself the point.
+
+---
+
+## Home lab
+
+Everything above is cloud and enterprise. This is the other half: a network I own end to end, where
+I test the things I can't test at work and keep the same rigor on a smaller blast radius.
+
+[`homelab/`](homelab/) is a designed, costed and sequenced NSM build — and it is written to be
+**adopted, not admired**. Most home-lab writeups are a parts list and a diagram. This one is a
+purchase order with prices, a deployment sequence where every step is reversible, and a
+pre-purchase maintenance assessment.
+
+Three ideas in it transfer straight to production work:
+
+- **Buy insight before you buy change.** The first 44% of the budget delivers full traffic
+  visibility with *zero* change to how the network routes. Instrument first, change second.
+- **Keep the old system as the rollback until the new one has proven itself** — not until it is
+  installed.
+- **Check the patch cadence before you buy.** That assessment found a device with no coherent
+  patch channel, which made it fine as a sensor and disqualifying as the gateway. Maintainability
+  decided *where a component was allowed to sit*, not just whether to buy it.
 
 ---
 
