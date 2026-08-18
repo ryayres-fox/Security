@@ -25,7 +25,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 | **[`semgrep/`](semgrep/)** | Custom SAST rules, with the same load-and-fire proof plus a false-positive gate |
 | **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
 | **[`homelab/`](homelab/)** | A costed, sequenced NSM build — purchase order, reversible deployment, and a pre-purchase maintenance assessment. Written to be adopted |
-| **[`docs/`](docs/)** | [Scanner strategy](docs/scanner-strategy.md), [scanning without a commercial platform](docs/without-a-commercial-platform.md), [operating the scan flow](docs/operating-the-scan-flow.md), [staying current](docs/staying-current.md), [threat model](docs/threat-model.md) and its [method](docs/threat-model-method.md), [branching](docs/branching.md), [review standard](docs/review-standard.md), control-mapping, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/), [silent-failure patterns](docs/silent-failure-patterns.md) |
+| **[`docs/`](docs/)** | [Scanner strategy](docs/scanner-strategy.md), [scanning without a commercial platform](docs/without-a-commercial-platform.md), [operating the scan flow](docs/operating-the-scan-flow.md), [staying current](docs/staying-current.md), [stepping stones (learning path)](docs/stepping-stones.md), [threat model](docs/threat-model.md) and its [method](docs/threat-model-method.md), [branching](docs/branching.md), [review standard](docs/review-standard.md), control-mapping, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/), [silent-failure patterns](docs/silent-failure-patterns.md) |
 
 ### Run it
 
