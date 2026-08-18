@@ -103,6 +103,40 @@ real:
   clock. **Missing the SLA visibly is a scheduling problem; hitting it by quietly
   scanning less is a control failure.**
 
+### When you can't scale out — the kiosk runner
+
+You don't always need *more* runners. The value of a freshly-built runner is a
+**clean, uncontaminated environment** — no leftover state, no pollution between
+scans. You can get that same clean state without building a new one, by running
+the runner **kiosk-style**: reset it to a known-good default after every job —
+wipe the scan-data directory, restore config to baseline — so each run starts as
+pristine as a brand-new box.
+
+It's the cheapest way to hold the clean-state guarantee when you can't scale:
+
+- **No build cost or time.** A reset is seconds; provisioning a fresh node is
+  minutes to hours.
+- **Less licensing.** Per-node or per-agent licensed tooling costs *per runner*.
+  One reset-in-place runner is one licence, not N.
+- **Smaller audit surface.** Every new runner is another asset to inventory,
+  harden, patch, and evidence. One kiosk runner is one thing to audit — and to
+  prove clean, repeatedly.
+
+**The catch is the repo's usual one: verify the reset, don't assume it.** A
+kiosk that *reports* it wiped but left state behind produces a "clean" run that
+is actually contaminated — the same silent failure everything here is about.
+Before a run counts, assert it: the scan-data directory is empty, tool config
+matches the baseline checksum, no artifacts survived the last job. A run on a
+dirty kiosk is a **RUN VOID**, not a pass (see
+[`without-a-commercial-platform.md`](without-a-commercial-platform.md) for the
+integrity loop, and [`silent-failure-patterns.md`](silent-failure-patterns.md)).
+
+Cleanest to messiest kiosk: a **fresh container per job** (ephemeral by
+construction), a **golden-image snapshot-restore** VM, or a scripted
+**wipe-and-restore-defaults**. All trade throughput for cost — a single kiosk
+serialises jobs — so pair it with the lane separation above rather than replacing
+it.
+
 ---
 
 ## The thread through all three
