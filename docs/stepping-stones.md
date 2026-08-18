@@ -33,7 +33,7 @@ security careers plateau.
 
 | # | Stepping stone | Why it's load-bearing | Climb it today (free / low-cost) |
 | --- | --- | --- | --- |
-| 1 | **Networking fundamentals** — OSI, routing, subnetting, VLANs, DNS | Everything sits on the network; every later skill assumes it | Professor Messer Network+ · subnet by hand · build a topology in GNS3/Packet Tracer |
+| 1 | **Networking fundamentals** — OSI, routing, subnetting, VLANs, DNS | Everything sits on the network; every later skill assumes it | [Professor Messer](https://www.professormesser.com/)'s free Network+ videos · subnet by hand · build a topology in GNS3 / Packet Tracer |
 | 2 | **Systems & hardening** — Windows/Linux admin, config baselines (STIG, CIS/USGCB), GPO | Most real-world risk lives in *configuration*, not exotic exploits | CIS Benchmarks + DISA STIGs (free) · harden a throwaway VM and diff it |
 | 3 | **Security specialization** — firewalls, VPN, IDS/IPS (Snort/Suricata), segmentation | The defensive toolkit and where zero-trust starts | Security+ · TryHackMe / Hack The Box · run Snort/Suricata in a home lab → [`../homelab/`](../homelab/) |
 | 4 | **Digital forensics & IR** — evidence handling, disk/memory analysis, incident response | When prevention fails, someone has to reconstruct what happened | Autopsy (the free FTK-equivalent) · DFIR labs · the GCIH / GCFA path |
@@ -192,6 +192,29 @@ to start.
 | **Pentesting** | Kali · nmap · Metasploit · Burp Suite CE · Nikto · Hydra | Metasploitable 2 · VulnHub · TryHackMe · HTB · DVWA / Juice Shop | vulnerability report + risk rating + remediation | GPEN / OSCP |
 | **Governance & comms** | NIST 800-53 / RMF · ISO 27001 · STRIDE threat modelling | your own lab findings | control mapping · [threat model](threat-model.md) · risk brief | CISSP |
 | **Analytics** (cross-cutting) | Python / pandas · R · basic statistics | your own log / findings data | trend & [delta analysis](operating-the-scan-flow.md) | — |
+
+### Where these live
+
+Every resource above is real, free (or has a free tier), and one click away — so
+none of it has to be taken on faith.
+
+- **Learn / guided:** [Professor Messer](https://www.professormesser.com/) (free CompTIA video
+  courses) · [TryHackMe](https://tryhackme.com/) · [Hack The Box](https://www.hackthebox.com/)
+- **Build networks:** [GNS3](https://www.gns3.com/) · [pfSense](https://www.pfsense.org/) ·
+  [VyOS](https://vyos.io/) · [WireGuard](https://www.wireguard.com/) · [OpenVPN](https://openvpn.net/)
+- **Harden & detect:** [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks) ·
+  [DISA STIGs](https://public.cyber.mil/stigs/) · [Snort](https://www.snort.org/) ·
+  [Suricata](https://suricata.io/) · [Security Onion](https://securityonionsolutions.com/) ·
+  [Wazuh](https://wazuh.com/)
+- **Forensics:** [Autopsy](https://www.autopsy.com/) · [Volatility](https://volatilityfoundation.org/) ·
+  [NIST CFReDS test images](https://cfreds.nist.gov/)
+- **Pentest & targets:** [Kali](https://www.kali.org/) · [nmap](https://nmap.org/) ·
+  [Metasploit](https://www.metasploit.com/) · [Burp Suite](https://portswigger.net/burp) ·
+  [VulnHub](https://www.vulnhub.com/) · [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/) ·
+  [DVWA](https://github.com/digininja/DVWA)
+- **Methodology & standards:** [PTES](http://www.pentest-standard.org/) ·
+  [OSSTMM](https://www.isecom.org/OSSTMM.3.pdf) ·
+  [NIST 800-53 / RMF](https://csrc.nist.gov/projects/risk-management)
 
 **Authorization is not on the shelf — it's the rule that governs the whole bench:**
 only ever point these at systems you own or are explicitly permitted to test.
