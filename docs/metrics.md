@@ -10,15 +10,15 @@ what was being counted.
 
 | Metric | Count | Unit / note |
 | --- | ---: | --- |
-| Tracked files | **110** | files in `git ls-files`; untracked scratch excluded |
+| Tracked files | **111** | files in `git ls-files`; untracked scratch excluded |
 | Python modules | **37** | tracked `.py` files |
-| Test functions | **104** | functions named `test_*`, by AST. **Not** collected cases — parametrization expands these to more |
-| Python code lines | **4144** | non-blank, non-comment |
-| Comment + docstring lines | **800** | the reasoning, which is most of the point here |
+| Test functions | **107** | functions named `test_*`, by AST. **Not** collected cases — parametrization expands these to more |
+| Python code lines | **4204** | non-blank, non-comment |
+| Comment + docstring lines | **815** | the reasoning, which is most of the point here |
 | Terraform modules | **2** | directories under `reference-architecture/` with at least one `.tf`; policy fixtures excluded |
 | Resource declarations | **25** | `resource "…"` blocks. Declarations, **not** live instances |
 | Terraform lines | **853** | raw `.tf` line count |
-| Distinct controls | **14** | unique 800-53 IDs across `controls.yaml`, spanning 5 families |
+| Distinct controls | **22** | unique 800-53 IDs across `controls.yaml`, spanning 9 families |
 | Documented exceptions | **10** | scanner suppressions, each inline with a written reason |
 | Custom policies | **3** | Checkov checks asserted to register *and* fire |
 | Scanner parsers | **7** | asff, bandit, checkov, gitleaks, semgrep, tfsec, trivy |

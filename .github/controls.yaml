@@ -1,0 +1,44 @@
+# The CI scanning estate as a control-bearing component.
+#
+# This is not a Terraform module — it is the pipeline that runs the scanners,
+# asserts they were actually looking, folds their output into one record, and
+# blocks the merge. It declares its controls the same way a module does, beside
+# the workflow that orchestrates them (.github/workflows/ci.yml), and every
+# claim names evidence that runs in CI. Included in the coverage report via:
+#   python tools/control_coverage.py --component .github/controls.yaml
+#
+# Scope note: this reports what is implemented and enforced in THIS repository,
+# not the full tool bench described in docs/without-a-commercial-platform.md.
+module: security-pipeline
+implements:
+  - id: RA-5
+    statement: Vulnerabilities are monitored by scanning code, configuration and secrets on every change
+    evidence: ci.yml runs "secrets scan", "IaC scan" and "custom SAST rules load and fire" as required checks; docs/scanner-strategy.md maps each tool to a category
+
+  - id: RA-5(3)
+    statement: Scan breadth and depth are asserted, not assumed — a scanner that loaded no rules is a failed run, not a clean one
+    evidence: semgrep/test_rule_registration.py and policies/test_policy_registration.py assert custom rules both load AND fire on a known-bad fixture; documented in docs/silent-failure-patterns.md
+
+  - id: CA-7
+    statement: Security posture is monitored continuously through a durable findings record rather than point-in-time reports
+    evidence: findings-normalizer append-only observation log tracks first_seen / last_seen and regressions across runs (findings-normalizer/tests/test_history.py)
+
+  - id: CM-6
+    statement: Insecure configuration is caught before deploy by infrastructure-as-code scanning
+    evidence: the "IaC scan" required check runs Checkov with soft_fail=false; every suppression is inline and reasoned (see the per-module documented exceptions)
+
+  - id: SA-11
+    statement: Developer security testing runs in the pipeline and blocks merge on failure
+    evidence: "custom SAST rules load and fire", "IaC scan" and "secrets scan" are required status checks on every pull request (branch protection)
+
+  - id: SA-11(1)
+    statement: Static analysis is applied with a maintained, repository-specific rule set, not defaults alone
+    evidence: semgrep/ custom rules with a registration test that fails if a rule stops loading; bandit and semgrep categories documented in docs/scanner-strategy.md
+
+  - id: SA-15
+    statement: Development uses defined tools and process, with the policies themselves under test
+    evidence: policies/ custom checks are unit-tested to load and fire (policies/test_policy_registration.py) — policies that are themselves tested
+
+  - id: SI-2
+    statement: Flaws are folded into one system of record and remediation is gated, not tracked in a spreadsheet
+    evidence: findings-normalizer/ deduplicates scanners into an append-only store with stable identity and history; the normalizer gate exits non-zero on critical/high ("normalizer end-to-end" check)

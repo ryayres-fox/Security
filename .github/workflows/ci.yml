@@ -142,7 +142,7 @@ jobs:
       # has no evidence, or if a control ID is malformed. The mapping moves with
       # the code or it is not a mapping.
       - name: Every module declares its controls
-        run: python tools/control_coverage.py --check
+        run: python tools/control_coverage.py --check --component .github/controls.yaml
 
       - name: Diagrams match their source
         run: python tools/render_diagrams.py --check
@@ -152,7 +152,7 @@ jobs:
 
       - name: Generated coverage report matches the committed one
         run: |
-          python tools/control_coverage.py --out "${RUNNER_TEMP}/coverage.md"
+          python tools/control_coverage.py --out "${RUNNER_TEMP}/coverage.md" --component .github/controls.yaml
           diff -u docs/control-coverage.md "${RUNNER_TEMP}/coverage.md" || {
             echo "::error::docs/control-coverage.md is stale. Regenerate it:"
             echo "  python tools/control_coverage.py --out docs/control-coverage.md"
