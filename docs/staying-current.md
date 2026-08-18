@@ -42,7 +42,7 @@ and script can import), so the set travels rather than living in one app.
 ### World news — spanning left, center, and right *on purpose*
 
 | Feed | Lean |
-|---|---|
+| --- | --- |
 | `feeds.bbci.co.uk/news/world/rss.xml` | BBC — center |
 | `rss.cnn.com/rss/edition_world.rss` | CNN — center-left |
 | `feeds.npr.org/1004/rss.xml` | NPR World — center-left |
@@ -57,7 +57,7 @@ The spread is the point — see the method below.
 ### AI
 
 | Feed |
-|---|
+| --- |
 | `venturebeat.com/category/ai/feed/` |
 | `deepmind.google/blog/rss.xml` |
 | `thegradient.pub/feed/` |
@@ -65,7 +65,7 @@ The spread is the point — see the method below.
 ### Cybersecurity / threat intel
 
 | Feed | Reliably surfaces |
-|---|---|
+| --- | --- |
 | `bleepingcomputer.com/feed/` | CVEs, CISA "now exploited" advisories, breaches |
 | `darkreading.com/rss.xml` | campaigns, threat-actor tradecraft, AI-agent risk |
 | `krebsonsecurity.com/feed/` | deep-dive investigations |

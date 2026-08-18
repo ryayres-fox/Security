@@ -13,7 +13,7 @@ Build a home/SOHO security monitoring platform that:
 ## 2. Threat model (abridged)
 
 | Asset | Primary threats | Why it matters |
-|---|---|---|
+| --- | --- | --- |
 | IoT / smart devices | Compromise → botnet, pivot, C2 | Weak firmware, rarely patched, chatty to the internet |
 | Workstations / laptops | Credential theft, malware, data theft | Highest-value hosts |
 | Network edge | Inbound exploitation, misconfig | Gateway is the trust boundary |
@@ -56,7 +56,7 @@ See `network-diagram.svg` for the rendered version.
 Default-deny between zones; inter-zone flows are allowlisted per requirement.
 
 | VLAN | Zone | Egress policy |
-|---|---|---|
+| --- | --- | --- |
 | 10 | Trusted (workstations) | Broad internet; management access to infra by rule |
 | 20 | Guest | Internet only; isolated from all internal zones |
 | 30 | IoT | Internet-restricted / allowlisted; forced internal DNS; no lateral |

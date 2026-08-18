@@ -35,7 +35,7 @@ demote it to an access point and put something in front of it that can export.
 ## What is here
 
 | | For someone who wants to |
-|---|---|
+| --- | --- |
 | [`build-guide.md`](build-guide.md) | **Build this.** Phased purchase order with prices, and a deployment sequence where every step is reversible |
 | [`gateway-decision.md`](gateway-decision.md) | **Choose a gateway.** The control-versus-convenience tradeoff, with the criteria that actually decided it |
 | [`device-maintenance.md`](device-maintenance.md) | **Not regret it in three years.** CVE history and patch cadence per device, assessed *before* buying |

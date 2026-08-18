@@ -10,7 +10,7 @@ pytest policies -q          # 11 tests
 ## The policies
 
 | ID | Rule | Why no built-in check covers it |
-|---|---|---|
+| --- | --- | --- |
 | `CKV_CAC_1` | S3 Object Lock retention must be `COMPLIANCE` | Built-ins verify Object Lock is *configured*. The **mode** is the control: `GOVERNANCE` can be bypassed by any principal holding `s3:BypassGovernanceRetention`, which is exactly the principal an attacker wants |
 | `CKV_CAC_2` | IAM roles must carry a permissions boundary | Whether boundaries are mandatory is an organizational decision, so no scanner ships it. Here it is required, and therefore expressed as code rather than as a sentence in a README |
 | `CKV_CAC_3` | OIDC trust policies must match `sub` exactly | `StringLike` with `repo:org/repo:*` trusts every branch, tag and — often — every fork PR. The policy reads correctly in review, and anyone who can push a branch can assume the role |

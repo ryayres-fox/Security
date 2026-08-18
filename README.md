@@ -14,10 +14,31 @@ this repository is derived from, copied from, or descriptive of any employer's e
 
 ---
 
+## Start here
+
+Pick the lane that fits why you're here:
+
+- **Evaluating my work** → the [reference architecture](reference-architecture/), the
+  [findings normalizer](findings-normalizer/), and the generated
+  [control coverage](docs/control-coverage.md).
+- **Learning security, any budget** → [stepping stones](docs/stepping-stones.md) (a degree-free
+  learning path with at-home labs), [scanning without a commercial platform](docs/without-a-commercial-platform.md),
+  and the [home lab](homelab/).
+- **Here for the how, not the what** → [the method](docs/silent-failure-patterns.md)
+  (*"could this check have failed?"*) and the [threat model](docs/threat-model.md) written for
+  non-specialists.
+- **Adopting a piece** → [scanner strategy](docs/scanner-strategy.md) and
+  [operating the scan flow](docs/operating-the-scan-flow.md).
+
+New to security engineering entirely? Start with [stepping stones](docs/stepping-stones.md) — it's
+the map for everything else here.
+
+---
+
 ## What's here
 
 | | |
-|---|---|
+| --- | --- |
 | **[`reference-architecture/`](reference-architecture/)** | A FedRAMP Moderate–aligned AWS security foundation as Terraform modules, with controls mapped to NIST SP 800-53 Rev 5 |
 | **[`findings-normalizer/`](findings-normalizer/)** | A Python tool that ingests seven scanners and normalizes them into one system of record with stable identity, history, ownership and dedupe |
 | **[`ai-security/`](ai-security/)** | Multi-tenant isolation in an embedding store, and a tool-authorization gate with a prompt-injection regression corpus |
@@ -25,7 +46,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 | **[`semgrep/`](semgrep/)** | Custom SAST rules, with the same load-and-fire proof plus a false-positive gate |
 | **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
 | **[`homelab/`](homelab/)** | A costed, sequenced NSM build — purchase order, reversible deployment, and a pre-purchase maintenance assessment. Written to be adopted |
-| **[`docs/`](docs/)** | [Scanner strategy](docs/scanner-strategy.md), [scanning without a commercial platform](docs/without-a-commercial-platform.md), [operating the scan flow](docs/operating-the-scan-flow.md), [staying current](docs/staying-current.md), [stepping stones (learning path)](docs/stepping-stones.md), [threat model](docs/threat-model.md) and its [method](docs/threat-model-method.md), [branching](docs/branching.md), [review standard](docs/review-standard.md), control-mapping, generated [coverage](docs/control-coverage.md), [metrics](docs/metrics.md), [diagrams](docs/diagrams/), [silent-failure patterns](docs/silent-failure-patterns.md) |
+| **[`docs/`](docs/)** | The written guidance — grouped by purpose in [Documentation](#documentation) below |
 
 ### Run it
 
@@ -33,7 +54,8 @@ this repository is derived from, copied from, or descriptive of any employer's e
 pytest findings-normalizer/tests ai-security tools -q   # 141 tests, ~1 second
 pytest policies -q                                      # 11 more (needs checkov)
 pytest semgrep -q                                       # 16 more (needs semgrep)
-python tools/control_coverage.py --check                # every module declares its controls
+python tools/control_coverage.py --check \
+  --component .github/controls.yaml                     # every component declares its controls
 checkov -d reference-architecture/ --compact            # 0 failed, 10 skipped-with-reason
 
 cd findings-normalizer && pip install -e .
@@ -127,7 +149,7 @@ component too** — it declares its controls in [`.github/controls.yaml`](.githu
 held to the same evidence rule.
 
 | 800-53 family | Implemented by | Proven by |
-|---|---|---|
+| --- | --- | --- |
 | **AC** — Access Control | `iam-baseline` | boundary denies escalation; wildcard subjects rejected at plan time |
 | **AU** — Audit & Accountability | `audit-logging` | log-file validation, Object Lock COMPLIANCE, tamper denies in the boundary |
 | **IA** — Identification & Authentication | `iam-baseline` | OIDC federation, static-credential creation denied |
@@ -244,7 +266,8 @@ list is not a list of important things — it is the list of changes where a mis
 expensive to reverse**.
 
 A blocking finding clears exactly two ways: fixed, or accepted in writing with an owner, a
-compensating control and an expiry. There is no third path.
+compensating control and an expiry. There is no third path. Full triage in
+[`docs/review-standard.md`](docs/review-standard.md).
 
 ---
 
@@ -268,6 +291,19 @@ Three things it does differently, set out as a reusable method in
 
 Every row ends in a decision state, and the ones marked *needs a decision* are pulled into their own
 section with options, costs and a recommendation. A threat model is a request, not a report.
+
+---
+
+## Incident response
+
+![Incident response — modernised lifecycle](docs/diagrams/incident-response.svg)
+
+A swimlane IR process I drew in 2017, **remapped onto the current standard**. NIST SP 800-61r3
+(2025) retired the linear lifecycle for the CSF 2.0 functions — a continuous cycle with **Govern**
+wrapping it — so the interesting part of [`docs/incident-response.md`](docs/incident-response.md) is
+*what changed and why*: the responsibilities (the swimlanes) carry over unchanged, the framing is
+brought current, and the loop is drawn closing back on itself instead of ending. Modernising old
+work against the current revision is itself the point.
 
 ---
 
@@ -303,6 +339,36 @@ findings.
   hour is a nightly job nobody reads.
 - **Documentation drift is a defect.** The tests here run the README's own commands, so a doc that
   stops being true fails the build instead of being discovered by whoever clones the repo.
+
+---
+
+## Documentation
+
+Every guide in [`docs/`](docs/), grouped by why you'd open it.
+
+### Learn & adopt (written for others)
+
+- [Stepping stones](docs/stepping-stones.md) — a security learning path, degree-free, with four
+  at-home labs and a learner's toolbench
+- [Scanning without a commercial platform](docs/without-a-commercial-platform.md) — open source vs
+  Wiz / Tenable, and exactly where it stops
+- [Staying current](docs/staying-current.md) — the automated briefing habit; currency as a control
+
+### How I work (the practice)
+
+- [Scanner strategy](docs/scanner-strategy.md) — which scanners, the sequence, and when *not* to use each
+- [Operating the scan flow](docs/operating-the-scan-flow.md) — authorization, scale, and runner / SLA limits
+- [Review standard](docs/review-standard.md) — what needs a security review, and how a hold clears
+- [Threat model](docs/threat-model.md) (for non-specialists) and the reusable [method](docs/threat-model-method.md)
+- [Incident response](docs/incident-response.md) — a 2017 swimlane process modernised to NIST 800-61r3 / CSF 2.0
+- [Silent-failure patterns](docs/silent-failure-patterns.md) — controls that report success while enforcing nothing
+
+### Reference
+
+- [Control mapping](docs/control-mapping.md) → generated [coverage report](docs/control-coverage.md)
+- [Metrics](docs/metrics.md) — generated from the tree; every row names its unit
+- [Branching](docs/branching.md) — how changes get in
+- [Diagrams](docs/diagrams/) — generated SVGs, diffed in CI
 
 ---
 

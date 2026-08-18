@@ -14,7 +14,7 @@ Tool names change. The categories do not. Each answers a different question, and
 most confusion about "why do we have five scanners" comes from not noticing that.
 
 | Category | The question it answers | When it can possibly run |
-|---|---|---|
+| --- | --- | --- |
 | **Secrets scanning** | *Did someone commit a password, key or token?* | The moment code exists |
 | **SAST** — Static Application Security Testing | *Does this source code contain a dangerous pattern?* | Any time you have source |
 | **IaC scanning** — Infrastructure as Code | *Would this infrastructure definition create something insecure?* | Before you deploy it |
@@ -38,7 +38,7 @@ says what you got. Those differ more often than anyone is comfortable with.
 ## The seven tools here
 
 | Tool | Category | Looks at | Runs at |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Gitleaks** | Secrets | Git history and working tree | Pre-commit, and in CI |
 | **Semgrep** | SAST | Source code, any language | Pull request |
 | **Bandit** | SAST | Python source only | Pull request |
@@ -201,7 +201,7 @@ The most important section, and the reason scanners are a floor rather than a
 strategy.
 
 | Not caught | Why |
-|---|---|
+| --- | --- |
 | **Business logic flaws** | "Users can refund an order twice" is not a pattern. No scanner knows your rules |
 | **Authorization design errors** | A permission check that is present, correct-looking, and checks the *wrong object* passes every SAST rule ever written |
 | **Missing controls** | Scanners find bad configuration. They do not find *absent* configuration — no rule fires because there is no resource to fire on |

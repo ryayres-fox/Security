@@ -13,7 +13,7 @@ working NSM platform.
 ## Purchase order
 
 | Wave | Buy | Cost | Why this order |
-|---|---|---:|---|
+| --- | --- | ---: | --- |
 | **1 — Insight** | 2.5G PoE switch · fanless N100 sensor + 32GB RAM + 256GB & 2TB NVMe · UPS · Cat6 | **$872** | Full visibility on the *existing* network. No router change, so no downtime risk |
 | **2 — Gateway** | Fanless x86 appliance + 16GB RAM + 512GB NVMe | **$504** | The one real cutover. VLAN routing, inline IPS, log export. Old router kept as rollback |
 | **3 — Wireless** | WiFi 7 AP | **$279** | WiFi last. Run both APs briefly, then retire the old router |
@@ -112,7 +112,7 @@ during troubleshooting is how a two-hour problem becomes a weekend.
 ## What you actually get, and when
 
 | Milestone | Spend | Capability |
-|---|---:|---|
+| --- | ---: | --- |
 | End of Phase 1 | **$872** | Zeek + Suricata + DNS with enrichment. Full wired visibility |
 | End of Phase 2 | $1,376 | \+ inline IPS, VLAN routing, gateway log export |
 | End of Phase 4 | $1,655 | \+ segmentation, clean SSID→VLAN mapping, weak link retired |

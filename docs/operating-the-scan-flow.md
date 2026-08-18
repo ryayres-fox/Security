@@ -19,7 +19,7 @@ Scanning is an **active operation with blast radius**, not a passive read. Befor
 the flow is wired, name who authorized it, against what, and with which role.
 
 | Capability | What it actually does | The permission to settle first |
-|---|---|---|
+| --- | --- | --- |
 | **Cloud posture** (CSPM / prowler-class) | reads across the account or org | a real, auditable, least-privilege **read role** — which is itself a credential to protect |
 | **Secret verification** (trufflehog `--only-verified`) | transmits candidate secrets to the **real provider** to test them | authorization + data-handling: that is an outbound call with a live credential inside it |
 | **DAST** | hits a **running system** | explicit rules of engagement — which target, which window, what's out of bounds |

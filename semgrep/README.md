@@ -11,7 +11,7 @@ pytest semgrep -q          # 16 tests
 ## The rules
 
 | ID | Catches | Why no off-the-shelf rule covers it |
-|---|---|---|
+| --- | --- | --- |
 | `reference-missing-route-authorization` | A route handler with no guard | Per-route enforcement means an omitted decorator is an open endpoint, not a default-deny. Generic rules cannot know which router is guarded globally |
 | `reference-actor-field-from-request-body` | `created_by` / `owner` taken from the request | Attribution spoofing. The field should not be writable at all, and no generic rule knows which of your fields are actors |
 | `reference-tenant-scope-from-request` | Tenant identity read from a header or body | The one that ends a contract. Tenancy is application-specific by definition |
