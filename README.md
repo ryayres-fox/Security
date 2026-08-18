@@ -294,6 +294,19 @@ section with options, costs and a recommendation. A threat model is a request, n
 
 ---
 
+## Incident response
+
+![Incident response — modernised lifecycle](docs/diagrams/incident-response.svg)
+
+A swimlane IR process I drew in 2017, **remapped onto the current standard**. NIST SP 800-61r3
+(2025) retired the linear lifecycle for the CSF 2.0 functions — a continuous cycle with **Govern**
+wrapping it — so the interesting part of [`docs/incident-response.md`](docs/incident-response.md) is
+*what changed and why*: the responsibilities (the swimlanes) carry over unchanged, the framing is
+brought current, and the loop is drawn closing back on itself instead of ending. Modernising old
+work against the current revision is itself the point.
+
+---
+
 ## The method
 
 One question produced most of what is in this repository:
@@ -347,6 +360,7 @@ Every guide in [`docs/`](docs/), grouped by why you'd open it.
 - [Operating the scan flow](docs/operating-the-scan-flow.md) — authorization, scale, and runner / SLA limits
 - [Review standard](docs/review-standard.md) — what needs a security review, and how a hold clears
 - [Threat model](docs/threat-model.md) (for non-specialists) and the reusable [method](docs/threat-model-method.md)
+- [Incident response](docs/incident-response.md) — a 2017 swimlane process modernised to NIST 800-61r3 / CSF 2.0
 - [Silent-failure patterns](docs/silent-failure-patterns.md) — controls that report success while enforcing nothing
 
 ### Reference

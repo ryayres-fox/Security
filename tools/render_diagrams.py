@@ -990,6 +990,77 @@ def d_integrity_loop() -> str:
                "Only the second is evidence.", "\n".join(b))
 
 
+def d_incident_response() -> str:
+    """A swimlane IR process (originally drawn in 2017) remapped onto the current
+    model: NIST 800-61r3 (2025) retired the linear lifecycle for the CSF 2.0
+    functions — a continuous cycle with Govern wrapping it."""
+    b = []
+    b.append(text(28, 82, "A swimlane IR process I drew in 2017, remapped onto the current model. "
+                          "NIST 800-61r3 (2025) retired the linear", size=11, fill=MUTED))
+    b.append(text(28, 97, "four-phase lifecycle for the CSF 2.0 functions — a continuous cycle, "
+                          "with Govern as a new overarching function.", size=11, fill=MUTED))
+
+    # Govern wraps the whole cycle — the function the pre-r3 model did not have.
+    b.append(boundary(28, 116, 1124, 224,
+                      "GOVERN  ·  CSF 2.0 overarching function — new in 800-61r3, "
+                      "absent from the old linear model", C_MGMT, fill="#FDF3F9"))
+
+    # original phase -> CSF 2.0 / 800-61r3 function, owner lane, activity
+    stages = [
+        ("Prevention", "Identify · Protect", "Business + SOC",
+         ["awareness, assessments,", "tooling, proactive monitoring"], C_STORAGE),
+        ("Detection", "Detect", "SOC + Service Desk",
+         ["detection capability;", "notice & log the event"], C_NETWORK),
+        ("Classification", "Detect → Respond", "Service Desk + SOC",
+         ["security triage;", "route the event"], C_NETWORK),
+        ("Control & Eradication", "Respond", "SOC + Management",
+         ["plan & execute the", "technical response"], C_SECURITY),
+        ("Recovery & Follow-up", "Recover → Improve", "Management + SOC",
+         ["restore service; AAR;", "share lessons"], C_COMPUTE),
+    ]
+    x = 44
+    for i, (name, csf, owner, act, col) in enumerate(stages):
+        b.append(card(x, 150, 194, 152, fill=PAPER))
+        b.append(text(x + 14, 173, name, size=11.5, weight="700"))
+        b.append(chip(x + 14, 183, csf, col, w=166))
+        b.append(text(x + 14, 233, owner, size=10.5, weight="700", fill=INK))
+        for j, ln in enumerate(act):
+            b.append(text(x + 14, 251 + j * 14, ln, size=9.5, fill=MUTED))
+        if i < len(stages) - 1:
+            b.append(arrow(x + 194, 226, x + 224, 226))
+        x += 224
+
+    # the cycle closes — the single biggest change from the linear original
+    b.append(arrow(1140, 316, 60, 316, "continuous — lessons feed prevention, not a dead end",
+                   curve=16))
+
+    b.append(text(28, 372, "Failure modes the loop exists to prevent", size=12, weight="700"))
+    fails = [
+        ("Detection with no consumer", "an alert nobody triages is noise, not detection", C_NETWORK),
+        ("A response that leaves no record", "containment with no change log can't be audited or learned from", C_SECURITY),
+        ("\"No AAR needed\" as a habit", "the improve loop that never closes — the old model's weakest link", C_MGMT),
+    ]
+    fx = 28
+    for title, body_, col in fails:
+        b.append(card(fx, 388, 362, 92, fill="#FDF6EC", stroke="#E8C89A"))
+        b.append(text(fx + 16, 414, title, size=11.5, weight="700", fill=col))
+        # wrap body to fit the card
+        words, line, lines = body_.split(), "", []
+        for w in words:
+            if len(line + " " + w) > 52:
+                lines.append(line); line = w
+            else:
+                line = (line + " " + w).strip()
+        lines.append(line)
+        for j, ln in enumerate(lines):
+            b.append(text(fx + 16, 434 + j * 15, ln, size=10, fill=INK))
+        fx += 384
+
+    return svg(1180, 500, "Incident response — modernised lifecycle",
+               "A 2017 swimlane process remapped onto NIST 800-61r3 / CSF 2.0. The "
+               "responsibilities carry over; the framing is current.", "\n".join(b))
+
+
 DIAGRAMS = {
     "reference-architecture": d_reference_architecture,
     "threat-model": d_threat_model,
@@ -1002,6 +1073,7 @@ DIAGRAMS = {
     "ai-security": d_ai_security,
     "two-lanes": d_two_lanes,
     "integrity-loop": d_integrity_loop,
+    "incident-response": d_incident_response,
 }
 
 
