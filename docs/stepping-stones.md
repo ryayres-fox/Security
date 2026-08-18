@@ -43,6 +43,87 @@ security careers plateau.
 
 ---
 
+## What college actually gave me — and how to recreate it for free
+
+The value was never the campus or the brand. It was two things, and **you can
+reproduce both at home for the cost of a laptop:**
+
+1. **A sequenced path.** Someone had ordered the learning so each lab stood on the
+   last — network before security, security before assessment. That structure is
+   the whole point of this page; the rungs above *are* the path.
+2. **Enforced documentation.** Every lab ended in a written artifact — what I did,
+   what I found, and the risk. That discipline, not the tools, is what turns
+   "I messed around with Kali one weekend" into something an employer recognises.
+
+The single most valuable thing college taught was **proving and documenting an
+issue and its risk** — not exploiting a box, but writing up the finding so someone
+who wasn't there can understand it, believe it, and act on it. You do **not** need
+an enterprise to practise that. You need a target you own, and the discipline to
+write it up as if it will land on a manager's desk.
+
+**Experience is experience.** A vulnerability you found in your own lab, scoped and
+documented honestly, is real experience — the same skill, the same artifact, just a
+smaller blast radius. Do it ten times and you have a portfolio, not a hobby.
+
+## Three labs you can run at home
+
+All free or nearly so. For each: what to stand up, a first exercise, and — the part
+that matters — **what to document.**
+
+> **Authorization first, always.** Only ever test systems you own or are explicitly
+> permitted to test. That boundary is not a formality — it's the line between
+> practice and an incident (see [operating the scan flow](operating-the-scan-flow.md)).
+
+### Networking lab
+
+- **Stand up:** GNS3 / EVE-NG / Packet Tracer, or two cheap VMs behind
+  pfSense/VyOS.
+- **Do:** segment a network into VLANs, route between them, put a firewall in the
+  path with default-deny, add a VPN (WireGuard/OpenVPN) — then deliberately break
+  connectivity and diagnose it back to health.
+- **Document:** a topology diagram, an addressing plan, and a change log —
+  *what I changed, why, and what broke.* (That is exactly how the diagrams in
+  [`../homelab/`](../homelab/) and [`../reference-architecture/`](../reference-architecture/)
+  begin.)
+
+### Forensics lab
+
+- **Stand up:** [Autopsy](https://www.autopsy.com/) (free — the FTK-equivalent),
+  plus a practice image (NIST CFReDS, public DFIR images, or one you make yourself
+  with FTK Imager / `dd`).
+- **Do:** acquire an image **and record its hash**, analyse it in Autopsy — recover
+  deleted files, build a timeline, pull artifacts — then re-verify the hash to prove
+  nothing changed.
+- **Document:** an evidence log (source, acquisition method, hash, examiner, date),
+  findings with screenshots, and a plain-language conclusion. Handle it as if it
+  could go to court — the **chain-of-custody discipline is the skill**, not the tool.
+
+### Pentesting lab
+
+- **Stand up:** a hypervisor + Kali + deliberately-vulnerable targets —
+  Metasploitable 2, VulnHub boxes, or TryHackMe / Hack The Box for guided paths.
+- **Do:** work a real methodology (PTES / OSSTMM) end to end —
+  recon → scan (`nmap`) → identify → exploit → post-exploit — so it's structured,
+  not a scavenger hunt.
+- **Document:** a **vulnerability report** — the finding, evidence and repro steps,
+  a **risk rating** (impact × likelihood), and remediation. The write-up is the
+  deliverable; the exploit is just how you earned it.
+
+The academic version of this used a named assessment methodology and ended in a
+formal vulnerability report — and that structure is the reusable part. Skip the
+grade; keep the rigor.
+
+## The one habit that turns practice into experience
+
+Every lab ends in an artifact **a stranger could act on** — not notes to yourself,
+a report: what you tested, what you found, the risk in business terms, and the fix.
+That is the standard college enforced, and the one you can enforce on yourself for
+free. It is also the whole argument of this repository:
+[communicate risk to non-experts](threat-model.md), and make the evidence something
+someone can pick up and use.
+
+---
+
 ## The quiet foundation nobody lists: statistics
 
 Undergrad math and statistics (including R) looked like a detour at the time. It
