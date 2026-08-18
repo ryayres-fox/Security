@@ -1048,7 +1048,8 @@ def d_incident_response() -> str:
         words, line, lines = body_.split(), "", []
         for w in words:
             if len(line + " " + w) > 52:
-                lines.append(line); line = w
+                lines.append(line)
+                line = w
             else:
                 line = (line + " " + w).strip()
         lines.append(line)
