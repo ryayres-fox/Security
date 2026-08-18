@@ -250,6 +250,10 @@ A blocking finding clears exactly two ways: fixed, or accepted in writing with a
 compensating control and an expiry. There is no third path. Full triage in
 [`docs/review-standard.md`](docs/review-standard.md).
 
+That's for code changes. For anything you *bring in* — an app, an integration, a vendor — there's a
+fill-in intake covering purpose, maintenance, certifications, permissions, data handling, and how
+it's secured on their side or ours: [`docs/software-review-template.md`](docs/software-review-template.md).
+
 ---
 
 ## Threat model
@@ -362,7 +366,8 @@ Every guide in [`docs/`](docs/), grouped by why you'd open it.
 
 - [Scanner strategy](docs/scanner-strategy.md) — which scanners, the sequence, and when *not* to use each
 - [Operating the scan flow](docs/operating-the-scan-flow.md) — authorization, scale, and runner / SLA limits
-- [Review standard](docs/review-standard.md) — what needs a security review, and how a hold clears
+- [Review standard](docs/review-standard.md) — what code changes need a security review, and how a hold clears
+- [Software & vendor review template](docs/software-review-template.md) — a fill-in intake for anything you *bring in* (apps, integrations, vendors)
 - [Threat model](docs/threat-model.md) (for non-specialists) and the reusable [method](docs/threat-model-method.md)
 - [Incident response](docs/incident-response.md) — a 2017 swimlane process modernised to NIST 800-61r3 / CSF 2.0
 - [Silent-failure patterns](docs/silent-failure-patterns.md) — controls that report success while enforcing nothing
