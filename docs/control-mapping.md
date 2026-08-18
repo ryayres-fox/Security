@@ -38,6 +38,13 @@ Three properties follow:
 [`tools/control_coverage.py`](../tools/control_coverage.py) is what makes property 3 true rather
 than aspirational. The generated output is [`control-coverage.md`](control-coverage.md).
 
+Not every control is implemented by a Terraform module. The **CI scanning estate** — the scanners,
+their load-and-fire canaries, the findings system of record, and the merge gate — implements
+controls too (RA-5, SA-11, SI-2, CM-6, CA-7, …), and declares them the same way, in
+[`.github/controls.yaml`](../.github/controls.yaml) beside the workflow that runs them. It is folded
+into the report as a **component** (`--component`), held to the identical evidence rule: a claim with
+no evidence that runs in CI is a problem, not a control.
+
 ```bash
 python tools/control_coverage.py --check                        # CI gate
 python tools/control_coverage.py --out docs/control-coverage.md # regenerate

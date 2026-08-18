@@ -125,6 +125,50 @@ def test_a_valid_module_produces_no_problems(tmp_path):
     assert modules[0]["name"] == "example-module"
 
 
+# --------------------------------------------------------------- components
+
+
+def test_a_component_is_collected_alongside_modules(tmp_path):
+    """A non-Terraform component (the scanning pipeline) declares controls the
+    same way, and does not need a .tf file to be counted."""
+    root = _write(tmp_path, GOOD)
+    comp = tmp_path / "pipeline" / "controls.yaml"
+    comp.parent.mkdir(parents=True)
+    comp.write_text(
+        "module: security-pipeline\nimplements:\n  - id: RA-5\n"
+        "    statement: scanners run on every change\n    evidence: ci.yml required checks\n",
+        encoding="utf-8",
+    )
+    units, problems = collect(root, (str(comp),))
+    assert problems == []
+    names = {u["name"] for u in units}
+    assert names == {"example-module", "security-pipeline"}
+
+
+def test_a_component_is_held_to_the_same_evidence_rule(tmp_path):
+    """The pipeline is not exempt: a control with no evidence is still a problem."""
+    root = _write(tmp_path, GOOD)
+    comp = tmp_path / "pipeline" / "controls.yaml"
+    comp.parent.mkdir(parents=True)
+    comp.write_text(
+        "module: security-pipeline\nimplements:\n  - id: RA-5\n    statement: scanners run\n",
+        encoding="utf-8",
+    )
+    _, problems = collect(root, (str(comp),))
+    assert any("missing evidence" in p for p in problems)
+
+
+def test_the_real_scanning_pipeline_component_is_valid(capsys):
+    """The repo's own .github/controls.yaml has to pass the same gate."""
+    rc = main([
+        "--root", str(REPO / "reference-architecture"),
+        "--component", str(REPO / ".github" / "controls.yaml"),
+        "--check",
+    ])
+    assert rc == 0
+    assert "check passed" in capsys.readouterr().out
+
+
 # ------------------------------------------------------------------ reports
 
 
