@@ -12,7 +12,7 @@ Detections are treated as code: version-controlled, peer-reviewed, tested agains
 ## Data sources
 
 | Source | Provides |
-|---|---|
+| --- | --- |
 | Zeek `conn.log` | Flow records: 5-tuple, bytes, duration, state |
 | Zeek `dns.log` | Every query/response, per client |
 | Zeek `ssl.log` / JA4 | TLS SNI, cert, client fingerprint |
@@ -22,7 +22,7 @@ Detections are treated as code: version-controlled, peer-reviewed, tested agains
 ## Use-case catalog
 
 | # | Use case | Signal | ATT&CK |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | C2 beaconing | Regular, low-jitter connections to one destination | T1071 / T1573 |
 | 2 | DGA / suspicious DNS | High-entropy or long random domains | T1568.002 |
 | 3 | Data exfiltration | Outbound bytes far exceeding baseline to a rare dest | T1041 / T1048 |
@@ -143,7 +143,7 @@ Managed rulesets (e.g., Emerging Threats Open) cover known-bad; custom SIDs like
 ## ATT&CK coverage (sample)
 
 | Tactic | Techniques covered |
-|---|---|
+| --- | --- |
 | Command & Control | T1071, T1071.004 (DNS), T1573, T1568.002 (DGA) |
 | Exfiltration | T1041, T1048 |
 | Discovery | T1046, T1018 |

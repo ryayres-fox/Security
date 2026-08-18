@@ -40,7 +40,7 @@ microcode advisories) **without a guaranteed pipeline to fix them.**
 That does not make it unusable. It makes it unusable **as the gateway**:
 
 | Role | Verdict | Reasoning |
-|---|---|---|
+| --- | --- | --- |
 | **Sensor** | Acceptable | Passive, behind the firewall, no inbound exposure. The OS carries the security weight and applies microcode |
 | **Gateway** | **No** | The gateway *is* the security boundary. A boundary device with no patch channel is not a boundary |
 
@@ -57,7 +57,7 @@ allowed to sit in the architecture.
 ## The assessment
 
 | Device | Role | CVE history | Patch cadence | Verdict |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **Gateway OS** (OPNsense) | Security boundary | Several, incl. critical RCE | **Excellent** — biweekly minors, fixes in hours to days, full advisories | ✅ Best-maintained component in the build |
 | **Gateway hardware** | Boundary hardware | Industry-wide firmware issue, vendor responded | Good — open firmware option, field-flashable | ✅ Run the open firmware; smaller attack surface |
 | **Managed switch** | LAN + SPAN | Multiple, incl. critical takeover | Good — active release train | ✅ Fine **if** management interfaces are restricted to the mgmt VLAN |

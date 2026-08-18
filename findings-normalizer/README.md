@@ -82,7 +82,7 @@ registry and fails if one is missing, because a parser with no fixture is a pars
 ## Parser notes worth reading
 
 | Tool | The thing that bites you |
-|---|---|
+| --- | --- |
 | `checkov` | Emits a **list** when several frameworks run in one invocation, a dict otherwise. Handling only the dict form returns zero findings and a green build — a silent fail-open |
 | `checkov` | Community edition leaves `severity` null. A missing severity is not an absent risk, so it defaults to MEDIUM rather than INFO |
 | `trivy` | The resource is in `CauseMetadata.Resource`. `Resolution` is remediation prose — keying on it produces a finding identified by a sentence that changes when the tool rewords it |

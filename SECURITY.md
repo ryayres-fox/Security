@@ -13,7 +13,7 @@ claims? Open an issue. Corrections are the point of publishing this.
 ## Controls on this repository
 
 | Control | Where | Catches |
-|---|---|---|
+| --- | --- | --- |
 | `.gitignore` | client-side | accidents only — advisory, not a control |
 | `.githooks/pre-commit` | local, opt-in | staged career or credential material |
 | `repo hygiene` | CI | the same, on **tracked** files, on a machine that is not the author's |

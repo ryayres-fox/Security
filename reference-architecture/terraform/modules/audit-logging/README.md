@@ -6,7 +6,7 @@ unjustified policy exceptions.
 ## What it enforces
 
 | Control | How |
-|---|---|
+| --- | --- |
 | **AU-2** | Multi-region trail with global service events — no region is a blind spot |
 | **AU-6** | Trail delivered to CloudWatch Logs so metric filters and alarms can act on it in near real time |
 | **AU-9** | Log-file validation on, Object Lock in COMPLIANCE mode, versioning, public access blocked, KMS encryption with a customer-managed key, TLS-only bucket policy |
@@ -46,7 +46,7 @@ Five Checkov checks are skipped. Each is skipped inline, at the resource, with a
 never with `soft_fail`. Run `checkov -d reference-architecture/` and read them:
 
 | Check | Resource | Why |
-|---|---|---|
+| --- | --- | --- |
 | `CKV_AWS_18` | `access_logs` | This bucket *is* the access-log target; logging it to itself is a write loop, and a third bucket relocates the question without answering it |
 | `CKV_AWS_145` | `access_logs` | S3 server access logging cannot deliver to a CMK-encrypted bucket — a platform constraint. SSE-S3 applied; the alternative was no access logging at all |
 | `CKV_AWS_144` | `audit`, `access_logs` | Cross-region replication is a caller-level availability decision with real cost. The tamper-evidence property this module owns comes from Object Lock and digest files, which replication does not improve |

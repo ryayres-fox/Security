@@ -26,7 +26,7 @@ Marked ★ because they are the ones a monitoring build breaks without. The rest
 is preference.
 
 | ★ Criterion | Open gateway (chosen) | Appliance gateway |
-|---|---|---|
+| --- | --- | --- |
 | **Custom IDS/IPS rules** | Suricata inline, you pick and tune rulesets, per-SID and per-interface | Suricata as a black box — toggle curated categories only. No custom rules, no SID tuning |
 | **Log and flow export** | NetFlow/IPFIX, full remote syslog, per-rule logging, resolver query logs, root shell | Flow data stays in the vendor app. No NetFlow/IPFIX, partial syslog, no root |
 | **Packages and scripting** | Install anything, plus cron and a full API | Closed appliance. No packages, no official shell, limited API |

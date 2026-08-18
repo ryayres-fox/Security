@@ -5,7 +5,7 @@ Permission boundaries, workload identity federation, and no static credentials.
 ## What it enforces
 
 | Control | How |
-|---|---|
+| --- | --- |
 | **AC-2** | Boundary denies creation of users, roles and login profiles |
 | **AC-6** | Permission boundary attached **at role creation**, not retrofitted |
 | **AC-6(5)** | Privilege-escalation paths explicitly denied, including removing one's own boundary |

@@ -9,7 +9,7 @@ any employer environment.
 ## Modules
 
 | Module | Purpose | Controls |
-|---|---|---|
+| --- | --- | --- |
 | `audit-logging` | Management-plane audit trail, log-file validation, immutable retention, real-time delivery | AU-2, AU-6, AU-9, AU-11, AC-6, SC-8, SI-4 |
 | `iam-baseline` | Permission boundaries, OIDC workload identity, no static credentials | AC-2, AC-4, AC-6, AC-6(5), IA-2, IA-2(1), IA-5, IA-5(1), AU-9 |
 

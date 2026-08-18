@@ -10,7 +10,7 @@ chore/*    ─┘
 ```
 
 | | |
-|---|---|
+| --- | --- |
 | **Required checks** | all 10, strict — the branch must be up to date |
 | **Pull request** | required. No direct push, for anyone |
 | **Approving reviews** | **0** — see below |
