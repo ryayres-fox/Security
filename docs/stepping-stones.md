@@ -65,7 +65,7 @@ write it up as if it will land on a manager's desk.
 documented honestly, is real experience — the same skill, the same artifact, just a
 smaller blast radius. Do it ten times and you have a portfolio, not a hobby.
 
-## Three labs you can run at home
+## Four labs you can run at home
 
 All free or nearly so. For each: what to stand up, a first exercise, and — the part
 that matters — **what to document.**
@@ -85,6 +85,7 @@ that matters — **what to document.**
   *what I changed, why, and what broke.* (That is exactly how the diagrams in
   [`../homelab/`](../homelab/) and [`../reference-architecture/`](../reference-architecture/)
   begin.)
+- *Signpost:* Network+ covers the fundamentals this rung assumes.
 
 ### Forensics lab
 
@@ -97,21 +98,41 @@ that matters — **what to document.**
 - **Document:** an evidence log (source, acquisition method, hash, examiner, date),
   findings with screenshots, and a plain-language conclusion. Handle it as if it
   could go to court — the **chain-of-custody discipline is the skill**, not the tool.
+- *Signpost:* the GCFA / GCFE path formalises digital forensics.
 
 ### Pentesting lab
 
 - **Stand up:** a hypervisor + Kali + deliberately-vulnerable targets —
-  Metasploitable 2, VulnHub boxes, or TryHackMe / Hack The Box for guided paths.
+  Metasploitable 2, VulnHub boxes, or TryHackMe / Hack The Box for guided paths;
+  DVWA / OWASP Juice Shop for web.
 - **Do:** work a real methodology (PTES / OSSTMM) end to end —
-  recon → scan (`nmap`) → identify → exploit → post-exploit — so it's structured,
-  not a scavenger hunt.
+  recon → scan (`nmap`) → identify → exploit (Metasploit, Burp Suite CE) →
+  post-exploit — so it's structured, not a scavenger hunt.
 - **Document:** a **vulnerability report** — the finding, evidence and repro steps,
   a **risk rating** (impact × likelihood), and remediation. The write-up is the
   deliverable; the exploit is just how you earned it.
+- *Signpost:* the GPEN / OSCP path formalises this rung.
 
-The academic version of this used a named assessment methodology and ended in a
-formal vulnerability report — and that structure is the reusable part. Skip the
-grade; keep the rigor.
+### Defense, hardening & detection lab
+
+The other side of the pentest — and the one hiring managers ask about most, because
+it's what you'll actually do on the job.
+
+- **Stand up:** a VM to harden against a baseline (CIS Benchmarks / DISA STIGs),
+  an IDS (Snort / Suricata), and a place to send logs (Security Onion, or
+  Wazuh / ELK / Splunk Free).
+- **Do:** harden the box and **diff it against the un-hardened baseline**; then
+  generate traffic (replay a pcap, run your pentest lab at it) and **write a
+  detection** that catches it — and confirm it *fires* on the attack and *stays
+  quiet* on normal traffic.
+- **Document:** a hardening diff (what changed, mapped to the benchmark control),
+  the detection rule, and tuning notes — *why this threshold, what it misses.*
+  A detection you can't prove fires is the same silent-failure this repo is built
+  around ([silent-failure patterns](silent-failure-patterns.md)).
+- *Signpost:* Security+ for the fundamentals, GCIA/GCIH for detection and response.
+
+The academic version of these used named methodologies and ended in formal
+reports — and that structure is the reusable part. Skip the grade; keep the rigor.
 
 ## The one habit that turns practice into experience
 
@@ -153,3 +174,24 @@ the ones above it give it context.
 
 **You don't need the degrees. You need the rungs — and something built at each
 one to show for it.**
+
+---
+
+## Appendix — a learner's toolbench
+
+Everything below is free or low-cost. The column that matters is **the artifact**:
+that is what turns "I used the tool" into experience someone will hire. The
+**signpost** cert is exactly that — a marker you're on the path, not a prerequisite
+to start.
+
+| Track | Build / analyse with | Practice targets | Your artifact | Signpost |
+|---|---|---|---|---|
+| **Networking** | GNS3 · EVE-NG · Packet Tracer · pfSense / VyOS · WireGuard / OpenVPN · VirtualBox / Proxmox | your own VLANs & topology | topology diagram + addressing plan + change log | Network+ |
+| **Systems, hardening & detection** | CIS Benchmarks · DISA STIGs · Snort / Suricata · Security Onion · Wazuh / ELK · Splunk Free · Wireshark | a VM you harden; traffic you generate/replay | hardening diff (mapped to controls) + detection rule + tuning notes | Security+ · GCIA |
+| **Forensics / DFIR** | Autopsy · FTK Imager · `dd` · Volatility · Wireshark | NIST CFReDS · public DFIR images · images you make | evidence log + hash / chain of custody + findings write-up | GCFA / GCFE |
+| **Pentesting** | Kali · nmap · Metasploit · Burp Suite CE · Nikto · Hydra | Metasploitable 2 · VulnHub · TryHackMe · HTB · DVWA / Juice Shop | vulnerability report + risk rating + remediation | GPEN / OSCP |
+| **Governance & comms** | NIST 800-53 / RMF · ISO 27001 · STRIDE threat modelling | your own lab findings | control mapping · [threat model](threat-model.md) · risk brief | CISSP |
+| **Analytics** (cross-cutting) | Python / pandas · R · basic statistics | your own log / findings data | trend & [delta analysis](operating-the-scan-flow.md) | — |
+
+**Authorization is not on the shelf — it's the rule that governs the whole bench:**
+only ever point these at systems you own or are explicitly permitted to test.
