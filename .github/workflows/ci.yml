@@ -201,7 +201,7 @@ jobs:
       # alias. `v12` is re-pointed on every release, so a tag pin is a promise
       # someone else can rewrite.
       - name: Checkov
-        uses: bridgecrewio/checkov-action@9b70310bcd306d11740313070b940167d6b23085  # v12.3115.0
+        uses: bridgecrewio/checkov-action@1246d92f57abae29d5db5f9aeeed2a9813e52d7d  # v12.3117.0
         with:
           directory: reference-architecture/
           soft_fail: false
