@@ -4,7 +4,7 @@ Two controls, both runnable, both with tests written so that removing the contro
 makes them fail.
 
 | | |
-|---|---|
+| --- | --- |
 | **[`tenant-isolation/`](tenant-isolation/)** | Multi-tenant isolation in an embedding store — three designs, and the test that tells them apart |
 | **[`prompt-injection/`](prompt-injection/)** | A tool-authorization gate, plus a regression corpus that assumes the model is already compromised |
 

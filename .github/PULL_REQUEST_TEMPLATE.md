@@ -18,7 +18,7 @@ to work.
 intend to run. Paste real output or a run link.
 
 | # | Command | Result | What it proves |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | | | |
 | 2 | | | |
 
@@ -42,7 +42,7 @@ costs nothing; an unstated one gets found by the next person to trust this.
 <!-- Every scanner suppression. If none, write "None". Never `soft_fail`. -->
 
 | Check | Resource | Why this does not apply |
-|---|---|---|
+| --- | --- | --- |
 | | | |
 
 ## Checklist

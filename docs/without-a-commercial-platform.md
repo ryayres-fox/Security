@@ -34,7 +34,7 @@ and it is worth naming them because open source replaces some cleanly and some
 not at all.
 
 | What you're buying | What it means |
-|---|---|
+| --- | --- |
 | **Breadth under one login** | CSPM, workload, identity, vulnerability and dependency scanning in one product, one schema, day one |
 | **Correlation — the graph** | The crown jewel: *"this public bucket **+** this over-privileged role **+** this reachable CVE = an attack path."* Not a list of findings — a picture of which findings combine into a way in |
 | **Agentless runtime reach** | It sees what is *actually running*, at scale, without you wiring collectors |
@@ -51,7 +51,7 @@ Each surface below has an open-source seat (the tool bench in *Two Lanes and a
 Canary*). The last column is the part vendors leave out of the comparison.
 
 | Surface | Platform capability | Open-source seat | How close |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Secrets** | connector scans the repo | `gitleaks` (full history) + `trufflehog` (verifies) | **OSS wins** — history depth + live-credential verification |
 | **SAST** | pattern + some dataflow | `semgrep` · `bandit` | Close for pattern classes; platform adds deeper cross-file dataflow |
 | **IaC** | config checks | `checkov` · `trivy config` · `terrascan` | **Parity** on misconfiguration rules |

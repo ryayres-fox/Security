@@ -17,7 +17,7 @@ this repository is derived from, copied from, or descriptive of any employer's e
 ## What's here
 
 | | |
-|---|---|
+| --- | --- |
 | **[`reference-architecture/`](reference-architecture/)** | A FedRAMP Moderate–aligned AWS security foundation as Terraform modules, with controls mapped to NIST SP 800-53 Rev 5 |
 | **[`findings-normalizer/`](findings-normalizer/)** | A Python tool that ingests seven scanners and normalizes them into one system of record with stable identity, history, ownership and dedupe |
 | **[`ai-security/`](ai-security/)** | Multi-tenant isolation in an embedding store, and a tool-authorization gate with a prompt-injection regression corpus |
@@ -127,7 +127,7 @@ component too** — it declares its controls in [`.github/controls.yaml`](.githu
 held to the same evidence rule.
 
 | 800-53 family | Implemented by | Proven by |
-|---|---|---|
+| --- | --- | --- |
 | **AC** — Access Control | `iam-baseline` | boundary denies escalation; wildcard subjects rejected at plan time |
 | **AU** — Audit & Accountability | `audit-logging` | log-file validation, Object Lock COMPLIANCE, tamper denies in the boundary |
 | **IA** — Identification & Authentication | `iam-baseline` | OIDC federation, static-credential creation denied |

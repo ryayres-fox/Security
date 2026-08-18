@@ -43,7 +43,7 @@ The mechanism is *how*. The consequence is *what it costs*. Only one of those is
 to a non-specialist, and it is not the one security people naturally write first.
 
 | Instead of | Write |
-|---|---|
+| --- | --- |
 | "IDOR in the retrieval path" | "One customer reads another customer's documents" |
 | "Prompt injection via retrieved context" | "Content a customer uploads causes the system to act against them" |
 | "Insufficient audit log integrity controls" | "An attacker edits the record of what they did" |
@@ -89,7 +89,7 @@ reviewed, and doing nothing — see [`silent-failure-patterns.md`](silent-failur
 So use two columns, or one column with two states:
 
 | | Meaning |
-|---|---|
+| --- | --- |
 | ✅ **Verified** | A test or gate proves it. Name it. It runs in CI |
 | ⚠️ **Partly** | Present, with a stated gap |
 | ❌ **Asserted** | We believe it is on. Nobody has checked |
@@ -109,7 +109,7 @@ A threat model is not a report. It is a request. Every row resolves to one of:
 Then pull the *needs a decision* rows into their own section, with options and costs:
 
 | Option | Cost | Residual |
-|---|---|---|
+| --- | --- | --- |
 | Enable on publication | £0 | Gap persists until then. **Recommended** |
 | Purchase the licence | Per-committer | Closed now |
 | Accept as-is | £0 | Detection only, indefinitely |

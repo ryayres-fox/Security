@@ -53,7 +53,7 @@ itself the benefit of the doubt. See §6.
 ## 2. Severity
 
 | | Definition | Merge impact |
-|---|---|---|
+| --- | --- | --- |
 | 🔴 **Critical** | Credential exposure, broken authorization, a control that is asserted somewhere but **does not exist in the running system**, or a change deployed before review | **Blocks.** Cleared by a fix or a written, dated risk acceptance. Never by discussion |
 | 🟠 **High** | Significant weakness, broken logic with measurable impact, **any claim that cannot be verified from what was provided** | **Blocks.** Same two exits |
 | 🟡 **Medium** | Overly broad permissions, missing validation on non-critical input, undocumented breaking change | Does not block, but needs a filed issue **linked before merge**. "Will file later" is an untracked defect, and it gets re-raised as High |
@@ -76,7 +76,7 @@ Three rules that are not open to interpretation:
 Every review records what was **executed**, not what was read.
 
 | # | Command | Result | What it proves |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | `pytest … -q` full, no suppression flags | `98 passed` | baseline held; nothing silently excluded |
 | 2 | `checkov -d reference-architecture/` | `114 / 0 / 10` | every skip is inline and reasoned |
 

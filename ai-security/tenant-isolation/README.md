@@ -10,7 +10,7 @@ python -m pytest ai-security/tenant-isolation -q     # 11 tests
 ## Three designs
 
 | | Leaks? | Passes a naive isolation test? | Actually correct? |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **`LeakyStore`** — store ranks globally, caller filters | **Yes** | No | No |
 | **`StarvedStore`** — store ranks globally, then filters | No | **Yes** | **No** |
 | **`IsolatedStore`** — predicate before ranking, verified after | No | Yes | Yes |

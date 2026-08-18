@@ -32,7 +32,7 @@ security careers plateau.
 ## The rungs, in order — and how to climb each one today
 
 | # | Stepping stone | Why it's load-bearing | Climb it today (free / low-cost) |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | **Networking fundamentals** — OSI, routing, subnetting, VLANs, DNS | Everything sits on the network; every later skill assumes it | Professor Messer Network+ · subnet by hand · build a topology in GNS3/Packet Tracer |
 | 2 | **Systems & hardening** — Windows/Linux admin, config baselines (STIG, CIS/USGCB), GPO | Most real-world risk lives in *configuration*, not exotic exploits | CIS Benchmarks + DISA STIGs (free) · harden a throwaway VM and diff it |
 | 3 | **Security specialization** — firewalls, VPN, IDS/IPS (Snort/Suricata), segmentation | The defensive toolkit and where zero-trust starts | Security+ · TryHackMe / Hack The Box · run Snort/Suricata in a home lab → [`../homelab/`](../homelab/) |
@@ -185,7 +185,7 @@ that is what turns "I used the tool" into experience someone will hire. The
 to start.
 
 | Track | Build / analyse with | Practice targets | Your artifact | Signpost |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **Networking** | GNS3 · EVE-NG · Packet Tracer · pfSense / VyOS · WireGuard / OpenVPN · VirtualBox / Proxmox | your own VLANs & topology | topology diagram + addressing plan + change log | Network+ |
 | **Systems, hardening & detection** | CIS Benchmarks · DISA STIGs · Snort / Suricata · Security Onion · Wazuh / ELK · Splunk Free · Wireshark | a VM you harden; traffic you generate/replay | hardening diff (mapped to controls) + detection rule + tuning notes | Security+ · GCIA |
 | **Forensics / DFIR** | Autopsy · FTK Imager · `dd` · Volatility · Wireshark | NIST CFReDS · public DFIR images · images you make | evidence log + hash / chain of custody + findings write-up | GCFA / GCFE |
