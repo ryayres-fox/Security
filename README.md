@@ -361,6 +361,7 @@ Every guide in [`docs/`](docs/), grouped by why you'd open it.
 - [Scanning without a commercial platform](docs/without-a-commercial-platform.md) — open source vs
   Wiz / Tenable, and exactly where it stops
 - [Staying current](docs/staying-current.md) — the automated briefing habit; currency as a control
+- [Federal HACS study set](docs/federal-hacs/) — cheat sheet, study guide, and flashcards for the GSA HACS oral eval / the U.S. federal compliance stack
 
 ### How I work (the practice)
 
