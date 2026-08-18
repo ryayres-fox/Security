@@ -255,3 +255,12 @@ estate is a legitimate substitute for a commercial platform — capability by
 capability — and, just as important, **where it stops** (the attack-path graph
 and agentless runtime you do not get), see
 [`without-a-commercial-platform.md`](without-a-commercial-platform.md).
+
+## If you can't scale the runners
+
+Choosing scanners is one thing; *running them under load* is another — and if you
+can't add capacity, you don't have to. A **kiosk-style runner** that resets to a
+clean default between jobs gives the same uncontaminated environment as a freshly
+built one, at a fraction of the build, licensing and audit cost. That and the
+other operating limits (authorization, scan-volume blow-up, SLA) are in
+[`operating-the-scan-flow.md`](operating-the-scan-flow.md).
