@@ -283,8 +283,9 @@ A swimlane IR process I drew in 2017, **remapped onto the current standard**. NI
 (2025) retired the linear lifecycle for the CSF 2.0 functions — a continuous cycle with **Govern**
 wrapping it — so the interesting part of [`docs/incident-response.md`](docs/incident-response.md) is
 *what changed and why*: the responsibilities (the swimlanes) carry over unchanged, the framing is
-brought current, and the loop is drawn closing back on itself instead of ending. Modernising old
-work against the current revision is itself the point.
+brought current, and the loop is drawn closing back on itself instead of ending. The write-up shows
+the **original swimlane and the remapped version side by side** — both generated, both diffed in CI.
+Modernising old work against the current revision is itself the point.
 
 ---
 

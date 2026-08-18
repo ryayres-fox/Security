@@ -1062,6 +1062,72 @@ def d_incident_response() -> str:
                "responsibilities carry over; the framing is current.", "\n".join(b))
 
 
+def d_incident_response_original() -> str:
+    """The 2017 swimlane as originally drawn — a linear five-phase lifecycle
+    across actor lanes. Reconstructed so the modernised version has a 'before'."""
+    b = []
+    b.append(text(28, 82, "The process as I drew it in 2017: a linear five-phase lifecycle across "
+                          "actor lanes. No Govern function, and the", size=11, fill=MUTED))
+    b.append(text(28, 97, "flow ends at recovery rather than looping — both fixed in the "
+                          "modernised version.", size=11, fill=MUTED))
+
+    phases = ["Prevention", "Detection", "Classification", "Control &\nEradication",
+              "Follow-up &\nRecovery"]
+    lanes = [
+        ("End users", ["security awareness", "notice & report", "provide more info", "", ""]),
+        ("Service desk", ["", "log event;\nfirst contact", "triage; route;\nlog & close",
+                          "guidance & status", "feedback to users"]),
+        ("SOC", ["tooling; monitoring;\nbuild detection", "detect", "security triage",
+                 "plan & execute\nresponse", "improve controls"]),
+        ("Management", ["policy & roles", "", "mgmt response;\ncoordination",
+                        "conf calls;\nleadership", "AAR; share\nlessons; close"]),
+        ("Cross-functional", ["", "", "", "coordination", "contribute to AAR"]),
+    ]
+
+    lx, lw = 28, 128           # lane-label column
+    cw = 196                   # phase column width
+    top = 118                  # phase header band top
+    hh = 30                    # header height
+    ry = 152                   # first lane row top
+    rh = 74                    # lane row height
+
+    # phase headers
+    for i, ph in enumerate(phases):
+        x = lx + lw + i * cw
+        b.append(f'<rect x="{x}" y="{top}" width="{cw - 6}" height="{hh}" rx="5" '
+                 f'fill="{PANEL}" stroke="#C9D2DB" stroke-width="1.1"/>')
+        for j, ln in enumerate(ph.split("\n")):
+            b.append(text(x + (cw - 6) / 2, top + 14 + j * 12, ln, size=10.5, weight="700",
+                          anchor="middle"))
+        if i < len(phases) - 1:
+            b.append(text(x + cw - 3, top + hh + rh * len(lanes) / 2, "→", size=13,
+                          fill=LINE, anchor="middle"))
+
+    # lane rows
+    for r, (lane, cells) in enumerate(lanes):
+        y = ry + r * rh
+        b.append(f'<rect x="{lx}" y="{y}" width="{lw - 6}" height="{rh - 6}" rx="5" '
+                 f'fill="#EEF2F6" stroke="#C9D2DB" stroke-width="1.1"/>')
+        b.append(text(lx + 10, y + (rh - 6) / 2 + 4, lane, size=10.5, weight="700"))
+        for i, val in enumerate(cells):
+            x = lx + lw + i * cw
+            if val:
+                b.append(card(x, y, cw - 6, rh - 6, fill=PAPER))
+                for j, ln in enumerate(val.split("\n")):
+                    b.append(text(x + 12, y + 22 + j * 14, ln, size=9.5, fill=INK))
+            else:
+                b.append(text(x + (cw - 6) / 2, y + (rh - 6) / 2 + 4, "·", size=12,
+                              fill="#C9D2DB", anchor="middle"))
+
+    y_end = ry + rh * len(lanes)
+    b.append(text(28, y_end + 18, "Triage branches early (\"no response needed -> log & "
+                  "close\") and an After-Action Review feeds \"share lessons\" — but the "
+                  "line stops here.", size=10, fill=MUTED))
+    return svg(1180, y_end + 44, "Incident response — the original 2017 swimlane",
+               "A linear lifecycle across actor lanes. Reconstructed as the 'before' for the "
+               "modernised version.", "\n".join(b))
+
+
 DIAGRAMS = {
     "reference-architecture": d_reference_architecture,
     "threat-model": d_threat_model,
@@ -1074,6 +1140,7 @@ DIAGRAMS = {
     "ai-security": d_ai_security,
     "two-lanes": d_two_lanes,
     "integrity-loop": d_integrity_loop,
+    "incident-response-original": d_incident_response_original,
     "incident-response": d_incident_response,
 }
 
