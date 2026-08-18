@@ -4,10 +4,10 @@
 
 Security engineering, built as code.
 
-A security engineer's working portfolio — cloud infrastructure security, compliance engineering and
-AI security. It's built to show *how* the work is done rather than just assert it: reference
-implementations, working tooling, and a home-lab environment for testing things that can't be
-tested anywhere else.
+I'm Ryan Ayres — a principal-level security architect working in cloud infrastructure security,
+compliance engineering and AI security. This repository is where I show *how* I work rather than
+just assert it: reference implementations, working tooling, and the home-lab environment I use to
+test things I can't test anywhere else.
 
 **Everything here is written from public standards and runs against synthetic targets.** Nothing in
 this repository is derived from, copied from, or descriptive of any employer's environment.
@@ -358,6 +358,6 @@ Every guide in [`docs/`](docs/), grouped by why you'd open it.
 
 ---
 
-## Credentials
+## Contact
 
-CISSP · GCIH · M.S. Cybersecurity · M.B.A.
+[LinkedIn](https://linkedin.com/in/ryan-ayres) · CISSP · GCIH · M.S. Cybersecurity · M.B.A.
