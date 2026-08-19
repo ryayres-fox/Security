@@ -1,3 +1,11 @@
+"""The store's core behaviour: identity, cross-tool merge, and disposition rules.
+
+These assert on *state* rather than any one scanner's output shape (that is
+test_parsers.py): identity survives line movement, the same issue from two tools
+merges into one finding with both attributions, an acceptance is refused without
+owner/control/expiry, and the gate blocks on the configured severities. If a
+control here is removed, one of these fails — that is the point.
+"""
 from datetime import date
 
 import pytest
