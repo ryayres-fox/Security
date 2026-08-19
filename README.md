@@ -375,6 +375,8 @@ Every guide in [`docs/`](docs/), grouped by why you'd open it.
 - [Software & vendor review template](docs/software-review-template.md) — a fill-in intake for anything you *bring in* (apps, integrations, vendors)
 - [Threat model](docs/threat-model.md) (for non-specialists) and the reusable [method](docs/threat-model-method.md)
 - [Writing detections](docs/writing-detections.md) — making a detection a control: a schema, a severity×frequency score, and a validation gate
+- [Memory forensics](docs/memory-forensics.md) — reading a machine's live state from a RAM capture: acquire-first, prove the OS, walk processes → network → artifacts
+- [Malware triage](docs/malware-triage.md) — detonating a sample in a sandbox without lying to yourself: isolation, routing trade-offs, and blind runs that look clean
 - [Incident response](docs/incident-response.md) — a 2017 swimlane process modernised to NIST 800-61r3 / CSF 2.0
 - [Silent-failure patterns](docs/silent-failure-patterns.md) — controls that report success while enforcing nothing
 

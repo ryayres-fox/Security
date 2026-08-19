@@ -16,6 +16,8 @@ flat list, grouped by what you're trying to do.
 - [`software-review-template.md`](software-review-template.md) — a fill-in intake for anything you *bring in* (apps, integrations, vendors)
 - [`threat-model.md`](threat-model.md) (for non-specialists) + [`threat-model-method.md`](threat-model-method.md) (the reusable method)
 - [`writing-detections.md`](writing-detections.md) — making a detection a *control*: a schema, a severity×frequency score, and a validation gate that fails a malformed detection before it ships
+- [`memory-forensics.md`](memory-forensics.md) — reading a machine's live state from a RAM capture (Volatility): acquire-first, prove the OS, walk processes → network → artifacts
+- [`malware-triage.md`](malware-triage.md) — detonating a suspicious file in a sandbox without lying to yourself: isolation, routing trade-offs, and the ways a clean-looking run is a blind one
 - [`incident-response.md`](incident-response.md) — a 2017 swimlane process modernised to NIST 800-61r3 / CSF 2.0 (before → after)
 - [`silent-failure-patterns.md`](silent-failure-patterns.md) — controls that report success while enforcing nothing
 - [`control-mapping.md`](control-mapping.md) — how controls are declared next to the code and folded into a report
