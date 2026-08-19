@@ -8,6 +8,7 @@ flat list, grouped by what you're trying to do.
 
 - [`scanner-strategy.md`](scanner-strategy.md) — what each scanner is *for*, the sequencing, and when **not** to use each one
 - [`without-a-commercial-platform.md`](without-a-commercial-platform.md) — the open-source estate vs. Wiz/Tenable: capability by capability, and where it stops
+- [`azure-resource-graph-hunting.md`](azure-resource-graph-hunting.md) — hunting Azure exposure (public IPs, any/any SSH/RDP, Defender misconfig, drift) with free, agentless KQL
 - [`operating-the-scan-flow.md`](operating-the-scan-flow.md) — running it at scale: authorization, scan-volume blow-up, runner/SLA limits, the kiosk-runner pattern
 
 ## Reviewing, governing, responding

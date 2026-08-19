@@ -370,6 +370,7 @@ Every guide in [`docs/`](docs/), grouped by why you'd open it.
 ### How I work (the practice)
 
 - [Scanner strategy](docs/scanner-strategy.md) — which scanners, the sequence, and when *not* to use each
+- [Azure Resource Graph hunting](docs/azure-resource-graph-hunting.md) — finding public IPs, any/any SSH/RDP, Defender misconfig, and drift with free agentless KQL
 - [Operating the scan flow](docs/operating-the-scan-flow.md) — authorization, scale, and runner / SLA limits
 - [Review standard](docs/review-standard.md) — what code changes need a security review, and how a hold clears
 - [Software & vendor review template](docs/software-review-template.md) — a fill-in intake for anything you *bring in* (apps, integrations, vendors)
