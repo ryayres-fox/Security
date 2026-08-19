@@ -2,8 +2,8 @@
 
 A quick-reference for the federal compliance stack behind the GSA MAS **HACS**
 (Highly Adaptive Cybersecurity Services) special item number, **SIN 54151HACS** —
-built for anyone studying for the oral technical evaluation, or just learning the
-federal cybersecurity landscape. Everything here is public standards; verify the
+built for anyone studying for the oral technical evaluation, or just learning how the
+federal cybersecurity market is bought and run. Everything here is public standards; verify the
 current revision before you quote a number (they move).
 
 > **Currency note:** where a standard has a newer revision that changed the

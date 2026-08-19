@@ -50,8 +50,7 @@ says what you got. Those differ more often than anyone is comfortable with.
 **ASFF is not a scanner.** It is the AWS Security Finding Format — the JSON
 shape that AWS Security Hub emits when GuardDuty, Inspector, Config and others
 report. The repo has an ASFF *parser* so cloud findings land in the same store as
-everything else. Worth stating plainly, because "asff" in a tool list looks like
-a scanner and is not.
+everything else. In a tool list, "asff" looks like a scanner and is not.
 
 ---
 
