@@ -4,10 +4,14 @@
 
 Security engineering, built as code.
 
-I'm Ryan Ayres — a principal-level security architect working in cloud infrastructure security,
-compliance engineering and AI security. This repository is where I show *how* I work rather than
-just assert it: reference implementations, working tooling, and the home-lab environment I use to
-test things I can't test anywhere else.
+I'm Ryan Ayres. My path into security started in Air Force intelligence — forward-deployed threat
+analysis in a combat theatre, where a wrong assessment had consequences — and ran through a
+network-security degree, a master's in cybersecurity and an MBA into two decades of building and
+defending production systems: state government, payments, manufacturing OT, and regulated SaaS. The
+work spans cloud infrastructure security, compliance engineering and AI security.
+
+This repository is where I show *how* I work rather than just assert it: reference implementations,
+working tooling, and the home-lab environment I use to test things I can't test anywhere else.
 
 **Everything here is written from public standards and runs against synthetic targets.** Nothing in
 this repository is derived from, copied from, or descriptive of any employer's environment.
