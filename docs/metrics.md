@@ -13,8 +13,8 @@ what was being counted.
 | Tracked files | **122** | files in `git ls-files`; untracked scratch excluded |
 | Python modules | **37** | tracked `.py` files |
 | Test functions | **107** | functions named `test_*`, by AST. **Not** collected cases — parametrization expands these to more |
-| Python code lines | **4340** | non-blank, non-comment |
-| Comment + docstring lines | **843** | the reasoning, which is most of the point here |
+| Python code lines | **4352** | non-blank, non-comment |
+| Comment + docstring lines | **856** | the reasoning, which is most of the point here |
 | Terraform modules | **2** | directories under `reference-architecture/` with at least one `.tf`; policy fixtures excluded |
 | Resource declarations | **25** | `resource "…"` blocks. Declarations, **not** live instances |
 | Terraform lines | **853** | raw `.tf` line count |
