@@ -27,7 +27,7 @@ built the thing to collect.
 
 ## Phase 0 — Prep (free, while the gear ships)
 
-The highest-leverage phase, and it costs nothing.
+The phase that pays off most, and it costs nothing.
 
 - **Map what you have.** Every wired device and its port, the DHCP range, port
   forwards, DNS. You cannot verify a migration against a baseline you never took.

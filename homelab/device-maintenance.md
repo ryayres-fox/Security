@@ -19,7 +19,7 @@ years:
 > **Does this vendor actually ship security fixes, how fast, and how would I
 > know?**
 
-It is worth asking because the answer varies enormously between devices that
+Ask it, because the answer varies enormously between devices that
 look equivalent on a spec sheet — and because it changes **which role a device
 should get**, not just whether to buy it.
 

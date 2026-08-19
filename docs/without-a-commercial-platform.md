@@ -29,9 +29,8 @@ exists before it is needed. When lane 1 is down, lane 2 is the record, not a gap
 ## What a commercial platform actually sells you
 
 You are not paying for "scanning." Scanning is free — the tools below are the
-same categories the platforms run internally. You are paying for five things,
-and it is worth naming them because open source replaces some cleanly and some
-not at all.
+same categories the platforms run internally. You are paying for five things. Open source replaces some cleanly and some
+not at all:
 
 | What you're buying | What it means |
 | --- | --- |
