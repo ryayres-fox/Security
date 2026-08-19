@@ -55,7 +55,7 @@ the map for everything else here.
 ### Run it
 
 ```bash
-pytest findings-normalizer/tests ai-security tools -q   # 141 tests, ~1 second
+pytest findings-normalizer/tests ai-security tools -q   # 210 tests, ~1 second
 pytest policies -q                                      # 11 more (needs checkov)
 pytest semgrep -q                                       # 16 more (needs semgrep)
 python tools/control_coverage.py --check \
