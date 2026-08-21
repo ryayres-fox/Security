@@ -362,6 +362,8 @@ Every guide in [`docs/`](docs/), grouped by why you'd open it.
 
 - [Stepping stones](docs/stepping-stones.md) — a security learning path, degree-free, with four
   at-home labs and a learner's toolbench
+- [Virtual security lab](docs/virtual-lab.md) — an isolated VirtualBox lab (Kali + a vulnerable
+  target) to practice against, host-only and snapshot-safe
 - [Scanning without a commercial platform](docs/without-a-commercial-platform.md) — open source vs
   Wiz / Tenable, and exactly where it stops
 - [Staying current](docs/staying-current.md) — the automated briefing habit; currency as a control
