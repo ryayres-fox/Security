@@ -27,6 +27,7 @@ flat list, grouped by what you're trying to do.
 ## Learning and giving back
 
 - [`stepping-stones.md`](stepping-stones.md) — a security learning path with at-home labs and a toolbench
+- [`virtual-lab.md`](virtual-lab.md) — standing up an isolated VirtualBox lab (Kali + a vulnerable target) to practice against, host-only and snapshot-safe
 - [`staying-current.md`](staying-current.md) — the automated briefing habit; currency as a control
 - [`federal-hacs/`](federal-hacs/) — GSA HACS / federal-compliance study set (cheat sheet, study guide, flashcards)
 
