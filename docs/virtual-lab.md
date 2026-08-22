@@ -49,6 +49,29 @@ The target is the point — a machine built to be broken into.
 > purpose and must never be reachable from your real network. Host-only only —
 > see §3.
 
+## Sizing the machine
+
+There are two different questions here, and they have different answers.
+
+- **Just to run one scan** — a Kali guest driving a scanner against a single
+  target — **6–8 GB RAM and 4 vCPU** is plenty (a DAST engine's JVM is the main
+  consumer, ~1–2 GB during an active scan).
+- **A solid, do-everything security machine** — Burp Suite (a memory-hungry Java
+  app), a browser, several scanners at once, container stacks (a vulnerable app
+  *plus* an ELK/Splunk stack for the blue-team side), Metasploit — wants more:
+  **16 GB is a sound floor, and 24 GB lasts comfortably.** That is the spec to
+  build to if the VM is your standing lab rather than a throwaway.
+
+| Use | RAM | vCPU | Disk |
+|---|---|---|---|
+| One scan against one target | 6–8 GB | 4 | 40 GB |
+| Standing security workstation | **16 GB floor · 24 GB comfortable** | 4–8 | 80+ GB |
+
+Two guardrails: leave the **host** at least 4–6 GB for its own OS, and don't
+over-allocate vCPUs past what the host physically has. If host RAM is tight, run
+the *target* container on the host and keep the guest lean — splitting the load
+beats starving one machine.
+
 ## 2 · A Kali baseline you can clone
 
 Build Kali once into a clean state, snapshot it, and clone that snapshot per

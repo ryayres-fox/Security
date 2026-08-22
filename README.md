@@ -238,6 +238,10 @@ ask what still holds. What still holds is deterministic code between the model a
 matters — a retrieval predicate applied before ranking, and an authorization decision computed from
 session state that no prompt can reach.
 
+That stance maps cleanly onto the new [OWASP Agentic Skills Top 10](docs/agentic-skills-top-10.md)
+(AST10) — the risks in *what an agent's skills actually do* — with the tool-authorization gate
+answering over-privileged skills and the injection corpus answering untrusted external instructions.
+
 ![AI security controls](docs/diagrams/ai-security.svg)
 
 ---
