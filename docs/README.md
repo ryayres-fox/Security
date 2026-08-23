@@ -30,6 +30,7 @@ flat list, grouped by what you're trying to do.
 - [`virtual-lab.md`](virtual-lab.md) — standing up an isolated VirtualBox lab (Kali + a vulnerable target) to practice against, host-only and snapshot-safe
 - [`staying-current.md`](staying-current.md) — the automated briefing habit; currency as a control
 - [`agentic-skills-top-10.md`](agentic-skills-top-10.md) — the OWASP Agentic Skills Top 10 (AST10) mapped to this repo's AI-security controls
+- [`ai-baselines-across-sessions.md`](ai-baselines-across-sessions.md) — the gap the OWASP AI lists skip: making a guardrail *stay enforced* on every session, including a brand-new one
 - [`federal-hacs/`](federal-hacs/) — GSA HACS / federal-compliance study set (cheat sheet, study guide, flashcards)
 
 ## Generated — do not hand-edit
