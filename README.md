@@ -96,6 +96,32 @@ enforced falls out of the pipeline rather than being assembled by hand.
 
 ---
 
+## Proving the control fired
+
+Security work is usually judged on coverage — is there a scanner, a policy, a detection. Coverage
+is the easy half, and it is the half that shows up in a review.
+
+The hard half is assurance: is that control still doing anything *today*? The failure mode is not a
+control that breaks loudly, it is one that reports success while enforcing nothing. A policy loader
+that registers zero checks still scans, finishes, and turns CI green. A rule whose pattern was
+correct when written is inert after the refactor that renamed what it matched, and it fails in
+exactly the way a clean codebase looks.
+
+So every control here is paired with something whose job is to break it. Custom policies and SAST
+rules must **register** *and* **fire on a known-bad fixture** — a check that loads and never
+matches is the same defect moved one step along — and the SAST rules must stay quiet on the
+compliant fixture, which has already caught a rule flagging the correct way to read a tenant id. A
+canary asserts the scanner still catches a planted defect; a coverage floor pins the denominator so
+a config edit cannot quietly shrink scope; a zero has to be enumerated, never inferred from an
+empty file. CI fails if a Terraform module declares no control, if a declared control carries no
+evidence, or if the committed coverage report has drifted from what the code generates.
+
+None of this is novel. The contribution is applying it consistently and publishing what it found:
+[`docs/silent-failure-patterns.md`](docs/silent-failure-patterns.md) collects four controls that
+reported success while enforcing nothing, **three of them defects in this repository's own code.**
+
+---
+
 ## Reference architecture
 
 ![Reference architecture](docs/diagrams/reference-architecture.svg)
@@ -342,7 +368,8 @@ path in question never consulted, and a guard whose correctness quietly depended
 the workload rather than on anything it guarded.
 
 The question is reusable, which is the point of stating it as a method rather than as a list of
-findings.
+findings. What the answer looks like in code is above, under
+[Proving the control fired](#proving-the-control-fired).
 
 ## Principles
 

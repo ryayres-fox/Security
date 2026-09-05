@@ -8,6 +8,11 @@ They share a single property, and it is the reason they are collected here:
 
 > **A control reporting success is not evidence that it ran.**
 
+> One of three documents making the same argument: a control you cannot prove
+> fired is indistinguishable from a control that is not there. The claim, and
+> the mechanisms that back it, are in the README under
+> [Proving the control fired](../README.md#proving-the-control-fired).
+
 The question that finds all four is *"could this check have failed?"* — not
 *"what did this check report?"* Reading output would never have surfaced any of
 them, because in every case the output was indistinguishable from a clean run.
