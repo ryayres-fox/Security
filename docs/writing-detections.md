@@ -9,6 +9,11 @@ malformed detection *before* it ships instead of during an incident.
 Written from years of practice on Splunk, but the shape is platform-agnostic —
 the same applies to Sentinel, Elastic, Panther, or a Sigma rule set.
 
+> One of three documents making the same argument: a control you cannot prove
+> fired is indistinguishable from a control that is not there. The claim, and
+> the mechanisms that back it, are in the README under
+> [Proving the control fired](../README.md#proving-the-control-fired).
+
 ---
 
 ## 1 · Every detection emits the same shape

@@ -11,6 +11,11 @@ Each has a failure mode that looks like success — which is why they belong in 
 same repository as the [integrity loop](without-a-commercial-platform.md) and the
 [silent-failure patterns](silent-failure-patterns.md).
 
+> One of three documents making the same argument: a control you cannot prove
+> fired is indistinguishable from a control that is not there. The claim, and
+> the mechanisms that back it, are in the README under
+> [Proving the control fired](../README.md#proving-the-control-fired).
+
 ---
 
 ## 1 · Authorization — the right to scan is not automatic
