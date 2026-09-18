@@ -52,6 +52,24 @@ the map for everything else here.
 | **[`homelab/`](homelab/)** | A costed, sequenced NSM build — purchase order, reversible deployment, and a pre-purchase maintenance assessment. Written to be adopted |
 | **[`docs/`](docs/)** | The written guidance — grouped by purpose in [Documentation](#documentation) below |
 
+**A companion repository.** [`ryayres-fox/squawk`](https://github.com/ryayres-fox/squawk) is the
+argument in [`findings-normalizer/`](findings-normalizer/) taken as far as it goes and made into a
+tool somebody runs: a local, single-user, read-only orchestrator for eight open-source scanners
+across six scopes — a repository, a directory, a container image, a live URL, the analysis host
+itself, and an AWS account. Standard library only, Python 3.9, no database and no service to run.
+
+It is built on one rule — **a scanner that did not run must never look like a scanner that found
+nothing** — and the rule is enforced rather than asserted. Every stage publishes what it *examined*,
+not only what it found, in the unit that tool works in; a zero over an empty denominator is reported
+as a gap and raises an alarm; and a correlation whose member scanner was silent says which leg it
+could not read instead of quietly not firing. Seventeen invariants, each naming the test that fails
+when it is broken, across 1,687 tests. It emits SARIF 2.1.0, where an unread stage arrives as an
+unsuccessful invocation carrying its denominator.
+
+Validated against the container lab it ships: 179 findings across 569 URLs on OWASP Juice Shop,
+including SQL injection on two routes. Released as one file — `python3 squawk.pyz` on a machine that
+can install nothing.
+
 ### Run it
 
 ```bash
