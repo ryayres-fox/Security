@@ -67,10 +67,15 @@ network, which the lab cannot route to.
 | 2026-10-13 | [The gateway was thirteen hours behind, and every clock I could read from outside it said it was fine](2026-10-13-gateway-clock-dns.md) | 4, 7, 6, 3 | 1.5 h |
 | 2026-10-13 | [The sensor was capturing, and its clock was twelve hours behind](2026-10-13-sensor-clock.md) | 7, 4, 6, 3 | 1.5 h |
 | 2026-10-13 | [Proving the sensor's clock comes back, and the package that stopped it](2026-10-13-sensor-clock-proven.md) | 7, 6, 3 | 1.5 h |
+| 2026-10-13 | [The RAG baseline, counted three times](2026-10-13-rag-baseline-counted.md) | 6, 7, 4 | 0.5 h |
 
 The first two 2026-10-13 entries shared one morning, 09:15 to 12:45 CDT,
-and split its time between them: 3.0 h, counted once. The afternoon entry
-adds 1.5 h, for 4.5 h that day.
+and split its time between them: 3.0 h, counted once. The two afternoon
+entries add 2.0 h, for 5.0 h that day.
+
+**Reference:** [Searching Malcolm, for someone new to it](searching-malcolm.md).
+The query languages, the field names, and the checks to run before
+trusting a count, built from the lab's real searches.
 
 CISSP domains: 1 Security and Risk Management, 2 Asset Security, 3 Security
 Architecture and Engineering, 4 Communication and Network Security,

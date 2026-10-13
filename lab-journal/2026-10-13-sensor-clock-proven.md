@@ -134,13 +134,29 @@ That happened once today. The log shows timesyncd starting at 15:07:54,
 three minutes after the first reboot, at the moment that check ran. Only
 the outside measurement showed the three minutes before it.
 
-## Still open
+## The minute after boot, closed
 
 timesyncd starts 1.6 seconds into boot, before the route to the lab clock
-is up. It gets nothing back, and its next try comes about 64 seconds later.
-For that minute after a boot, Malcolm's records carry a 12 to 15 second
-error. Next session: shorten the retry and measure again. The target is a
-clock that is right before 443 answers.
+is up. It gets nothing back, and its next try comes about 64 seconds later,
+so for that minute Malcolm's records carried a 12 to 15 second error. One
+line in the sensor's `/etc/network/interfaces`, right after the route,
+restarts timesyncd the moment the route exists:
+
+```text
+up   ip route add 10.56.0.1/32 via 192.168.56.2 dev $IFACE
+up   systemctl --no-block try-restart systemd-timesyncd.service
+```
+
+The Guest Additions were uninstalled in the same pass (`uninstall rc=0`).
+The next reboot, from Kali:
+
+```text
+21:04:07   443 down
+21:04:55   443 back, offset 0 s
+21:05:16   offset 0 s
+```
+
+The clock was right at the first answer.
 
 ## What to read in the output
 
@@ -169,9 +185,6 @@ clock that is right before 443 answers.
 
 ## Next
 
-1. Shorten timesyncd's retry, reboot once, and measure. The goal is a
-   clock that is right before 443 answers.
-2. Uninstall the Guest Additions from the sensor. Masking stops them but
-   leaves them on disk.
-3. Run the RAG baseline again with the sensor up, and count it three
-   times: harness, gateway, Malcolm.
+1. Run the RAG baseline again with the sensor up, and count it three
+   times: harness, gateway, Malcolm. Done in
+   [the next entry](2026-10-13-rag-baseline-counted.md).
