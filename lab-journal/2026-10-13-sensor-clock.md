@@ -130,7 +130,9 @@ same time, and a reload would have closed any egress opened for it.
 
 **Status at the end of the session:** the clock is stepped by hand. The
 restart policy and the three-part fix are written and tested, and they get
-applied next session, each with its check.
+applied next session, each with its check. The afternoon applied them and
+put them through a pause and five reboots:
+[the follow-up](2026-10-13-sensor-clock-proven.md).
 
 ## Reading what came back
 

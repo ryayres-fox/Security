@@ -220,9 +220,27 @@ wakes from a pause steps straight to the right time:
 echo 'makestep 1 -1' | sudo tee -a /etc/chrony/conf.d/lab.conf && sudo systemctl restart chrony && chronyc tracking | head -3
 ```
 
-I ran that at the console after the step above. The same line now sits in
-the runbook for the sensor and for each target, which had no clock step
-at all and wake from the same pause.
+I ran that at the console after the step above, and did not read it back.
+It had not taken. That afternoon `sudo grep -rn makestep /etc/chrony/`
+found only Debian's own line:
+
+```bash
+sudo grep -rn makestep /etc/chrony/
+# /etc/chrony/chrony.conf:39:makestep 1 3
+```
+
+I added it again with a command that writes the line only if it is
+missing, and this time read it back:
+
+```bash
+grep -q '^makestep 1 -1' /etc/chrony/conf.d/lab.conf || printf 'makestep 1 -1\n' | sudo tee -a /etc/chrony/conf.d/lab.conf
+sudo systemctl restart chrony
+grep -rnE 'makestep|allow' /etc/chrony/conf.d/
+# /etc/chrony/conf.d/lab.conf:13:makestep 1 -1
+```
+
+The same line now sits in the runbook for the sensor and for each target,
+which had no clock step at all and wake from the same pause.
 
 ## The baseline and the fix, merged
 
@@ -268,6 +286,9 @@ the scan's time is the first alert the sensor should raise.
 - **A hypervisor can type.** A VM with no admin path still takes input at
   its console. Prime sudo first, keep the file plain ASCII, and read the
   result back on the screen.
+- **A change that was not read back did not happen.** The clock-step line
+  was typed, and the file never got it. The read-back that afternoon is
+  what found it.
 - **An intermittent fault with two causes looks like one.** The resolver
   gave two different wrong answers in one day. Fixing the forwarder
   changed nothing about the second, which is how I knew to keep looking.
