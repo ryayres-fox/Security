@@ -50,6 +50,7 @@ the map for everything else here.
 | **[`semgrep/`](semgrep/)** | Custom SAST rules, with the same load-and-fire proof plus a false-positive gate |
 | **[`tools/`](tools/)** | The control-coverage folder and the repo-hygiene gate |
 | **[`homelab/`](homelab/)** | A costed, sequenced NSM build — purchase order, reversible deployment, and a pre-purchase maintenance assessment. Written to be adopted |
+| **[`lab-journal/`](lab-journal/)** | The virtual version, built in public: a dated build-and-test journal of a logging gateway, a Malcolm sensor on a mirror of every lab segment, and a RAG app as the target. Failures stay in |
 | **[`docs/`](docs/)** | The written guidance — grouped by purpose in [Documentation](#documentation) below |
 
 **A companion repository.** [`ryayres-fox/squawk`](https://github.com/ryayres-fox/squawk) is the
@@ -366,6 +367,9 @@ Three ideas in it transfer straight to production work:
 - **Check the patch cadence before you buy.** That assessment found a device with no coherent
   patch channel, which made it fine as a sensor and disqualifying as the gateway. Maintainability
   decided *where a component was allowed to sit*, not just whether to buy it.
+
+The virtual counterpart runs on one Mac, and [`lab-journal/`](lab-journal/) records building and
+testing it as it happens: each entry has the commands, the evidence, and what broke.
 
 ---
 
