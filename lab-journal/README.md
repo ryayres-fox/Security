@@ -61,17 +61,40 @@ network, which the lab cannot route to.
 
 ## Entries
 
+Grouped by milestone. A milestone closes with one entry, written when its
+goal is proven. The first two milestones were written up daily, before the
+journal moved to one entry per milestone.
+
+### Milestone 1: Kali behind the gateway
+
 | Date | Entry | CISSP domains | Time |
 | --- | --- | --- | --- |
 | 2026-10-12 | [Kali is behind the gateway, checked from inside Kali](2026-10-12-behind-the-gateway.md) | 4, 7, 6 | 0.5 h |
+
+### Milestone 2: one clock for the lab
+
+| Date | Entry | CISSP domains | Time |
+| --- | --- | --- | --- |
 | 2026-10-13 | [The gateway was thirteen hours behind, and every clock I could read from outside it said it was fine](2026-10-13-gateway-clock-dns.md) | 4, 7, 6, 3 | 1.5 h |
 | 2026-10-13 | [The sensor was capturing, and its clock was twelve hours behind](2026-10-13-sensor-clock.md) | 7, 4, 6, 3 | 1.5 h |
 | 2026-10-13 | [Proving the sensor's clock comes back, and the package that stopped it](2026-10-13-sensor-clock-proven.md) | 7, 6, 3 | 1.5 h |
+
+### Milestone 3: the RAG baseline, monitored
+
+| Date | Entry | CISSP domains | Time |
+| --- | --- | --- | --- |
 | 2026-10-13 | [The RAG baseline, counted three times](2026-10-13-rag-baseline-counted.md) | 6, 7, 4 | 0.5 h |
+| 2026-10-13 to 14 | [The baseline counted four times, every box starting itself, and the night the Mac slept](2026-10-14-milestone-3-baseline-monitored.md) | 7, 6, 3 | 2.0 h |
 
 The first two 2026-10-13 entries shared one morning, 09:15 to 12:45 CDT,
-and split its time between them: 3.0 h, counted once. The two afternoon
-entries add 2.0 h, for 5.0 h that day.
+and split its time between them: 3.0 h, counted once. The afternoon adds
+2.0 h, and Milestone 3's close-out adds 1.0 h that evening, for 6.0 h on
+13 October. The close-out's other 1.0 h is on 14 October.
+
+### Next: Milestone 4, detections
+
+A firewall and logging on Kali, its logs shipped to Malcolm, and the first
+alert rules, each tested against a real case.
 
 **Reference:** [Searching Malcolm, for someone new to it](searching-malcolm.md).
 The query languages, the field names, and the checks to run before
