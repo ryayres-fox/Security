@@ -50,7 +50,7 @@ end times around it. The times are in your browser's time zone, not UTC.
 | A field exists | `field:*` | `zeek.http.status_code:*` |
 | A subnet | quotes | `source.ip:"10.56.0.0/24"` |
 | A wildcard | `*` | `dns.host:*pool.ntp.org` |
-| Which log | `event.dataset:` | `event.dataset:conn`, `:http`, `:dns`, `:capture_loss` |
+| Which log | `event.dataset:` | `event.dataset:conn`, `:http`, `:dns` |
 
 Wrap parts of a longer search in parentheses so the order is not left to
 chance.
@@ -83,7 +83,7 @@ the right number came back for the wrong reason.
 
 | Field | What it tells you |
 | --- | --- |
-| `event.dataset` | Which Zeek log: `conn` (one per connection), `dns`, `http`, `ssl`, `capture_loss` |
+| `event.dataset` | Which Zeek log: `conn` (one per connection), `dns`, `http`, `ssl`. Not `capture_loss` or `stats`: Malcolm files those in its runtime index, `malcolm_beats_*` (see section 7) |
 | `zeek.conn.conn_state` | How a connection ended: `SF` normal, `REJ` refused, `S0` no answer |
 | `event.id` | Zeek's connection ID. Search for it to get every log line about one connection |
 | `network.community_id` | The same flow's ID across Zeek and Suricata |
@@ -98,5 +98,16 @@ the right number came back for the wrong reason.
   connections, and a relative window counted them.
 - **Language label checked.** DQL or Lucene, written to match.
 - **Right tool.** Discover for Zeek and Suricata, Arkime for its sessions.
+  Arkime's Sessions page lists Zeek's records too, since in Malcolm both
+  live in one index. Add `&& event.provider == arkime` (the *Data Source*
+  column) to count Arkime's own, and read the "of N entries" figure, not
+  the page size.
 - **One record opened.** Make sure the hits are the thing you meant, not
   something that shares a word with it.
+- **Nothing dropped.** A count is only as good as the capture under it.
+  Capture loss is not in Discover: open *Dashboards → Packet Capture
+  Statistics* for the same window. Packets dropped should read 0 for
+  Zeek and for Suricata. The two engines' packets-seen totals differ
+  because they count differently, so compare the drops, not the totals.
+  An empty dashboard is not a clean one: the numbers exist only when
+  configure's *Gather Traffic Capture Statistics* is on.
