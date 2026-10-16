@@ -259,8 +259,14 @@ set at login, so VS Code has it before any extension starts. One of VS
 Code's built-in extensions sets the same variable, but only when it loads,
 after other extensions have already read it.
 
-PROOF: confirm. The probe watched for an hour after the restart with the
-variable set; the result goes here before this entry is published.
+With the variable set at login, VS Code ran from 11:05 to 12:25 and the
+probe saw no request to the address: four 15-minute beats came and went in
+silence. Checking that the variable reached VS Code needed one more lesson.
+VS Code is built on Chromium, which writes its process titles over
+`/proc/<pid>/environ`, so reading a `code` process there shows nothing
+either way. VS Code's own terminal is the honest witness: its shell is
+started by VS Code's main process, with the environment the extension host
+gets, and it read `APPLICATION_INSIGHTS_NO_STATSBEAT=1`.
 
 ## What to read in the output
 
