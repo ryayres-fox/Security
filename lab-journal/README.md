@@ -95,7 +95,7 @@ and split its time between them: 3.0 h, counted once. The afternoon adds
 
 | Date | Entry | CISSP domains | Time |
 | --- | --- | --- | --- |
-| 2026-10-14 to 16 | [Detections that fire on real events, and the ones that failed quietly first](2026-10-16-milestone-4-detections.md) | 7, 6, 4, 5, 2, 3 | TIME: confirm |
+| 2026-10-14 to 16 | [Detections that fire on real events, and the ones that failed quietly first](2026-10-16-milestone-4-detections.md) | 7, 6, 4, 5, 2, 3 | 12.0 h |
 
 ### Next: Milestone 5, the RAG app against the OWASP LLM Top 10
 

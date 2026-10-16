@@ -2,7 +2,7 @@
 
 | | |
 | --- | --- |
-| **Time** | TIME: confirm. Estimate 12 to 15 h: 4 to 5 h on 14 October, 6 to 7 h on 15 October, 2 to 3 h on 16 October |
+| **Time** | About 12 h, estimated from the session's timestamps: 4 h on 14 October, 6 h on 15 October, 2 h on 16 October |
 | **CISSP domains** | 7 Security Operations · 6 Security Assessment and Testing · 4 Communication and Network Security · 5 Identity and Access Management · 2 Asset Security · 3 Security Architecture and Engineering |
 | **Lab at the start** | The RAG baseline counted four ways, every box keeping one clock across a power cycle ([that entry](2026-10-14-milestone-3-baseline-monitored.md)). Malcolm saw the mirrored traffic; nothing else reached it. No alert rules. Kali had no firewall of its own. |
 
