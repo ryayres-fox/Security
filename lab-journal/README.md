@@ -91,10 +91,17 @@ and split its time between them: 3.0 h, counted once. The afternoon adds
 2.0 h, and Milestone 3's close-out adds 1.0 h that evening, for 6.0 h on
 13 October. The close-out's other 1.0 h is on 14 October.
 
-### Next: Milestone 4, detections
+### Milestone 4: detections
 
-A firewall and logging on Kali, its logs shipped to Malcolm, and the first
-alert rules, each tested against a real case.
+| Date | Entry | CISSP domains | Time |
+| --- | --- | --- | --- |
+| 2026-10-14 to 16 | [Detections that fire on real events, and the ones that failed quietly first](2026-10-16-milestone-4-detections.md) | 7, 6, 4, 5, 2, 3 | TIME: confirm |
+
+### Next: Milestone 5, the RAG app against the OWASP LLM Top 10
+
+Indirect prompt injection first. Each experiment measured for what it stops
+and for what it costs on the honest questions, with Malcolm counting every
+request.
 
 **Reference:** [Searching Malcolm, for someone new to it](searching-malcolm.md).
 The query languages, the field names, and the checks to run before
