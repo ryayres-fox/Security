@@ -97,6 +97,16 @@ and split its time between them: 3.0 h, counted once. The afternoon adds
 | --- | --- | --- | --- |
 | 2026-10-14 to 16 | [Detections that fire on real events, and the ones that failed quietly first](2026-10-16-milestone-4-detections.md) | 7, 6, 4, 5, 2, 3 | 12.0 h |
 
+### Web targets on the wire
+
+A parallel track: deliberately vulnerable web applications on their own
+segment, attacked from Kali, with a scanner's findings read against the
+network sensor's alerts for the same traffic.
+
+| Date | Entry | CISSP domains | Time |
+| --- | --- | --- | --- |
+| 2026-10-17 | [A scanner found thirteen problems; the sensor raised thousands of alerts about something else](2026-10-17-web-targets-on-the-wire.md) | 6, 7, 4, 8 | 2.0 h |
+
 ### Next: Milestone 5, the RAG app against the OWASP LLM Top 10
 
 Indirect prompt injection first. Each experiment measured for what it stops
