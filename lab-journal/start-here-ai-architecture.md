@@ -11,9 +11,10 @@ where deep is. Each ends with the question that leads to the next.
 
 ## Module 0 — The whole picture on one page
 
-Nine numbered parts. Every later module zooms into one number. The arrows run
-both ways on purpose: ① is a question going in, ② is the answer coming back, and
-the answer is what gets judged.
+Nine numbered parts. Every later module zooms into one number — the numbers on
+the boxes are an index, not an order; the order of one request is Module 3's
+job. The arrows run both ways on purpose: a question goes in, the answer comes
+back, and the answer is what gets judged.
 
 ```mermaid
 graph LR
@@ -33,18 +34,18 @@ graph LR
   ING["5 · ingest — offline, run by the operator<br/>corpus files → chunks → vectors → Qdrant"]
   ACT["8 · actions and tools<br/>NOT in this lab — dashed on purpose"]
 
-  U -->|"① question"| GW
-  T -->|"① attack prompt"| GW
+  U -->|"question in"| GW
+  T -->|"attack prompt in"| GW
   GW --> APP
-  APP -->|"a · embed the question"| M
+  APP -->|"embed the question"| M
   M -->|"vector"| APP
-  APP -->|"b · retrieve, tenant-filtered"| KB
+  APP -->|"retrieve, tenant-filtered"| KB
   KB -->|"chunks"| APP
-  APP -->|"c · generate: chunks + question + guard"| M
+  APP -->|"generate: chunks + question + guard"| M
   M -->|"answer"| APP
-  APP -->|"② answer"| GW
-  GW -->|"② answer"| U
-  GW -->|"② answer"| T
+  APP -->|"answer back"| GW
+  GW -->|"answer back"| U
+  GW -->|"answer back"| T
   APP -.->|"writes"| AUD
   ING -->|"embed"| M
   ING -->|"upsert"| KB
