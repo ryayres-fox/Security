@@ -132,6 +132,11 @@ What a guardrail is at each of six layers, what to use with no money, a full
 vendor stack, or the usual mix, and a build-or-review checklist where every item
 is a question, an observable check, and a pointer to the next question.
 
+**Lab notes:** [AI testing in this lab — what, with what, how, and what it found](ai-testing-notes.md).
+The page custom to this environment: the addresses and settings as they are,
+the exact commands, where the evidence lands, how to read it, and the running
+table of what has been tested and what it showed.
+
 CISSP domains: 1 Security and Risk Management, 2 Asset Security, 3 Security
 Architecture and Engineering, 4 Communication and Network Security,
 5 Identity and Access Management, 6 Security Assessment and Testing,
