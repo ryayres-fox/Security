@@ -134,6 +134,11 @@ What a guardrail is at each of six layers, what to use with no money, a full
 vendor stack, or the usual mix, and a build-or-review checklist where every item
 is a question, an observable check, and a pointer to the next question.
 
+**Reference:** [Agentic services: the add-on to RAG, and how to secure it the same way](agentic-services.md).
+What changes when the model can act: the loop, the tool layer, the two new
+rules, the same six places one step right, six places that are new, three
+budgets, and the lab add-on written as a plan with its tests.
+
 CISSP domains: 1 Security and Risk Management, 2 Asset Security, 3 Security
 Architecture and Engineering, 4 Communication and Network Security,
 5 Identity and Access Management, 6 Security Assessment and Testing,
