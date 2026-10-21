@@ -230,12 +230,13 @@ analysis**, with how each present control is verified *live*, not in source:
 | control | in the lab today? | how it is verified live |
 | --- | --- | --- |
 | authN — Bearer key, constant-time compare, reused keys rejected | yes | a wrong key gets 401 |
-| tenant boundary — vector DB `tenant` filter | yes, as a per-call flag (default on) | every audit line records `tenant_filter` |
+| tenant boundary — vector DB `tenant` filter, inside the query | yes, as a per-call flag (default on) | every audit line records `tenant_filter` and the tenant of each retrieved hit |
 | guard prompt — "answer only from context", "say you do not know" | yes, hardcoded in the server | removed in the harness and measured (Milestone 5) |
 | request + response logging | yes — the audit log | the file grows one line per `/ask` |
 | default-drop firewall, flow logs, mirror | yes — the gateway | nft counters; the sensor sees both directions |
 | backends not network-exposed | yes (localhost) — **but unauthenticated** | `:6333` and `:11434` closed from Kali |
 | TLS on `/ask` | **no** — plaintext | — |
+| request body-size cap on `/ask` | yes — 413 over the cap | send an oversized body |
 | rate limiting, token or time caps | **no** | one heavy probe family 502'd the model |
 | output filtering, PII redaction | **no** | — |
 | separate guardrail service | **no** | — |
