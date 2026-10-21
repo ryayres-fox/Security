@@ -24,25 +24,27 @@ purpose: everyone should be able to protect themselves with or without a budget.
 
 ## What a guardrail is, concretely
 
-Six places a guardrail can sit. The diagram shows the request going in and the
-answer coming back — guardrails act on both directions, and the action gate is
-the one most shops forget.
+Six places a guardrail can sit. Follow the circled numbers: they are the order
+information moves on one request, in and back out, and guardrails act on both
+directions. Boxes are named, not numbered; the table below lists the same six
+places by name, in the order a request meets them, then the two that sit beside
+the path. The action gate is the one most shops forget.
 
 ```mermaid
 graph LR
-  U["user / attacker"] -->|"① request"| GIN["1 INPUT guard<br/>classifier · patterns · limits"]
-  GIN -->|"① allowed"| APP["app"]
-  APP -->|"retrieve"| RET["2 RETRIEVAL guard<br/>provenance · tenant filter · delimiters"]
-  RET -->|"chunks"| APP
-  APP -->|"prompt"| SP["3 SYSTEM-PROMPT guard<br/>the rules the model is given"]
-  SP --> MODEL["model"]
-  MODEL -->|"raw answer"| GOUT["4 OUTPUT guard<br/>PII · secrets · grounding · format"]
-  GOUT -->|"② answer"| U
-  MODEL -. "proposed action" .-> ACT["5 ACTION guard<br/>allowlist · policy · approval"]
+  U["user / attacker"] -->|"① request"| GIN["INPUT guard<br/>classifier · patterns · limits"]
+  GIN -->|"② allowed through"| APP["app"]
+  APP -->|"③ retrieve"| RET["RETRIEVAL guard<br/>provenance · tenant filter · delimiters"]
+  RET -->|"④ chunks, marked as data"| APP
+  APP -->|"⑤ build the prompt"| SP["SYSTEM-PROMPT guard<br/>the rules the model is given"]
+  SP -->|"⑥ rules + context + question"| MODEL["model"]
+  MODEL -->|"⑦ raw answer"| GOUT["OUTPUT guard<br/>PII · secrets · grounding · format"]
+  GOUT -->|"⑧ answer"| U
+  MODEL -. "side path: a proposed action" .-> ACT["ACTION guard<br/>allowlist · policy · approval"]
   ACT -. "result" .-> APP
-  GIN -.-> OPS["6 OPERATIONAL guard<br/>logs both ways · alerts · canaries · kill switch"]
-  GOUT -.-> OPS
-  ACT -.-> OPS
+  GIN -.->|"logs"| OPS["OPERATIONAL guard<br/>logs both ways · alerts · canaries · kill switch"]
+  GOUT -.->|"logs"| OPS
+  ACT -.->|"logs"| OPS
 ```
 
 | place | what it does | concrete forms, cheapest first |
