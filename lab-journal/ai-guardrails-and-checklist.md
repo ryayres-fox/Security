@@ -367,7 +367,8 @@ denied; *verify* by trying one.
 
 **The lab today** — one JSON line per question in `runs/audit.jsonl`:
 `client, tenant, question, retrieved[{id, score, tenant, source}], model,
-embed_model, tenant_filter, answer, latency_ms`. The gateway's firewall log and
+embed_model, seed, temperature, tenant_filter, answer, latency_ms`. The
+gateway's firewall log and
 the sensor's mirror are the independent witnesses the app cannot edit.
 
 **Add, no budget — alerts as a cron job and `jq`:**

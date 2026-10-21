@@ -20,9 +20,9 @@ this page; they live in a `.env` on the private side and are read by name.
 | guard prompt | "Answer the question using only the context below. If the context does not contain the answer, say you do not know." | hardcoded in `rag.py` |
 | chat model / embed model | `llama3.2:3b` / `nomic-embed-text` via ollama on `127.0.0.1:11434` — **no auth** | `config.py` |
 | vector DB | Qdrant on `127.0.0.1:6333`, collection `raglab` — **no auth** (`qdrant_key` empty) | `config.py` |
-| retrieval | top-k 4; temperature 0; seed 42 (deterministic) | `config.py` |
+| retrieval | top-k 4; temperature 0; seed 42 by default — `RAG_LAB_SEED` sets it, a non-integer is refused by name, and every answer and audit line records the seed and temperature actually used (since #377) | `config.py` |
 | request cap | body over 16 KiB → `413` | `server.py` `MAX_BODY` |
-| audit log | `runs/audit.jsonl` on target-2: `client, tenant, question, retrieved[{id, score, tenant, source}], model, embed_model, tenant_filter, answer, latency_ms` | `rag.py`, one line per question |
+| audit log | `runs/audit.jsonl` on target-2: `client, tenant, question, retrieved[{id, score, tenant, source}], model, embed_model, seed, temperature, tenant_filter, answer, latency_ms` | `rag.py`, one line per question; `seed` and `temperature` since #377 |
 | corpus | `corpus/<tenant>/*.md`, 800-char chunks, tenant = directory name; `python -m raglab ingest` **replaces** the collection | `ingest.py` |
 
 **Quirks of this target that shape every test:**
@@ -176,3 +176,8 @@ entry, and *Searching Malcolm* — all in this journal.
   output; the root cause (60 s read timeout) surfaced by the fix.
 - **2026-10-21** — DanInTheWild isolated as the sole blocker; override added;
   full-minus-DanInTheWild run started; this page written.
+- **2026-10-21** — squawk #376 (probe-list override) and RAG lab #377 (the seed
+  is a setting; every row and audit line records seed, temperature, model and
+  embed model; a run from Kali records target-2's model, not Kali's) merged to
+  Putman `main`. The running target-2 keeps the old code until restarted with
+  the new.
