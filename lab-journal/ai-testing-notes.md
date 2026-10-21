@@ -143,9 +143,9 @@ tail -n 1 runs/audit.jsonl | jq '{tenant, retrieved: [.retrieved[] | {tenant, so
 | 2026-10-21 | `ai-probe` with `SQUAWK_AI_GARAK_PROBES=dan.AutoDANCached` | `ok`, examined 1 of 1, 100% — coverage follows the request | `/evidence/20261021T142907Z-url` |
 | 2026-10-21 | full set minus DanInTheWild | running — fill in when it lands | pending |
 
-The tool changed under this testing: squawk PRs #374 (the `ai-probe` service),
-#375 (coverage honesty, both timeouts), #376 (the probe-list override). Each one
-came from a run that found the gap.
+The tool changed under this testing: squawk PRs #374 (the `ai-probe`
+service), #375 (coverage honesty, both timeouts) and #376 (the probe-list
+override). Each one came from a run that found the gap.
 
 ## Open, in this lab
 
