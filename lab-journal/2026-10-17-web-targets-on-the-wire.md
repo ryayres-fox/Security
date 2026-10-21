@@ -25,7 +25,7 @@ The three web apps ran on Kali before this, bound to loopback. Traffic to a
 loopback address never crosses a network interface, so no sensor could see
 it. The point of this milestone was to move them.
 
-They now run on `target-1`, a Debian VM alone on `seg-t1` (`10.56.0.18`),
+They now run on `target-1`, a Debian VM alone on `seg-t1` (`192.0.2.18`),
 from one Docker Compose file. DVWA gets the database it needs for its login
 and injection pages. Each image is pinned by its multi-arch digest, and each
 was checked for an arm64 build first: the older `vulnerables/web-dvwa` image

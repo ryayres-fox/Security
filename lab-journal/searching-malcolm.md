@@ -44,11 +44,11 @@ end times around it. The times are in your browser's time zone, not UTC.
 | What | DQL | Example from the lab |
 | --- | --- | --- |
 | A field has a value | `field:value` | `destination.port:8080` |
-| All of several | `and` | `destination.ip:10.56.0.22 and destination.port:8080` |
+| All of several | `and` | `destination.ip:192.0.2.22 and destination.port:8080` |
 | Any of several | `or` | `zeek.conn.conn_state:REJ or zeek.conn.conn_state:S0` |
 | Not | `not` | `not zeek.http.status_code:200` |
 | A field exists | `field:*` | `zeek.http.status_code:*` |
-| A subnet | quotes | `source.ip:"10.56.0.0/24"` |
+| A subnet | quotes | `source.ip:"192.0.2.0/24"` |
 | A wildcard | `*` | `dns.host:*pool.ntp.org` |
 | Which log | `event.dataset:` | `event.dataset:conn`, `:http`, `:dns` |
 
@@ -67,9 +67,9 @@ Dashboards uses the record's field names, and Arkime uses short aliases:
 | Any address | `source.ip:X or destination.ip:X` | `ip == X` |
 
 In Arkime, "and" is `&&` and "equals" is `==`:
-`ip.dst == 10.56.0.22 && port.dst == 8080`. Typed into Discover, that
+`ip.dst == 192.0.2.22 && port.dst == 8080`. Typed into Discover, that
 same text is read as a list of words. It matched 50 records that day,
-because those records' `related.hosts` field held `10.56.0.22:8080`. So
+because those records' `related.hosts` field held `192.0.2.22:8080`. So
 the right number came back for the wrong reason.
 
 ## 6. Reading a result

@@ -16,18 +16,18 @@ This session asks the box.
 
 ```bash
 ip -br addr
-# lab    UP  10.56.0.10/30
-# mgmt   UP  192.168.56.10/24
+# lab    UP  192.0.2.10/30
+# mgmt   UP  198.51.100.10/24
 # docker0 DOWN 172.17.0.1/16
 
 ip route
-# default via 10.56.0.9 dev lab proto static metric 102
-# 10.56.0.8/30 dev lab proto kernel scope link src 10.56.0.10 metric 102
-# 192.168.56.0/24 dev mgmt proto kernel scope link src 192.168.56.10 metric 103
+# default via 192.0.2.9 dev lab proto static metric 102
+# 192.0.2.8/30 dev lab proto kernel scope link src 192.0.2.10 metric 102
+# 198.51.100.0/24 dev mgmt proto kernel scope link src 198.51.100.10 metric 103
 
 ip route | grep -c '^default'      # 1
-ip route get 10.56.0.18            # 10.56.0.18 via 10.56.0.9 dev lab src 10.56.0.10
-ping -c 2 -W 2 10.56.0.9           # 2 received, 0% packet loss
+ip route get 192.0.2.18            # 192.0.2.18 via 192.0.2.9 dev lab src 192.0.2.10
+ping -c 2 -W 2 192.0.2.9           # 2 received, 0% packet loss
 ```
 
 One default route, through the gateway. The target segment is routed, not
@@ -39,17 +39,17 @@ curl -sS -o /dev/null -w "github.com %{http_code} %{time_total}s\n" https://gith
 # github.com 200 0.498131s
 curl -sS -o /dev/null -w "pypi.org %{http_code} %{time_total}s\n" https://pypi.org/simple/
 # pypi.org 200 3.577371s
-getent hosts github.com            # an address, resolved by 10.56.0.1
+getent hosts github.com            # an address, resolved by 192.0.2.1
 ```
 
 On the management network, the Mac and the gateway answered. The sensor
 did not, which was expected: it was not built yet.
 
 ```bash
-for h in 192.168.56.1 192.168.56.2 192.168.56.5; do ping -c 1 -W 1 $h >/dev/null 2>&1 && echo "$h up" || echo "$h no reply"; done
-# 192.168.56.1 up
-# 192.168.56.2 up
-# 192.168.56.5 no reply
+for h in 198.51.100.1 198.51.100.2 198.51.100.5; do ping -c 1 -W 1 $h >/dev/null 2>&1 && echo "$h up" || echo "$h no reply"; done
+# 198.51.100.1 up
+# 198.51.100.2 up
+# 198.51.100.5 no reply
 ```
 
 ## The forwarding control is Docker's, not the sysctl
@@ -80,7 +80,7 @@ first line of the next session.
 
 ```bash
 chronyc sources
-# ^* 10.56.0.1   3   6   377    12    -48us[  -50us] +/-   19ms
+# ^* 192.0.2.1   3   6   377    12    -48us[  -50us] +/-   19ms
 timedatectl | grep synchronized
 # System clock synchronized: yes
 findmnt /evidence

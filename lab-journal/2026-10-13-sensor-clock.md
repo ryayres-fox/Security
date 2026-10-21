@@ -17,7 +17,7 @@ After I powered the sensor on, it answered ping, but its dashboards refused
 connections:
 
 ```bash
-nc -zv 192.168.56.5 443        # Connection refused
+nc -zv 198.51.100.5 443        # Connection refused
 ```
 
 The cause is a default. Malcolm's configuration menu sets the container
@@ -54,7 +54,7 @@ nginx puts its host's clock in the `Date:` header of every response,
 including a 401. From Kali, with no credentials:
 
 ```bash
-curl -sk -D - -o /dev/null https://192.168.56.5/ | grep -i '^date:'
+curl -sk -D - -o /dev/null https://198.51.100.5/ | grep -i '^date:'
 ```
 
 At the same moment Kali read `16:57:47 GMT` and the sensor read
@@ -102,18 +102,18 @@ records carrying the MAC addresses of Kali's lab NIC and the gateway's
 The lasting fix gives the sensor the lab's clock without putting it on a
 lab segment:
 
-1. **One host route on the sensor:** `10.56.0.1/32 via 192.168.56.2`. The
+1. **One host route on the sensor:** `192.0.2.1/32 via 198.51.100.2`. The
    lab clock's address lives on the gateway's loopback.
 2. **One input rule on the gateway**, admitting NTP from the sensor's
    address only. The packet is delivered locally, and nothing is forwarded
    between the management network and the lab:
 
    ```bash
-   iifname "mgmt" ip saddr 192.168.56.5 ip daddr 10.56.0.1 udp dport 123 accept
+   iifname "mgmt" ip saddr 198.51.100.5 ip daddr 192.0.2.1 udp dport 123 accept
    ```
 
-3. **chrony on both ends.** The gateway gets `allow 192.168.56.5`. The
-   sensor gets `server 10.56.0.1 iburst maxpoll 6` and `makestep 1 -1`.
+3. **chrony on both ends.** The gateway gets `allow 198.51.100.5`. The
+   sensor gets `server 192.0.2.1 iburst maxpoll 6` and `makestep 1 -1`.
    `maxpoll 6` caps the poll interval at 64 s, so after a pause about a
    minute of records at most carries the wrong time. The default ceiling
    is 17 minutes.
@@ -136,14 +136,14 @@ put them through a pause and five reboots:
 
 ## Reading what came back
 
-With the clock right, I searched `source.ip:10.56.0.10` over the last 15
+With the clock right, I searched `source.ip:192.0.2.10` over the last 15
 minutes and got 190 records. Each record has dozens of fields. These are
 the ones that answered a question.
 
 | Field | What to read in it |
 | --- | --- |
 | `source.ip`, `destination.ip`, `destination.port` | Who talked to whom, on what port. |
-| `source.mac`, `destination.mac` | Where the frame was captured. Here `08:00:27:56:10:01` to `08:00:27:56:01:02`: Kali's lab NIC to the gateway's `seg-kali` NIC, on Kali's segment, before the gateway routed it. |
+| `source.mac`, `destination.mac` | Where the frame was captured. Here `08:00:27:00:10:01` to `08:00:27:00:01:02`: Kali's lab NIC to the gateway's `seg-kali` NIC, on Kali's segment, before the gateway routed it. |
 | `event.start`, `event.ingested` | When it happened by the sensor's clock, and when it was stored. Here 12:07:03.383 and 12:07:07.996. Seconds apart is the pipeline; hours apart is a clock. |
 | `event.dataset` | Which Zeek log: `conn` is one record per connection, and `dns`, `ssl` and `http` add what was said in it. |
 | `zeek.conn.conn_state` | How a connection ended. `S0` is a SYN with no answer, `REJ` a reset, `SF` a normal open and close. |

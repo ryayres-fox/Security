@@ -51,9 +51,9 @@ uv run --no-project --python 3.11 --with pytest==9.0.3 --with ruff==0.16.3 --wit
 The lab's resolver was answering, and answering wrong:
 
 ```bash
-for q in 'pypi.org A' 'ghcr.io A' 'github.com A' 'deb.debian.org A'; do dig @10.56.0.1 $q +time=4 +tries=1 | grep -oE 'status: [A-Z]+'; done
+for q in 'pypi.org A' 'ghcr.io A' 'github.com A' 'deb.debian.org A'; do dig @192.0.2.1 $q +time=4 +tries=1 | grep -oE 'status: [A-Z]+'; done
 # status: NXDOMAIN   (all four)
-dig @10.56.0.1 pypi.org A +cd +short | head -1   # an address
+dig @192.0.2.1 pypi.org A +cd +short | head -1   # an address
 ```
 
 Validation disabled, the same name resolved. I reran the gate with uv
@@ -61,7 +61,7 @@ serving the pinned versions from its cache, which are the same packages at
 the same versions, and said so in the pull request:
 
 ```bash
-uv run --offline --no-project --python 3.11 --with pytest==9.0.3 --with ruff==0.16.3 --with mypy==1.20.2 -- pytest tools projects/squawk -q
+uv run --offline --no-project --python 3.11 --with pytest==9.0.3 --with ruff==0.16.3 --with mypy==1.20.2 -- pytest <the suite> -q
 # 1930 passed, 1 skipped in 113.46s
 # gate: PASS · 12 of 12
 ```
@@ -72,14 +72,14 @@ Within minutes the burst was over and one name stayed broken. Every
 public resolver validated it. Only the lab's did not.
 
 ```bash
-for r in 10.56.0.1 9.9.9.9 1.1.1.1 8.8.8.8; do printf '%-12s' $r; dig @$r pypi.org A +time=4 +tries=1 | grep -oE 'status: [A-Z]+|flags: [a-z ]+;' | tr '\n' ' '; echo; done
-# 10.56.0.1   status: SERVFAIL flags: qr rd ra;
+for r in 192.0.2.1 9.9.9.9 1.1.1.1 8.8.8.8; do printf '%-12s' $r; dig @$r pypi.org A +time=4 +tries=1 | grep -oE 'status: [A-Z]+|flags: [a-z ]+;' | tr '\n' ' '; echo; done
+# 192.0.2.1   status: SERVFAIL flags: qr rd ra;
 # 9.9.9.9     status: NOERROR flags: qr rd ra ad;
 # 1.1.1.1     status: NOERROR flags: qr rd ra ad;
 # 8.8.8.8     status: NOERROR flags: qr rd ra ad;
-delv @10.56.0.1 pypi.org A +cdflag +rtrace | head -1
+delv @192.0.2.1 pypi.org A +cdflag +rtrace | head -1
 # ; fully validated
-for t in DS DNSKEY A; do printf 'pypi.org %-7s' $t; dig @10.56.0.1 pypi.org $t | grep -oE 'status: [A-Z]+|flags: [a-z ]+;' | tr '\n' ' '; echo; done
+for t in DS DNSKEY A; do printf 'pypi.org %-7s' $t; dig @192.0.2.1 pypi.org $t | grep -oE 'status: [A-Z]+|flags: [a-z ]+;' | tr '\n' ' '; echo; done
 # pypi.org DS      status: NOERROR flags: qr rd ra ad;
 # pypi.org DNSKEY  status: SERVFAIL flags: qr rd ra;
 # pypi.org A       status: SERVFAIL flags: qr rd ra;
@@ -104,8 +104,8 @@ every clock I could reach. They agreed to the second:
 ```bash
 date -u                                                            # 2026-10-13 15:20:40 UTC
 curl -sI https://api.github.com/ | grep -i '^date:'                # Tue, 13 Oct 2026 15:20:36 GMT
-chronyc sources | tail -1                                          # ^* 10.56.0.1 ... -22us
-# an SNTP query to 10.56.0.1 returned transmit time 2026-10-13 15:20:41 UTC
+chronyc sources | tail -1                                          # ^* 192.0.2.1 ... -22us
+# an SNTP query to 192.0.2.1 returned transmit time 2026-10-13 15:20:41 UTC
 ```
 
 There was also a second, separate oddity. Asked directly from Kali at
@@ -206,7 +206,7 @@ dig @127.0.0.1 pypi.org A +short
 And from Kali:
 
 ```bash
-dig @10.56.0.1 pypi.org A | grep -oE 'status: [A-Z]+|flags: [a-z ]+;'
+dig @192.0.2.1 pypi.org A | grep -oE 'status: [A-Z]+|flags: [a-z ]+;'
 # status: NOERROR
 # flags: qr rd ra ad;
 uv run --no-project --python 3.11 --with pytest==9.0.3 -- python -c 'print("index reachable, env built")'
@@ -261,9 +261,9 @@ Layer 7 of the plan proves from outside that the model server and the
 vector store are loopback-only on the target:
 
 ```bash
-curl -s --max-time 5 http://10.56.0.22:11434/api/tags; echo "rc=$?"   # rc=7
-curl -s --max-time 5 http://10.56.0.22:6333/; echo "rc=$?"            # rc=7
-curl -s -m 5 -o /dev/null -w "GET /health -> %{http_code}\n" http://10.56.0.22:8080/health
+curl -s --max-time 5 http://192.0.2.22:11434/api/tags; echo "rc=$?"   # rc=7
+curl -s --max-time 5 http://192.0.2.22:6333/; echo "rc=$?"            # rc=7
+curl -s -m 5 -o /dev/null -w "GET /health -> %{http_code}\n" http://192.0.2.22:8080/health
 # GET /health -> 200
 ```
 
@@ -297,7 +297,7 @@ the scan's time is the first alert the sensor should raise.
 
 1. Apply the clock line to the sensor and target-2 at their consoles,
    and read `date -u` back on each.
-2. Run `nmap -Pn -p- 10.56.0.22` from Kali with the sensor's dashboards
+2. Run `nmap -Pn -p- 192.0.2.22` from Kali with the sensor's dashboards
    open, note the start time, and expect only `8080/tcp open`.
 3. Layer 10's five checks against the API: health 200, no key 401, wrong
    key 401, the body's tenant ignored, 413 on a 20 kB body.
