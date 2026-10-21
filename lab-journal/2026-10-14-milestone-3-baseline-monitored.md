@@ -21,7 +21,7 @@ The baseline run was 10 questions, 5 times each: 50 requests between
 | Count | Result | Where it comes from |
 | --- | --- | --- |
 | Harness | 50 | its own CSV |
-| Gateway | 50 | `nft scan-new` lines from Kali to 10.56.0.22:8080, in that window |
+| Gateway | 50 | `nft scan-new` lines from Kali to 192.0.2.22:8080, in that window |
 | Zeek | 50 `conn`, 50 `http` | Malcolm's Discover, DQL, absolute window |
 | Arkime | 50 sessions | Arkime's own sessions, built from the full packet capture rather than from Zeek |
 
@@ -37,7 +37,7 @@ sessions. The 50 I saw was most likely the page size, "Showing 1 - 50 of
 Re-read on 14 October with that filter:
 
 ```text
-ip.dst == 10.56.0.22 && port.dst == 8080 && event.provider == arkime
+ip.dst == 192.0.2.22 && port.dst == 8080 && event.provider == arkime
 Showing 1 - 50 of 50 entries
 ```
 
@@ -60,7 +60,7 @@ minute to correct. Its own log (CDT) showed why:
 ```text
 17:16:39   Starting systemd-timesyncd
 17:16:40   Network configuration changed, trying to establish connection.
-17:17:57   Contacted time server 10.56.0.1:123
+17:17:57   Contacted time server 192.0.2.1:123
 ```
 
 The time service starts before the lab interface can carry a request,

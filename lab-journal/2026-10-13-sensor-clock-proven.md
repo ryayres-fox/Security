@@ -17,7 +17,7 @@ From Kali, every 5 seconds, the sensor's nginx `Date:` header against
 Kali's own clock:
 
 ```bash
-curl -sk --max-time 3 -D - -o /dev/null https://192.168.56.5/ | grep -i '^date:'
+curl -sk --max-time 3 -D - -o /dev/null https://198.51.100.5/ | grep -i '^date:'
 ```
 
 It runs outside the sensor on purpose. A check run on the sensor can change
@@ -27,18 +27,18 @@ what it measures, and today one did (below).
 
 **On the gateway:**
 
-- chrony answers the sensor: `allow 192.168.56.5`.
+- chrony answers the sensor: `allow 198.51.100.5`.
 - One input rule admits NTP from the sensor's address only.
 - `makestep 1 -1` is now in the file, read back as
   `/etc/chrony/conf.d/lab.conf:13`.
 
-`sudo chronyc clients` then listed `192.168.56.5` asking.
+`sudo chronyc clients` then listed `198.51.100.5` asking.
 
 **On the sensor:**
 
-- A host route to the lab clock, `10.56.0.1/32 via 192.168.56.2`, written
+- A host route to the lab clock, `192.0.2.1/32 via 198.51.100.2`, written
   into `/etc/network/interfaces` so it survives a reboot.
-- systemd-timesyncd, which Debian already ships, pointed at `10.56.0.1`
+- systemd-timesyncd, which Debian already ships, pointed at `192.0.2.1`
   with `PollIntervalMaxSec=64`.
 - Malcolm's restart policy set to `unless-stopped`: all 27 services in the
   compose file, and all 27 running containers through `docker update`, so
@@ -116,7 +116,7 @@ The next boot, from the sensor's log:
 ```text
 [    1.593774] Starting systemd-timesyncd.service - Network Time Synchronization...
 [    2.593075] systemd-timesyncd: Network configuration changed, trying to establish connection.
-[   66.825983] systemd-timesyncd: Contacted time server 10.56.0.1:123 (10.56.0.1).
+[   66.825983] systemd-timesyncd: Contacted time server 192.0.2.1:123 (192.0.2.1).
 [   66.827557] systemd-timesyncd: Initial clock synchronization to Tue 2026-10-13 15:49:41.601038 CDT.
 ```
 
@@ -143,7 +143,7 @@ line in the sensor's `/etc/network/interfaces`, right after the route,
 restarts timesyncd the moment the route exists:
 
 ```text
-up   ip route add 10.56.0.1/32 via 192.168.56.2 dev $IFACE
+up   ip route add 192.0.2.1/32 via 198.51.100.2 dev $IFACE
 up   systemctl --no-block try-restart systemd-timesyncd.service
 ```
 

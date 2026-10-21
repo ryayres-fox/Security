@@ -17,9 +17,11 @@ stay in. A lab journal that only records what worked is a brochure.
 ## Why it is written this way
 
 - **For anyone following along.** The commands are the literal ones, each
-  with the result it should give. The addresses are the lab's own plan
-  (RFC 1918), on a VirtualBox host-only network and internal networks.
-  None of it can be reached from anywhere else.
+  with the result it should give. The addresses shown are documentation
+  addresses (RFC 5737) standing in for the lab's own plan, host numbers
+  preserved: `192.0.2.0/24` for the lab segments, `198.51.100.0/24` for
+  the management network. Commands meant to be run use `$TARGET2` and
+  `$KEY`. None of the lab can be reached from anywhere else.
 - **Tests, with what to read in the output.** Malcolm and the RAG app
   start as initial deployments with light configuration, and each piece
   of configuration is tested as it goes in. Every test gives the command

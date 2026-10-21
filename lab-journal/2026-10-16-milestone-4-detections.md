@@ -58,7 +58,7 @@ firewall line into fields first: `nft_prefix`, `nft_src`, `nft_dst`,
 certificate from anyone. The test said otherwise:
 
 ```text
-openssl s_client -connect 192.168.56.5:5045 -tls1_2
+openssl s_client -connect 198.51.100.5:5045 -tls1_2
   no client certificate      → alert handshake failure (40)
   a self-signed certificate  → alert unknown ca (48)
 ```
@@ -77,14 +77,14 @@ test from Kali first.
 A full `nmap -p-` of the RAG target raised no Suricata alert at all.
 Suricata's scan rules look for traffic from outside the home network, and
 Malcolm's default `HOME_NET` is all private address space, so Kali counted
-as an insider. `HOME_NET` is now only the target segments, `10.56.0.16/29`.
+as an insider. `HOME_NET` is now only the target segments, `192.0.2.16/29`.
 
 Checking the change caught a second mistake. Suricata's container rewrites
 its configuration at every start and leaves a backup each time, and my
 first read-back read one of the ten backups. Reading the live file:
 
 ```text
-HOME_NET: 10.56.0.16/29
+HOME_NET: 192.0.2.16/29
 EXTERNAL_NET: '!$HOME_NET'
 ```
 
