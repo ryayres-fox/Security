@@ -117,6 +117,10 @@ request.
 The query languages, the field names, and the checks to run before
 trusting a count, built from the lab's real searches.
 
+**Reference:** [RAG apps: what they are, and how we test them](rag-and-ai-probe.md).
+Plain-language architecture — the model versus the knowledge base — and the
+data flows an LLM red-team crosses, with diagrams.
+
 CISSP domains: 1 Security and Risk Management, 2 Asset Security, 3 Security
 Architecture and Engineering, 4 Communication and Network Security,
 5 Identity and Access Management, 6 Security Assessment and Testing,
