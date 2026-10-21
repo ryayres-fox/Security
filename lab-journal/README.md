@@ -117,6 +117,12 @@ request.
 The query languages, the field names, and the checks to run before
 trusting a count, built from the lab's real searches.
 
+**Start here, if the AI architecture is new to you:**
+[The whole AI architecture in one place, in order](start-here-ai-architecture.md).
+Ten modules from "what the model is" to "how we proved the controls", each one
+idea with a check you can run yourself, and a glossary. The references below are
+the depth behind it.
+
 **Reference:** [RAG apps: what they are, and how we test them](rag-and-ai-probe.md).
 Plain-language architecture — the model versus the knowledge base — and the
 data flows an LLM red-team crosses, with diagrams.

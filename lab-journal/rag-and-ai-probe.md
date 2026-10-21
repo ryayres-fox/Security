@@ -8,6 +8,10 @@ fictional bakery's support bot); nothing comes from any real environment.
 
 Open on GitHub or in a Markdown preview to see the diagrams rendered.
 
+New to this? Read [Start here: the whole architecture in one place](start-here-ai-architecture.md)
+first — it walks the parts in order with a check for each; this document is the
+depth behind it.
+
 ## Part 1 — What a RAG app is
 
 ```mermaid
