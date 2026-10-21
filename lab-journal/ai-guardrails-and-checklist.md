@@ -33,19 +33,21 @@ the path. The action gate is the one most shops forget.
 ```mermaid
 graph LR
   U["user / attacker"] -->|"① request"| GIN["INPUT guard<br/>classifier · patterns · limits"]
-  GIN -->|"② allowed through"| APP["app"]
+  GIN -->|"② allowed"| APP["app"]
   APP -->|"③ retrieve"| RET["RETRIEVAL guard<br/>provenance · tenant filter · delimiters"]
-  RET -->|"④ chunks, marked as data"| APP
-  APP -->|"⑤ build the prompt"| SP["SYSTEM-PROMPT guard<br/>the rules the model is given"]
-  SP -->|"⑥ rules + context + question"| MODEL["model"]
+  RET -->|"④ chunks, as data"| APP
+  APP -->|"⑤ build prompt"| SP["SYSTEM-PROMPT guard<br/>the rules the model is given"]
+  SP -->|"⑥ prompt"| MODEL["model"]
   MODEL -->|"⑦ raw answer"| GOUT["OUTPUT guard<br/>PII · secrets · grounding · format"]
   GOUT -->|"⑧ answer"| U
-  MODEL -. "side path: a proposed action" .-> ACT["ACTION guard<br/>allowlist · policy · approval"]
+  MODEL -. "a proposed action" .-> ACT["ACTION guard<br/>allowlist · policy · approval"]
   ACT -. "result" .-> APP
-  GIN -.->|"logs"| OPS["OPERATIONAL guard<br/>logs both ways · alerts · canaries · kill switch"]
+  GIN -.->|"logs"| OPS["OPERATIONAL guard<br/>logs both ways · alerts<br/>canaries · kill switch"]
   GOUT -.->|"logs"| OPS
   ACT -.->|"logs"| OPS
 ```
+
+*Key:* ① the request · ② allowed through · ③ retrieve · ④ the chunks come back marked as data · ⑤ the app builds the prompt · ⑥ rules + context + question go to the model · ⑦ the raw answer · ⑧ the answer, after the output guard. Side path: an action the model proposes goes through the ACTION guard, and its result returns to the app. Three guards log to the operational guard.
 
 | place | what it does | concrete forms, cheapest first |
 | --- | --- | --- |

@@ -22,26 +22,26 @@ graph LR
     U["1 · a user, or an attacker<br/>the chat box"]
     T["9 · the tester<br/>squawk ai-probe → garak<br/>judges the RESPONSE"]
   end
-  subgraph WIRE["6 · the wire — gateway + sensor"]
-    GW["default-drop firewall, logs every flow<br/>mirrors every packet to Malcolm"]
+  subgraph WIRE["6 · the wire"]
+    GW["gateway + sensor<br/>default-drop firewall, logs every flow<br/>mirrors every packet to Malcolm"]
   end
-  subgraph BOX["target-2 — the app and its backends, all on localhost"]
-    APP["2 · the RAG app — front door and control point<br/>key → tenant · guard prompt · size cap"]
+  subgraph BOX["target-2 — all on localhost"]
+    APP["2 · the RAG app — front door<br/>and control point<br/>key → tenant · guard prompt · size cap"]
     KB["3 · the knowledge base — Qdrant<br/>chunks tagged with tenant and source"]
     M["4 · the model — ollama<br/>frozen; it embeds and it generates"]
     AUD["7 · the audit log<br/>one line per question"]
   end
-  ING["5 · ingest — offline, run by the operator<br/>corpus files → chunks → vectors → Qdrant"]
+  ING["5 · ingest — offline, by the operator<br/>files → chunks → vectors"]
   ACT["8 · actions and tools<br/>NOT in this lab — dashed on purpose"]
 
   U -->|"question in"| GW
   T -->|"attack prompt in"| GW
   GW --> APP
-  APP -->|"embed the question"| M
+  APP -->|"embed"| M
   M -->|"vector"| APP
-  APP -->|"retrieve, tenant-filtered"| KB
+  APP -->|"retrieve"| KB
   KB -->|"chunks"| APP
-  APP -->|"generate: chunks + question + guard"| M
+  APP -->|"generate"| M
   M -->|"answer"| APP
   APP -->|"answer back"| GW
   GW -->|"answer back"| U
@@ -49,8 +49,10 @@ graph LR
   APP -.->|"writes"| AUD
   ING -->|"embed"| M
   ING -->|"upsert"| KB
-  APP -. "would propose a tool call" .-> ACT
+  APP -. "would propose a call" .-> ACT
 ```
+
+*Reading the arrows:* a question (or an attack prompt) goes in through the wire; the app embeds it, retrieves tenant-filtered chunks, generates with chunks + question + guard, and the answer comes back the same way. Ingest runs offline. The dashed arrow is the step this lab does not have.
 
 | # | part | module | go deep |
 | --- | --- | --- | --- |
@@ -312,9 +314,11 @@ Read next, in this order:
 2. **AI guardrails at three budgets, and a checklist** — what each control
    looks like as a config block, a query, a rule, or a log field; and the
    checklist you can run on any system in an afternoon.
-3. **The milestone entries** — the numbers, and what each control measured when
+3. **Agentic services: the add-on to RAG** — what changes when the model can
+   act: the loop, the tool layer, the six new places, and the lab plan.
+4. **The milestone entries** — the numbers, and what each control measured when
    it was removed.
-4. **Searching Malcolm** — how to read the witness.
+5. **Searching Malcolm** — how to read the witness.
 
 ## Glossary — one line each
 
