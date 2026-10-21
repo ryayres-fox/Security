@@ -201,7 +201,7 @@ jobs:
       # alias. `v12` is re-pointed on every release, so a tag pin is a promise
       # someone else can rewrite.
       - name: Checkov
-        uses: bridgecrewio/checkov-action@3be6be7935e32c4c683b1d40622aa43a7c8bbcaa  # v12.3118.0
+        uses: bridgecrewio/checkov-action@6f26dc90000b74feb589a906cdfae540f5119895  # v12.3134.0
         with:
           directory: reference-architecture/
           soft_fail: false
@@ -259,7 +259,7 @@ jobs:
           fi
           echo "gate correctly blocked"
 
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: findings-report
           path: ${{ runner.temp }}/report.html
