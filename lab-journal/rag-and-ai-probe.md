@@ -619,3 +619,8 @@ run. Grouped by when they bite.
 The milestone entries put numbers on these: the indirect-injection experiment
 and the one-sentence guard proven by removing it; and the direct red-team of the
 running app. See the journal index.
+
+For the controls themselves — what a guardrail is at each layer, what to use
+with no budget and with a full vendor stack, and a review checklist built as a
+jump point rather than a spiral — see
+[AI guardrails at three budgets, and a checklist](ai-guardrails-and-checklist.md).

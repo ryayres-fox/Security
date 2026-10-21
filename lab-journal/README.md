@@ -121,6 +121,11 @@ trusting a count, built from the lab's real searches.
 Plain-language architecture — the model versus the knowledge base — and the
 data flows an LLM red-team crosses, with diagrams.
 
+**Reference:** [AI guardrails at three budgets, and a checklist that is a jump point](ai-guardrails-and-checklist.md).
+What a guardrail is at each of six layers, what to use with no money, a full
+vendor stack, or the usual mix, and a build-or-review checklist where every item
+is a question, an observable check, and a pointer to the next question.
+
 CISSP domains: 1 Security and Risk Management, 2 Asset Security, 3 Security
 Architecture and Engineering, 4 Communication and Network Security,
 5 Identity and Access Management, 6 Security Assessment and Testing,
