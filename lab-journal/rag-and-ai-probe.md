@@ -89,20 +89,21 @@ graph LR
   SENSOR["Malcolm sensor — management network<br/>(span NIC, no lab address)"]
 
   SQ -->|"① request: POST /ask {question}<br/>attack prompt — PLAINTEXT"| FW
-  FW --> RAG
+  FW -->|"② onto the app"| RAG
   RAG -.->|"one line per /ask"| AUD
-  RAG -->|"a. embed question"| OLL
-  RAG -->|"b. retrieve top-k, tenant-filtered"| QD
-  QD -->|"corpus chunks"| RAG
-  RAG -->|"c. generate: chunks + question + guard"| OLL
-  OLL -->|"vector / answer"| RAG
-  RAG -->|"② response: 200 {answer} — PLAINTEXT<br/>the scanner SCORES this"| FW
-  FW -->|"② response"| SQ
+  RAG -->|"③ embed the question"| OLL
+  RAG -->|"⑤ retrieve top-k, tenant-filtered"| QD
+  QD -->|"⑥ chunks"| RAG
+  RAG -->|"⑦ generate: chunks + question + guard"| OLL
+  OLL -->|"④ vector"| RAG
+  OLL -->|"⑧ answer"| RAG
+  RAG -->|"⑨ response: 200 {answer} — PLAINTEXT<br/>the scanner SCORES this"| FW
+  FW -->|"⑩ response"| SQ
   FW -.->|"mirror: BOTH directions"| SENSOR
 ```
 
-Reading it: ① is the attack request, ② is the response — and the scanner scores
-**②**, the model's answer, not what was sent (success is measured on what comes
+Reading it: the circled numbers are the order of one request; ⑨ is the
+response, and the scanner scores **that**, the model's answer, not what was sent (success is measured on what comes
 back). The RAG app is the front door and control point; behind it, all on
 localhost, sit the **vector DB** (retrieval, enforcing the tenant boundary in its
 query filter) and the **model server** (embeddings and generation). Both
@@ -130,13 +131,13 @@ sequenceDiagram
     participant O as model server
     participant Q as Qdrant (vector DB)
     S->>R: ① POST /ask {question}
-    R->>O: 1. embed(question)
-    O-->>R: vector
-    R->>Q: 2. search(vector, tenant-filtered)
-    Q-->>R: top-k chunks
-    R->>O: 3. generate(chunks + question + guard)
-    O-->>R: answer
-    R-->>S: ② 200 {answer} — scored here
+    R->>O: ② embed(question)
+    O-->>R: ③ vector
+    R->>Q: ④ search(vector, tenant-filtered)
+    Q-->>R: ⑤ top-k chunks
+    R->>O: ⑥ generate(chunks + question + guard)
+    O-->>R: ⑦ answer
+    R-->>S: ⑧ 200 {answer} — scored here
 ```
 
 The order is forced, not a choice: you can't query the vector DB until the
@@ -185,35 +186,35 @@ Two boundaries worth naming, because they are two different tests:
 
 Threat modeling draws **trust boundaries** — the lines where data crosses from a
 less-trusted zone into a more-trusted one. Every crossing is where threats
-concentrate and where a control has to sit. Read the lanes top (least trusted) to
-bottom (most trusted); TB1–TB5 are the boundaries.
+concentrate and where a control has to sit. Read the lanes left (least trusted) to
+right (most trusted); TB1–TB5 are the boundaries.
 
 ```mermaid
-graph TB
-  subgraph Z0["LANE 0 · UNTRUSTED — anything the user or attacker sends"]
+graph LR
+  subgraph Z0["UNTRUSTED — anything the user or attacker sends"]
     IN["chat input / scanner prompt"]
   end
-  subgraph Z1["LANE 1 · NETWORK — gateway + sensor · MONITOR + ALERT live here"]
+  subgraph Z1["NETWORK — gateway + sensor · MONITOR + ALERT live here"]
     GW["default-drop firewall (logged)<br/>sensor mirrors BOTH directions"]
   end
-  subgraph Z2["LANE 2 · APPLICATION — RAG control point · most CONFIG lives here"]
+  subgraph Z2["APPLICATION — RAG control point · most CONFIG lives here"]
     APP["authN/Z · guard prompt · tenant scope<br/>input + output handling · rate limit"]
   end
-  subgraph Z3["LANE 3 · DATA and MODEL — localhost backends · CONFIG + data authZ"]
+  subgraph Z3["DATA and MODEL — localhost backends · CONFIG + data authZ"]
     QD["vector DB · tenant filter = data authorization"]
     ML["model server · resource caps · no network exposure"]
   end
   IN -->|"① request — untrusted data enters (TB1)"| GW
-  GW -->|"① onto the app (TB2)"| APP
-  APP -->|"① retrieve (TB3)"| QD
-  QD -->|"② chunks back"| APP
-  APP -->|"① generate (TB4)"| ML
-  ML -->|"② answer back"| APP
-  APP -->|"② response — output-filtered on the way out"| GW
-  GW -->|"② response — sensor mirrors BOTH directions"| IN
+  GW -->|"② onto the app (TB2)"| APP
+  APP -->|"③ retrieve (TB3)"| QD
+  QD -->|"④ chunks back"| APP
+  APP -->|"⑤ generate (TB4)"| ML
+  ML -->|"⑥ answer back"| APP
+  APP -->|"⑦ response — output-filtered on the way out"| GW
+  GW -->|"⑧ response — sensor mirrors BOTH directions"| IN
 ```
 
-Both directions matter: the response (②) crosses the same boundaries outward, and
+Both directions matter: the response (⑦ and ⑧) crosses the same boundaries outward, and
 controls act on it too — output handling at the app (TB1/TB4) and the sensor
 mirroring both ways at TB2. Each boundary needs controls in three disciplines — **configuration** (set once,
 preventive), **monitoring** (continuous, detective), and **alerting** (fires on a
@@ -293,23 +294,23 @@ boundaries and how *dedicated* the controls are. Three points on that spectrum.
 ### A. No gateway (minimal) — what you lose
 
 ```mermaid
-graph TB
-  subgraph Z0["LANE 0 · UNTRUSTED — user / attacker"]
+graph LR
+  subgraph Z0["UNTRUSTED — user / attacker"]
     IN["chat input / attacker"]
   end
-  subgraph Z2["LANE 2 · APPLICATION — the app, now directly exposed"]
+  subgraph Z2["APPLICATION — the app, now directly exposed"]
     APP["authN/Z · guard · rate limit<br/>app logs = the ONLY witness"]
   end
-  subgraph Z3["LANE 3 · DATA and MODEL"]
+  subgraph Z3["DATA and MODEL"]
     QD["vector DB · tenant filter"]
     ML["model server"]
   end
   IN -->|"① request — NO firewall, NO TLS gate, NO mirror (TB1)"| APP
-  APP -->|"① retrieve (TB3)"| QD
-  QD -->|"② chunks back"| APP
-  APP -->|"① generate (TB4)"| ML
-  ML -->|"② answer back"| APP
-  APP -->|"② response — only the app logs it; nothing mirrors it"| IN
+  APP -->|"② retrieve (TB3)"| QD
+  QD -->|"③ chunks back"| APP
+  APP -->|"④ generate (TB4)"| ML
+  ML -->|"⑤ answer back"| APP
+  APP -->|"⑥ response — only the app logs it; nothing mirrors it"| IN
 ```
 
 **The NETWORK lane is gone.** No default-drop firewall, no flow logs, no traffic
@@ -322,7 +323,7 @@ app or trust nothing" posture, and it's how most quick demos ship.
 
 ### B. The lab — a gateway adds an independent layer
 
-The lab's gateway restores **LANE 1 / TB2** (shown earlier): a default-drop
+The lab's gateway restores the **NETWORK lane (TB2)** (shown earlier): a default-drop
 firewall (config), flow logs plus a traffic mirror (monitoring), and IDS rules on
 the mirror (alerting) — an independent control *and* witness the app can't
 provide for itself. That is the whole reason the lab routes everything through it.
@@ -330,48 +331,48 @@ provide for itself. That is the whole reason the lab routes everything through i
 ### C. Enterprise — defense in depth at scale
 
 ```mermaid
-graph TB
-  subgraph L0["LANE 0 · INTERNET (untrusted)"]
+graph LR
+  subgraph L0["INTERNET (untrusted)"]
     U["users — browser / client app"]
   end
-  subgraph L1["LANE 1 · EDGE / DMZ"]
+  subgraph L1["EDGE / DMZ"]
     WAF["CDN + WAF + API gateway<br/>TLS · authN · rate limit · schema · bot/DDoS"]
   end
-  subgraph L2["LANE 2 · IDENTITY"]
+  subgraph L2["IDENTITY"]
     IDP["IdP / SSO (OIDC)<br/>tokens + tenant claim → authZ"]
   end
-  subgraph L3["LANE 3 · APPLICATION (private subnet)"]
+  subgraph L3["APPLICATION (private subnet)"]
     APP2["load balancer → RAG orchestrator"]
   end
-  subgraph L4["LANE 4 · AI / LLM GATEWAY"]
+  subgraph L4["AI / LLM GATEWAY"]
     AIGW["prompt policy · PII redaction<br/>output filter · token budget · full audit"]
   end
-  subgraph L5["LANE 5 · DATA (private subnet)"]
+  subgraph L5["DATA (private subnet)"]
     VDB["vector DB (tenant RBAC) + doc store"]
   end
-  subgraph L6["LANE 6 · MODEL (private subnet / controlled egress)"]
+  subgraph L6["MODEL (private subnet / controlled egress)"]
     MS["self-hosted GPU  OR  egress proxy + DLP → external LLM"]
   end
   subgraph LX["CROSS-CUTTING"]
     SIEM["SIEM / SOC (monitor + alert)<br/>KMS/Vault (secrets) · Governance (NIST AI RMF, ISO 42001)"]
   end
   U -->|"① request (TB1 edge)"| WAF
-  WAF -->|"① authN (TB2 identity)"| IDP
-  IDP --> APP2
-  APP2 -->|"① model I/O via gateway (TB3)"| AIGW
-  AIGW -->|"① retrieve, RBAC (TB4)"| VDB
-  VDB -->|"② chunks back"| AIGW
-  AIGW -->|"① generate / egress (TB5)"| MS
-  MS -->|"② answer back"| AIGW
-  AIGW -->|"② response — output filter + PII redaction on the way out"| APP2
-  APP2 -->|"② response"| WAF
-  WAF -->|"② response"| U
+  WAF -->|"② authN (TB2 identity)"| IDP
+  IDP -->|"③ authorized, on to the app"| APP2
+  APP2 -->|"④ model I/O via the gateway (TB3)"| AIGW
+  AIGW -->|"⑤ retrieve, RBAC (TB4)"| VDB
+  VDB -->|"⑥ chunks back"| AIGW
+  AIGW -->|"⑦ generate / egress (TB5)"| MS
+  MS -->|"⑧ answer back"| AIGW
+  AIGW -->|"⑨ response — output filter + PII redaction on the way out"| APP2
+  APP2 -->|"⑩ response"| WAF
+  WAF -->|"⑪ response"| U
   WAF -.->|logs| SIEM
   APP2 -.->|logs| SIEM
   AIGW -.->|audit both directions| SIEM
 ```
 
-The response (②) flows back out through the AI gateway — where output filtering
+The response (⑨ to ⑪) flows back out through the AI gateway — where output filtering
 and PII redaction act on what the model returns — then the edge; both directions
 are logged to the SIEM. What enterprise adds over the lab, boundary by boundary:
 
@@ -408,7 +409,7 @@ point on every axis; the diagrams show the alternatives and what each costs.
 ### How the model gets its knowledge
 
 ```mermaid
-graph TB
+graph LR
   subgraph NR["No retrieval — plain chatbot"]
     Q1["question"] --> M1["model<br/>training knowledge only"]
     M1 --> R1["answer"]
@@ -417,8 +418,8 @@ graph TB
     Q2["question"] --> AP["app"]
     AP -->|"① retrieve"| KB2["knowledge base"]
     KB2 -->|"② chunks"| AP
-    AP -->|"① generate"| M2["model"]
-    M2 -->|"② answer"| AP
+    AP -->|"③ generate"| M2["model"]
+    M2 -->|"④ answer"| AP
     AP --> R2["answer"]
   end
   subgraph FT["Fine-tuning — knowledge in the weights"]
@@ -489,12 +490,12 @@ exactly what you would add, and threat-model, the moment the agent can act.
 ```mermaid
 graph LR
   subgraph S["Self-hosted"]
-    A1["app"] -->|"① prompt (localhost)"| M1s["model — inside your boundary"]
-    M1s -->|"② answer"| A1
+    A1["app"] -->|"prompt (localhost)"| M1s["model — inside your boundary"]
+    M1s -->|"answer"| A1
   end
   subgraph MG["Managed API"]
-    A2["app"] -->|"① prompt + retrieved docs LEAVE"| EXT["3rd-party LLM (internet)"]
-    EXT -->|"② answer"| A2
+    A2["app"] -->|"prompt + retrieved docs LEAVE"| EXT["3rd-party LLM (internet)"]
+    EXT -->|"answer"| A2
   end
 ```
 
@@ -508,9 +509,9 @@ supply chain (**LLM03**), and data-retention terms matter.
 ```mermaid
 graph LR
   U["user / attacker"] -->|"① request"| GIN["guardrail: input screen<br/>injection / policy classifier"]
-  GIN -->|"① if allowed"| APP["RAG app + model"]
-  APP -->|"② response"| GOUT["guardrail: output screen<br/>toxicity / PII / leak classifier"]
-  GOUT -->|"② if allowed"| U
+  GIN -->|"② if allowed"| APP["RAG app + model"]
+  APP -->|"③ response"| GOUT["guardrail: output screen<br/>toxicity / PII / leak classifier"]
+  GOUT -->|"④ if allowed"| U
   GIN -. "blocked → refuse" .-> U
   GOUT -. "redact / block" .-> U
 ```
