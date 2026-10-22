@@ -5,17 +5,17 @@ prove they run.
 
 ```bash
 pip install semgrep pytest
-pytest semgrep -q          # 16 tests
+pytest semgrep -q          # 34 tests
 ```
 
 ## The rules
 
 | ID | Catches | Why no off-the-shelf rule covers it |
 | --- | --- | --- |
-| `reference-missing-route-authorization` | A route handler with no guard | Per-route enforcement means an omitted decorator is an open endpoint, not a default-deny. Generic rules cannot know which router is guarded globally |
+| `reference-missing-route-authorization` | A `GET`, `POST`, `PUT`, `PATCH` or `DELETE` handler with no guard | Per-route enforcement means an omitted decorator is an open endpoint, not a default-deny. Generic rules cannot know which router is guarded globally |
 | `reference-actor-field-from-request-body` | `created_by` / `owner` taken from the request | Attribution spoofing. The field should not be writable at all, and no generic rule knows which of your fields are actors |
-| `reference-tenant-scope-from-request` | Tenant identity read from a header or body | The one that ends a contract. Tenancy is application-specific by definition |
-| `reference-unscoped-tenant-query` | A query on a tenant-scoped table with no predicate | The case the store's own API boundary cannot see |
+| `reference-tenant-scope-from-request` | Tenant identity read from a header, query parameter or body, including FastAPI `Header()` / `Query()` parameters | The one that ends a contract. Tenancy is application-specific by definition |
+| `reference-unscoped-tenant-query` | A query on a tenant-scoped table with no predicate, or a primary-key lookup (`session.get`) with no tenant check after it | The case the store's own API boundary cannot see |
 | `reference-disabled-tls-verification` | `verify=False` | Converts an encrypted channel into an obfuscated one — still HTTPS in every log, which is why it survives |
 | `reference-unsafe-deserialization` | `yaml.load`, `pickle.loads` | Code execution wearing the costume of parsing |
 
@@ -46,7 +46,8 @@ Try it:
 # make one rule inert without breaking its syntax
 sed -i '' 's/verify=False/verify=NEVERMATCHES/' semgrep/rules/crypto-and-transport.yml
 pytest semgrep -q
-# 1 failed — reference-disabled-tls-verification matched nothing
+# 3 failed — reference-disabled-tls-verification matched nothing, and neither
+#            of its two marked cases fired
 ```
 
 ## The third assertion
@@ -62,11 +63,45 @@ written as a bare `$BODY.tenant_id`, which also matched
 compliant fixture caught the rule flagging the right answer as loudly as the
 wrong one, and the pattern was narrowed with the exclusions written in.
 
+## The fourth assertion
+
+Assertion 2 counts per rule across the whole fixture, so a new case for a rule
+that already fires somewhere else can match nothing and still pass. Every case
+in `fixtures/noncompliant/app.py` sits under a `# <rule-id>` marker, and
+`test_each_marked_case_fires_its_rule_and_only_its_rule` holds each one to it:
+the marked rule fires inside that case, and no other rule does.
+
+It found five gaps the first time it ran, each a real FastAPI or SQLAlchemy
+shape the rules did not see:
+
+- an unguarded `PUT` or `PATCH` route (the rule listed `get`, `post`, `delete`);
+- a tenant header spelled `x-tenant-id` (the rule matched one literal, and
+  header names are case-insensitive);
+- a tenant injected as a FastAPI `Header(...)` parameter, plain or `Annotated`;
+- `session.get(Model, id)`, the primary-key lookup behind most
+  `GET /things/{id}` routes;
+- SQLAlchemy 2.0's `session.scalars(select(Model))` with no `where`.
+
+The compliant twins it added caught the other direction too. The bare
+`$BODY.tenant_id` pattern matched `row.tenant_id != tenant_id`, which is the
+ownership check the rule wants written, and it matched a serialiser returning
+`row.tenant_id`, which is the most common line in any API that has tenants.
+The pattern now fires only on a typed parameter of a route handler (a request
+body), and not on a dependency-injected one (the auth context) or inside a
+comparison. A rule that flags every serialiser gets suppressed, and the real
+finding goes with it.
+
+One trap is written into `tenancy.yml` beside the fix: `metavariable-regex` is
+anchored at the start, like `re.match`, and a string literal's text includes its
+quotes. A regex of `(?i)tenant` matched nothing, `"X-Tenant-Id"` included, and
+only the marked cases showed it.
+
 ## Adding a rule
 
 1. Write it in `rules/*.yml`.
-2. Add a violating function to `fixtures/noncompliant/app.py` and a compliant
-   twin to `fixtures/compliant/app.py`.
+2. Add a violating function to `fixtures/noncompliant/app.py`, under a
+   `# <rule-id>` marker line, and a compliant twin to
+   `fixtures/compliant/app.py`.
 3. `pytest semgrep -q`. The parametrized tests pick the new ID up from the rule
    source automatically — there is no list to update, which is deliberate: a
    hardcoded list keeps passing when a rule is added and fails to load.

@@ -6,11 +6,16 @@ merely to load — a rule that registers and never fires is the same fail-open a
 a rule that never registers, relocated one step later.
 """
 import pickle
+from typing import Annotated
 
 import httpx
 import requests
 import yaml
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Depends, Header, Request
+from sqlalchemy import select
+
+from .auth import require_scope
+from .schemas import TransferIn
 
 router = APIRouter()
 
@@ -61,3 +66,46 @@ def load_config(raw):
 # reference-unsafe-deserialization
 def load_cache(blob):
     return pickle.loads(blob)
+
+
+# reference-missing-route-authorization
+@router.put("/reports/{report_id}")
+def replace_report(report_id: int, body: dict):
+    return {"ok": True}
+
+
+# reference-missing-route-authorization
+@router.patch("/reports/{report_id}")
+async def edit_report(report_id: int, body: dict):
+    return {"ok": True}
+
+
+# reference-tenant-scope-from-request
+def tenant_from_lowercase_header(request: Request):
+    return request.headers.get("x-tenant-id")
+
+
+# reference-tenant-scope-from-request
+def tenant_from_header_parameter(x_tenant_id: str = Header(...)):
+    return x_tenant_id
+
+
+# reference-tenant-scope-from-request
+def tenant_from_annotated_header(tenant_id: Annotated[str, Header()]):
+    return tenant_id
+
+
+# reference-unscoped-tenant-query
+def document_by_id(session, Document, doc_id):
+    return session.get(Document, doc_id)
+
+
+# reference-unscoped-tenant-query
+def all_documents_v2(session, Document):
+    return session.scalars(select(Document)).all()
+
+
+# reference-tenant-scope-from-request
+@router.post("/transfers", dependencies=[Depends(require_scope("transfers:write"))])
+def create_transfer(payload: TransferIn):
+    return {"tenant": payload.tenant_id}

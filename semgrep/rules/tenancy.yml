@@ -18,10 +18,69 @@ rules:
       confidence: HIGH
     patterns:
       - pattern-either:
-          - pattern: $REQ.headers.get("X-Tenant-Id", ...)
-          - pattern: $REQ.headers["X-Tenant-Id"]
-          - pattern: $REQ.query_params.get("tenant_id", ...)
-          - pattern: $BODY.tenant_id
+          # Any header or query key naming a tenant. Header names are
+          # case-insensitive on the wire, so `x-tenant-id` and `X-TENANT-ID`
+          # are the same read as `X-Tenant-Id`; the old literal saw only one.
+          - patterns:
+              - pattern-either:
+                  - pattern: $REQ.headers.get($KEY, ...)
+                  - pattern: $REQ.headers[$KEY]
+                  - pattern: $REQ.query_params.get($KEY, ...)
+                  - pattern: $REQ.query_params[$KEY]
+              # metavariable-regex is anchored at the start, like re.match, and a
+              # string literal's text includes its quotes. Without the leading
+              # `.*` this matched nothing, `"X-Tenant-Id"` included.
+              - metavariable-regex:
+                  metavariable: $KEY
+                  regex: (?i).*tenant
+          # A request body is a typed parameter of a route handler. Any other
+          # `x.tenant_id` is not a source: a row being serialised, the auth
+          # context, a comparison. The bare `$BODY.tenant_id` this replaced
+          # flagged every one of them, and a rule that fires on a serialiser
+          # buries the finding under noise.
+          - patterns:
+              - pattern-inside: |
+                  @$APP.$METHOD(...)
+                  def $F(..., $BODY: $MODEL, ...):
+                      ...
+              - pattern: $BODY.tenant_id
+              # A dependency-injected parameter is the auth context, which is
+              # the correct source.
+              - pattern-not-inside: |
+                  @$APP.$METHOD(...)
+                  def $F(..., $BODY: $MODEL = Depends(...), ...):
+                      ...
+              - pattern-not-inside: |
+                  @$APP.$METHOD(...)
+                  def $F(..., $BODY: Annotated[$T, Depends(...)], ...):
+                      ...
+              # A comparison is a check, not a source: `row.tenant_id !=
+              # caller_tenant` is the correct ownership test.
+              - pattern-not-inside: $L == $R
+              - pattern-not-inside: $L != $R
+          # FastAPI injects a header or query value as a parameter, so the read
+          # never appears as `request.headers` at all.
+          - patterns:
+              - pattern-either:
+                  - pattern: |
+                      def $F(..., $P: $T = Header(...), ...):
+                          ...
+                  - pattern: |
+                      def $F(..., $P = Header(...), ...):
+                          ...
+                  - pattern: |
+                      def $F(..., $P: Annotated[$T, Header(...)], ...):
+                          ...
+                  - pattern: |
+                      def $F(..., $P: $T = Query(...), ...):
+                          ...
+                  - pattern: |
+                      def $F(..., $P: Annotated[$T, Query(...)], ...):
+                          ...
+              - metavariable-regex:
+                  metavariable: $P
+                  regex: (?i).*tenant
+              - focus-metavariable: $P
       # The auth context is the CORRECT source. Without these exclusions the
       # rule flags the right answer as loudly as the wrong one — caught by the
       # compliant fixture, which is what that fixture is for. A rule that fires
@@ -35,9 +94,11 @@ rules:
     languages: [python]
     severity: WARNING
     message: >-
-      Query against a tenant-scoped table with no tenant predicate. Application
-      -layer scoping only holds while every author remembers it; this is the
-      case row-level security exists to make unnecessary.
+      Query against a tenant-scoped table with no tenant predicate, or a
+      primary-key lookup with no tenant check after it. A lookup by ID returns
+      the row whatever its tenant. Application-layer scoping only holds while
+      every author remembers it; this is the case row-level security exists to
+      make unnecessary.
     metadata:
       category: security
       nist-800-53: [AC-4, SC-4]
@@ -46,5 +107,24 @@ rules:
       - pattern-either:
           - pattern: $SESSION.query($MODEL).all()
           - pattern: $SESSION.query($MODEL).first()
+          - pattern: $SESSION.query($MODEL).get($ID)
+          # SQLAlchemy 2.0 spells the unfiltered read as select() with no where.
+          - pattern: $SESSION.scalars(select($MODEL))
+          - pattern: $SESSION.execute(select($MODEL))
+          # A primary-key lookup returns the row whatever its tenant. It is how
+          # `GET /things/{id}` reads another tenant's row, and it has no
+          # predicate to forget, so the check has to follow it.
+          - patterns:
+              - pattern: $SESSION.get($MODEL, $ID)
+              # A model is a class name. Without this, every dict lookup with a
+              # default (`os.environ.get("X", "y")`) is a finding.
+              - metavariable-regex:
+                  metavariable: $MODEL
+                  regex: ^[A-Z]\w*$
+              - pattern-not-inside: |
+                  $ROW = $SESSION.get($MODEL, $ID)
+                  ...
+                  if <... $ROW.tenant_id ...>:
+                      ...
       - pattern-not: $SESSION.query($MODEL).filter_by(tenant_id=...).$X(...)
       - pattern-not: $SESSION.query($MODEL).filter(...).$X(...)

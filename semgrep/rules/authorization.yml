@@ -11,26 +11,23 @@ rules:
     message: >-
       Route handler has no authorization dependency. A FastAPI router mounted
       without a global guard authorises per-route, so an omitted decorator is an
-      open endpoint rather than a default-deny.
+      open endpoint rather than a default-deny. Covers GET, POST, PUT, PATCH and
+      DELETE; a write route with no guard is the worse half of the problem.
     metadata:
       category: security
       nist-800-53: [AC-3, AC-6]
       owasp: "A01:2021 Broken Access Control"
       confidence: HIGH
     patterns:
-      - pattern-either:
-          - pattern: |
-              @$APP.get(...)
-              def $F(...):
-                  ...
-          - pattern: |
-              @$APP.post(...)
-              def $F(...):
-                  ...
-          - pattern: |
-              @$APP.delete(...)
-              def $F(...):
-                  ...
+      - pattern: |
+          @$APP.$METHOD(...)
+          def $F(...):
+              ...
+      # PUT and PATCH were missing until 2026-10: an unguarded edit route
+      # matched nothing, and the fixture had no case to show it.
+      - metavariable-regex:
+          metavariable: $METHOD
+          regex: ^(get|post|put|patch|delete)$
       - pattern-not: |
           @$APP.$METHOD(..., dependencies=[...], ...)
           def $F(...):
@@ -38,6 +35,20 @@ rules:
       - pattern-not: |
           @$APP.$METHOD(...)
           def $F(..., $USER = Depends($GUARD), ...):
+              ...
+      - pattern-not: |
+          @$APP.$METHOD(...)
+          def $F(..., $USER = Security($GUARD, ...), ...):
+              ...
+      # The Annotated form is what FastAPI's own docs now teach. Without these
+      # two exclusions a guarded route written that way is flagged as open.
+      - pattern-not: |
+          @$APP.$METHOD(...)
+          def $F(..., $USER: Annotated[$T, Depends($GUARD)], ...):
+              ...
+      - pattern-not: |
+          @$APP.$METHOD(...)
+          def $F(..., $USER: Annotated[$T, Security($GUARD, ...)], ...):
               ...
       - pattern-not: |
           @$APP.$METHOD(...)
