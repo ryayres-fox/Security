@@ -5,7 +5,7 @@ prove they run.
 
 ```bash
 pip install semgrep pytest
-pytest semgrep -q          # 33 tests
+pytest semgrep -q          # 34 tests
 ```
 
 ## The rules
@@ -82,9 +82,14 @@ shape the rules did not see:
   `GET /things/{id}` routes;
 - SQLAlchemy 2.0's `session.scalars(select(Model))` with no `where`.
 
-The compliant twins it added caught one more, in the other direction: the bare
-`$BODY.tenant_id` pattern also matched `row.tenant_id != tenant_id`, which is
-the ownership check the rule wants written. Comparisons are now excluded.
+The compliant twins it added caught the other direction too. The bare
+`$BODY.tenant_id` pattern matched `row.tenant_id != tenant_id`, which is the
+ownership check the rule wants written, and it matched a serialiser returning
+`row.tenant_id`, which is the most common line in any API that has tenants.
+The pattern now fires only on a typed parameter of a route handler (a request
+body), and not on a dependency-injected one (the auth context) or inside a
+comparison. A rule that flags every serialiser gets suppressed, and the real
+finding goes with it.
 
 One trap is written into `tenancy.yml` beside the fix: `metavariable-regex` is
 anchored at the start, like `re.match`, and a string literal's text includes its

@@ -93,3 +93,21 @@ def all_documents_v2(session, Document, tenant_id):
 
 def app_env():
     return os.environ.get("APP_ENV", "dev")
+
+
+def serialise(row):
+    return {"id": row.id, "tenant_id": row.tenant_id}
+
+
+def serialise_typed(row: "Report"):
+    return {"id": row.id, "tenant_id": row.tenant_id}
+
+
+@router.get("/me/tenant")
+def my_tenant(user: User = Depends(current_user)):
+    return {"tenant": user.tenant_id}
+
+
+@router.get("/me/tenant/annotated")
+def my_tenant_annotated(user: Annotated[User, Depends(current_user)]):
+    return {"tenant": user.tenant_id}

@@ -33,11 +33,29 @@ rules:
               - metavariable-regex:
                   metavariable: $KEY
                   regex: (?i).*tenant
+          # A request body is a typed parameter of a route handler. Any other
+          # `x.tenant_id` is not a source: a row being serialised, the auth
+          # context, a comparison. The bare `$BODY.tenant_id` this replaced
+          # flagged every one of them, and a rule that fires on a serialiser
+          # buries the finding under noise.
           - patterns:
+              - pattern-inside: |
+                  @$APP.$METHOD(...)
+                  def $F(..., $BODY: $MODEL, ...):
+                      ...
               - pattern: $BODY.tenant_id
+              # A dependency-injected parameter is the auth context, which is
+              # the correct source.
+              - pattern-not-inside: |
+                  @$APP.$METHOD(...)
+                  def $F(..., $BODY: $MODEL = Depends(...), ...):
+                      ...
+              - pattern-not-inside: |
+                  @$APP.$METHOD(...)
+                  def $F(..., $BODY: Annotated[$T, Depends(...)], ...):
+                      ...
               # A comparison is a check, not a source: `row.tenant_id !=
-              # caller_tenant` is the correct ownership test, and it was being
-              # flagged as loudly as the defect.
+              # caller_tenant` is the correct ownership test.
               - pattern-not-inside: $L == $R
               - pattern-not-inside: $L != $R
           # FastAPI injects a header or query value as a parameter, so the read

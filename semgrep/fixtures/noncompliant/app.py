@@ -11,8 +11,11 @@ from typing import Annotated
 import httpx
 import requests
 import yaml
-from fastapi import APIRouter, Header, Request
+from fastapi import APIRouter, Depends, Header, Request
 from sqlalchemy import select
+
+from .auth import require_scope
+from .schemas import TransferIn
 
 router = APIRouter()
 
@@ -100,3 +103,9 @@ def document_by_id(session, Document, doc_id):
 # reference-unscoped-tenant-query
 def all_documents_v2(session, Document):
     return session.scalars(select(Document)).all()
+
+
+# reference-tenant-scope-from-request
+@router.post("/transfers", dependencies=[Depends(require_scope("transfers:write"))])
+def create_transfer(payload: TransferIn):
+    return {"tenant": payload.tenant_id}
