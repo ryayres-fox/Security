@@ -25,6 +25,7 @@ the right answer as loudly as the wrong one.
 """
 from __future__ import annotations
 
+import functools
 import json
 import re
 import shutil
@@ -143,6 +144,63 @@ def test_rule_is_silent_on_the_compliant_fixture(rule_id):
         f"the right answer get suppressed, and a suppressed rule reports success "
         f"forever after."
     )
+
+
+# ------------------------- assertion 4: each case fires its own rule, and only it
+
+# The non-compliant fixture promises that every function violates exactly one
+# rule. Assertion 2 only counts per rule across the whole file, so a new case
+# for a rule that already fired elsewhere could match nothing and still pass.
+# This holds each case to its marker: the `# <rule-id>` comment above it.
+MARKER = re.compile(r"^# (reference-[a-z-]+)\s*$")
+
+
+def _marked_cases(path: Path) -> list[tuple[str, int, int]]:
+    """(rule id, first line, last line) for each marked case in a fixture.
+
+    A case runs from the line after its marker to the line before the next
+    marker, or to the end of the file.
+    """
+    lines = path.read_text(encoding="utf-8").splitlines()
+    marks = []
+    for i, line in enumerate(lines, start=1):
+        m = MARKER.match(line)
+        if m:
+            marks.append((i, m.group(1)))
+    cases = []
+    for n, (line_no, rule_id) in enumerate(marks):
+        end = marks[n + 1][0] - 1 if n + 1 < len(marks) else len(lines)
+        cases.append((rule_id, line_no + 1, end))
+    return cases
+
+
+CASES = _marked_cases(NONCOMPLIANT / "app.py")
+
+
+@functools.cache
+def _noncompliant_results() -> tuple[tuple[str, int], ...]:
+    """One scan shared by every case: (short rule id, start line) per result."""
+    _, payload = _run(NONCOMPLIANT)
+    return tuple((r["check_id"].split(".")[-1], r["start"]["line"])
+                 for r in payload.get("results", []))
+
+
+def test_every_rule_has_a_marked_case():
+    """Guards the parametrized test below the same way the DECLARED guard
+    does: if the marker regex stops matching, CASES empties and every case
+    test silently disappears."""
+    marked = {rule_id for rule_id, _, _ in CASES}
+    assert marked == DECLARED, (
+        f"marked cases {sorted(marked)} do not cover the declared rules {sorted(DECLARED)}")
+
+
+@pytest.mark.parametrize("rule_id,first,last", CASES,
+                         ids=[f"{r}@line{a}" for r, a, _ in CASES])
+def test_each_marked_case_fires_its_rule_and_only_its_rule(rule_id, first, last):
+    hits = {rid for rid, line in _noncompliant_results() if first <= line <= last}
+    assert hits == {rule_id}, (
+        f"lines {first}-{last} are marked {rule_id}; semgrep reported "
+        f"{sorted(hits) or 'nothing'} there")
 
 
 # ----------------------------------------------------------- the meta-test
