@@ -109,11 +109,23 @@ network sensor's alerts for the same traffic.
 | --- | --- | --- | --- |
 | 2026-10-17 | [A scanner found thirteen problems; the sensor raised thousands of alerts about something else](2026-10-17-web-targets-on-the-wire.md) | 6, 7, 4, 8 | 2.0 h |
 
-### Next: Milestone 5, the RAG app against the OWASP LLM Top 10
+### Milestone 5: the RAG app against the OWASP LLM Top 10
 
-Indirect prompt injection first. Each experiment measured for what it stops
-and for what it costs on the honest questions, with Malcolm counting every
-request.
+Indirect prompt injection first, then a full red-team baseline. Each
+experiment measured for what it stops and for what it costs on the honest
+questions, with Malcolm counting every request.
+
+| Date | Entry | CISSP domains | Time |
+| --- | --- | --- | --- |
+| 2026-10-19 | [Indirect prompt injection, and the one-sentence defense I proved](2026-10-19-milestone-5-indirect-injection.md) | 6, 8, 3, 2 | _tbd_ |
+| 2026-10-21 to 22 | [A full red-team baseline of my RAG lab, and what the test taught me about the lab](2026-10-21-milestone-5-red-team-baseline.md) | 6, 8, 7, 3 | _tbd_ |
+
+### Next: the controls, measured
+
+Each control is a setting that can be turned on and off, measured before and
+after on the same probes, and for what it costs on the honest questions: an
+output cap and a memory limit first, then data delimiting in the prompt, then
+an input screen and an output check.
 
 **Reference:** [Searching Malcolm, for someone new to it](searching-malcolm.md).
 The query languages, the field names, and the checks to run before
