@@ -120,16 +120,18 @@ questions, with Malcolm counting every request.
 | 2026-10-19 | [Indirect prompt injection, and the one-sentence defense I proved](2026-10-19-milestone-5-indirect-injection.md) | 6, 8, 3, 2 | _tbd_ |
 | 2026-10-21 to 22 | [A full red-team baseline of my RAG lab, and what the test taught me about the lab](2026-10-21-milestone-5-red-team-baseline.md) | 6, 8, 7, 3 | _tbd_ |
 
-### Milestone 6: the targets' host logs
+### Milestone 6: host, application and identity logs
 
 The network plane sees packets; a shell on a target is invisible until its
-**host** log reaches the SIEM. Centralising those logs without giving a target
-a path into the management plane, and moving every forwarder off one shared
-certificate onto one of its own.
+**host** log reaches the SIEM. Centralising the host, application and identity
+logs without giving a box a path into the management plane, moving every
+forwarder off one shared certificate onto its own, and giving the SIEM's
+listener an identity the forwarders verify.
 
 | Date | Entry | CISSP domains | Time |
 | --- | --- | --- | --- |
 | 2026-10-27 to 28 | [The targets' host logs, and a certificate per host](2026-10-28-milestone-6-host-logs.md) | 7, 6, 4, 5, 3 | 4.0 h |
+| 2026-10-29 | [Completed: the sensor's identity, and the application and identity logs](2026-10-29-milestone-6-completed.md) | 7, 5, 3, 6, 4 | 2.0 h |
 
 ### Next: the controls, measured
 
