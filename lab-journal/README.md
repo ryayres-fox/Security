@@ -133,6 +133,19 @@ listener an identity the forwarders verify.
 | 2026-10-27 to 28 | [The targets' host logs, and a certificate per host](2026-10-28-milestone-6-host-logs.md) | 7, 6, 4, 5, 3 | 4.0 h |
 | 2026-10-29 | [Completed: the sensor's identity, and the application and identity logs](2026-10-29-milestone-6-completed.md) | 7, 5, 3, 6, 4 | 2.0 h |
 
+### Kubernetes security lab
+
+A second track, on the Kali workstation: a single-node `kind` cluster, built
+from the public Kubernetes documentation. It starts with an audit log and an
+assessment, then puts the controls under GitOps, alerts on changes to them in
+Malcolm, and makes a signing pipeline the only way an image gets in.
+
+| Date | Entry | CISSP domains | Time |
+| --- | --- | --- | --- |
+| 2026-10-30 | [A cluster with its audit log on, assessed three ways, and my own controls in the findings](2026-10-30-k8s-baseline-and-identity.md) | 6, 5, 7, 3 | 1.0 h |
+| 2026-10-31 | [Kubernetes controls under GitOps, alerted on in the SIEM, and the Falco alerts that overwrote each other](2026-10-31-k8s-gitops-audit-falco.md) | 7, 3, 5, 6 | 1.0 h |
+| 2026-11-02 to 03 | [The cluster runs only what the pipeline signed, and `kubectl exec` never reached the audit log](2026-11-03-k8s-supply-chain-pipeline.md) | 8, 3, 7, 6, 5 | 1.0 h |
+
 ### Next: the controls, measured
 
 Each control is a setting that can be turned on and off, measured before and
